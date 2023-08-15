@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -53,20 +54,26 @@ public class UserServiceImpl implements UserService{
 
         // Validation checks for user data
         if (user.getEmail().isBlank() || user.getName().isBlank() || user.getPassword().isBlank()) {
-            throw new GlobalExceptionHandler.BadRequestException("user invalid");
+            throw new GlobalExceptionHandler.BadRequestException("User invalid");
         }
-        if (repository.existsByEmail(user.getEmail())){
-            throw new GlobalExceptionHandler.BadRequestException("user already exist");
+        Optional<UserModel> existingUser = repository.findByEmailAndActiveTrue(user.getEmail());
+
+        if (existingUser.isPresent()) {
+            UserModel userFound = existingUser.get();
+
+            if (userFound.getActive().equals(true)) {
+                throw new GlobalExceptionHandler.BadRequestException("User with this email already exists.");
+            }
         }
         if (!isValidEmail(user.getEmail())){
-            throw new GlobalExceptionHandler.BadRequestException("email invalid");
+            throw new GlobalExceptionHandler.BadRequestException("Email invalid");
         }
         if (!isValidPassword(user.getPassword())){
-            throw new GlobalExceptionHandler.BadRequestException("password invalid");
+            throw new GlobalExceptionHandler.BadRequestException("Password invalid");
         }
 
         // Create a UserModel and encode password
-        UserModel use = new UserModel(null, user.getName(), user.getEmail(), user.getPassword());
+        UserModel use = new UserModel(null, user.getName(), user.getEmail(), user.getPassword(), true);
         use.setPassword(encoder.encode(use.getPassword()));
         user.setPassword(use.getPassword());
 
@@ -74,10 +81,11 @@ public class UserServiceImpl implements UserService{
         repository.save(use);
 
         // Update userComp with ID and other details
-        userComp.setId(repository.findByEmail(use.getEmail()).get().getId());
-        userComp.setName(repository.findByEmail(use.getEmail()).get().getName());
-        userComp.setEmail(repository.findByEmail(use.getEmail()).get().getEmail());
-        userComp.setPassword(repository.findByEmail(use.getEmail()).get().getPassword());
+        userComp.setId(repository.findByEmailAndActiveTrue(use.getEmail()).get().getId());
+        userComp.setName(repository.findByEmailAndActiveTrue(use.getEmail()).get().getName());
+        userComp.setEmail(repository.findByEmailAndActiveTrue(use.getEmail()).get().getEmail());
+        userComp.setPassword(repository.findByEmailAndActiveTrue(use.getEmail()).get().getPassword());
+        userComp.setActive(repository.findByEmailAndActiveTrue(use.getEmail()).get().getActive());
 
         return user;
     }
@@ -97,7 +105,8 @@ public class UserServiceImpl implements UserService{
     @Override
     public DadosCadastroUser findById(UUID id) {
         DadosCadastroUser user = new DadosCadastroUser(repository.findById(id)
-                .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("Invalid user ID: " + id)));
+                .filter(userModel -> Boolean.TRUE.equals(userModel.getActive()))
+                .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("User not found or inactive with ID: " + id)));
 
         return user;
     }
@@ -112,5 +121,21 @@ public class UserServiceImpl implements UserService{
     private boolean isValidPassword(String password) {
         String passwordRegex = "^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
         return password.matches(passwordRegex);
+    }
+
+    /**
+     * Marks a user as inactive based on the provided user ID.
+     *
+     * @param id The unique identifier of the user to be marked as inactive.
+     * @throws GlobalExceptionHandler.NotFoundException if the user with the given ID is not found.
+     */
+    @Override
+    public void markUserAsInactive(UUID id) {
+        UserModel user = repository.findById(id)
+                .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("User not found with ID: " + id));
+
+        user.setActive(false);
+
+        repository.save(user);
     }
 }

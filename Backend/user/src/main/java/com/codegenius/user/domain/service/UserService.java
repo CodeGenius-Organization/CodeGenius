@@ -2,6 +2,7 @@ package com.codegenius.user.domain.service;
 
 import com.codegenius.user.domain.dto.DadosCadastroCompleto;
 import com.codegenius.user.domain.dto.DadosCadastroUser;
+import com.codegenius.user.infra.exception.GlobalExceptionHandler;
 
 import java.util.UUID;
 
@@ -34,4 +35,12 @@ public interface UserService {
      * @since 2023-08-09
      */
     DadosCadastroUser findById(UUID id);
+
+    /**
+     * Marks a user as inactive based on the provided user ID.
+     *
+     * @param id The unique identifier of the user.
+     * @throws GlobalExceptionHandler.NotFoundException if the user is not found.
+     */
+    void markUserAsInactive(UUID id);
 }

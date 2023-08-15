@@ -16,7 +16,9 @@ public class AuthentificationServiceImpl implements AuthentificationService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        UserModel user = repository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        UserModel user = repository.findByEmailAndActiveTrue(email)
+                .filter(userModel -> Boolean.TRUE.equals(userModel.getActive()))
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
         return user;
     }

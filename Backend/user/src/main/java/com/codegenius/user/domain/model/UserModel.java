@@ -36,6 +36,8 @@ public class UserModel implements UserDetails {
     private String email;
     @Column(name = "password", length = 100, nullable = false)
     private String password;
+    @Column(name = "active", nullable = false)
+    private Boolean active;
 
     /**
      * Returns the authorities granted to the user.

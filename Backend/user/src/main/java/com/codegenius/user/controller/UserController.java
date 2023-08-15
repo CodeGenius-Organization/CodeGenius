@@ -55,4 +55,22 @@ public class UserController {
         DadosCadastroUser user = userService.findById(id);
         return ResponseEntity.ok(user);
     }
+
+//    @PutMapping("/{id}")
+//    public ResponseEntity<DadosCadastroUser> updateUser(@PathVariable UUID id, @RequestBody) {
+//
+//    }
+
+    /**
+     * Marks a user as inactive based on the provided user ID.
+     *
+     * @param id The unique identifier of the user.
+     * @return ResponseEntity with a success message.
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable UUID id) {
+        userService.markUserAsInactive(id);
+        return ResponseEntity.ok("User marked as inactive");
+    }
+
 }

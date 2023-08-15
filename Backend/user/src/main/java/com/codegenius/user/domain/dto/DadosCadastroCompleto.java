@@ -27,4 +27,6 @@ public class DadosCadastroCompleto {
     private String email;
     @JsonProperty("password")
     private String password;
+    @JsonProperty("ativo")
+    private Boolean active;
 }

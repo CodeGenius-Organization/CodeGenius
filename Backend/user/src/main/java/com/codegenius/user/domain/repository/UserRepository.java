@@ -22,7 +22,7 @@ public interface UserRepository extends JpaRepository<UserModel, UUID> {
      * @author hidek
      * @since 2023-08-09
      */
-    Optional<UserModel> findByEmail(String email);
+    Optional<UserModel> findByEmailAndActiveTrue(String email);
     /**
      * Checks if a user with the given email exists.
      *
