@@ -41,7 +41,6 @@ public class AuthentificationController {
         var authenticationToken = new UsernamePasswordAuthenticationToken(dadosAuthentification.getEmail(), dadosAuthentification.getPassword());
         // Authenticate the user using the AuthenticationManager
         var authentication =  manager.authenticate(authenticationToken);
-
         // Generate a token for the authenticated user
         var token = tokenService.token((UserModel) authentication.getPrincipal());
         // Return the generated token as part of a ResponseEntity

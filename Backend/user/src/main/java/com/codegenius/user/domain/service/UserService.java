@@ -37,10 +37,28 @@ public interface UserService {
     DadosCadastroUser findById(UUID id);
 
     /**
+     * Updates user information based on the provided ID and user data.
+     *
+     * @param id       The unique identifier of the user to update.
+     * @param userDTO  The DTO containing the updated user information.
+     * @param userComp The complete user registration data.
+     * @return The updated user details.
+     * @throws GlobalExceptionHandler.BadRequestException if a user with the provided email already exists and is active.
+     * @throws GlobalExceptionHandler.NotFoundException  if the user is not found with the provided ID.
+     *
+     * @author hidek
+     * @since 2023-08-15
+     */
+    DadosCadastroUser updateUser(UUID id, DadosCadastroUser userDTO, DadosCadastroCompleto userComp);
+
+    /**
      * Marks a user as inactive based on the provided user ID.
      *
      * @param id The unique identifier of the user.
      * @throws GlobalExceptionHandler.NotFoundException if the user is not found.
+     *
+     * @author hidek
+     * @since 2023-08-15
      */
     void markUserAsInactive(UUID id);
 }

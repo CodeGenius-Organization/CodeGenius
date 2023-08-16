@@ -33,7 +33,7 @@ public class UserController {
      * @author hidek
      * @since 2023-08-09
      */
-    @PostMapping("/save")
+    @PostMapping
     public ResponseEntity<DadosCadastroUser> saveUser(@RequestBody DadosCadastroUser userDTO, UriComponentsBuilder uriBuilder, DadosCadastroCompleto userComp){
         DadosCadastroUser savedUser = userService.saveUser(userDTO, userComp);
 
@@ -56,16 +56,35 @@ public class UserController {
         return ResponseEntity.ok(user);
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<DadosCadastroUser> updateUser(@PathVariable UUID id, @RequestBody) {
-//
-//    }
+    /**
+     * Updates user information based on the provided ID and user data.
+     *
+     * @param id       The unique identifier of the user to update.
+     * @param userDTO  The DTO containing the updated user information.
+     * @param userComp The complete user registration data.
+     * @return ResponseEntity containing the updated user details.
+     *
+     * @author hidek
+     * @since 2023-08-15
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<DadosCadastroUser> updateUser(
+            @PathVariable UUID id,
+            @RequestBody DadosCadastroUser userDTO,
+            DadosCadastroCompleto userComp) {
+
+        DadosCadastroUser updatedUser = userService.updateUser(id, userDTO, userComp);
+        return ResponseEntity.ok(updatedUser);
+    }
 
     /**
      * Marks a user as inactive based on the provided user ID.
      *
      * @param id The unique identifier of the user.
      * @return ResponseEntity with a success message.
+     *
+     * @author hidek
+     * @since 2023-08-15
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable UUID id) {

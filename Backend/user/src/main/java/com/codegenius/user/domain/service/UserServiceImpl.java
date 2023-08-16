@@ -90,8 +90,6 @@ public class UserServiceImpl implements UserService{
         return user;
     }
 
-    // Other methods and fields...
-
     /**
      * Retrieves user information based on the provided user ID.
      *
@@ -124,10 +122,54 @@ public class UserServiceImpl implements UserService{
     }
 
     /**
+     * Updates a user's information based on the provided ID and user data.
+     *
+     * @param id       The unique identifier of the user to update.
+     * @param userDTO  The DTO containing the updated user information.
+     * @param userComp The complete user registration data.
+     * @return The updated user details.
+     * @throws GlobalExceptionHandler.BadRequestException if a user with the provided email already exists and is active.
+     * @throws GlobalExceptionHandler.NotFoundException  if the user is not found with the provided ID.
+     *
+     * @author hidek
+     * @since 2023-08-15
+     */
+    @Override
+    public DadosCadastroUser updateUser(UUID id, DadosCadastroUser userDTO, DadosCadastroCompleto userComp) {
+        Optional<UserModel> existingUser = repository.findByEmailAndActiveTrue(userDTO.getEmail());
+
+        if (existingUser.isPresent() && !existingUser.get().getId().equals(id)) {
+            throw new GlobalExceptionHandler.BadRequestException("User with this email already exists.");
+        }
+
+        UserModel userToUpdate = repository.findById(id)
+                .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("User not found with ID: " + id));
+
+        // Update the fields provided, while keeping others unchanged
+        if (userDTO.getName() != null) {
+            userToUpdate.setName(userDTO.getName());
+        }
+        if (userDTO.getEmail() != null) {
+            userToUpdate.setEmail(userDTO.getEmail());
+        }
+        if (userDTO.getPassword() != null) {
+            userToUpdate.setPassword(userDTO.getPassword());
+        }
+
+        repository.save(userToUpdate);
+
+        DadosCadastroUser updatedUser = new DadosCadastroUser(userToUpdate);
+        return updatedUser;
+    }
+
+    /**
      * Marks a user as inactive based on the provided user ID.
      *
      * @param id The unique identifier of the user to be marked as inactive.
      * @throws GlobalExceptionHandler.NotFoundException if the user with the given ID is not found.
+     *
+     * @author hidek
+     * @since 2023-08-15
      */
     @Override
     public void markUserAsInactive(UUID id) {
