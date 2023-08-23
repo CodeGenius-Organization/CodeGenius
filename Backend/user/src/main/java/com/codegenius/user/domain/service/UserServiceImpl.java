@@ -52,7 +52,6 @@ public class UserServiceImpl implements UserService{
      */
     public DadosCadastroUser saveUser(DadosCadastroUser user, DadosCadastroCompleto userComp) {
 
-        // Validation checks for user data
         if (user.getEmail().isBlank() || user.getName().isBlank() || user.getPassword().isBlank()) {
             throw new GlobalExceptionHandler.BadRequestException("User invalid");
         }
@@ -72,15 +71,12 @@ public class UserServiceImpl implements UserService{
             throw new GlobalExceptionHandler.BadRequestException("Password invalid");
         }
 
-        // Create a UserModel and encode password
         UserModel use = new UserModel(null, user.getName(), user.getEmail(), user.getPassword(), true);
         use.setPassword(encoder.encode(use.getPassword()));
         user.setPassword(use.getPassword());
 
-        // Save the UserModel
         repository.save(use);
 
-        // Update userComp with ID and other details
         userComp.setId(repository.findByEmailAndActiveTrue(use.getEmail()).get().getId());
         userComp.setName(repository.findByEmailAndActiveTrue(use.getEmail()).get().getName());
         userComp.setEmail(repository.findByEmailAndActiveTrue(use.getEmail()).get().getEmail());
@@ -145,15 +141,22 @@ public class UserServiceImpl implements UserService{
         UserModel userToUpdate = repository.findById(id)
                 .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("User not found with ID: " + id));
 
-        // Update the fields provided, while keeping others unchanged
         if (userDTO.getName() != null) {
             userToUpdate.setName(userDTO.getName());
         }
         if (userDTO.getEmail() != null) {
-            userToUpdate.setEmail(userDTO.getEmail());
+            if (isValidEmail(userDTO.getEmail())) {
+                userToUpdate.setEmail(userDTO.getEmail());
+            } else {
+                throw new GlobalExceptionHandler.BadRequestException("Email invalid");
+            }
         }
         if (userDTO.getPassword() != null) {
-            userToUpdate.setPassword(userDTO.getPassword());
+            if (isValidPassword(userDTO.getPassword())){
+                userToUpdate.setPassword(userDTO.getPassword());
+            } else {
+                throw new GlobalExceptionHandler.BadRequestException("Password invalid");
+            }
         }
 
         repository.save(userToUpdate);
