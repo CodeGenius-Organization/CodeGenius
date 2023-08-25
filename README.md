@@ -12,7 +12,8 @@
 </div>
 <h3>Funcionalidades:</h3>
 <p>
-
+   <li>CRUD de usuarios.</li>
+   <li></li>
 </p>
 <h3>Tecnologias Utilizadas:</h3>
 <p>
@@ -26,7 +27,10 @@
 </p>
 <h3>Como Utilizar:</h3>
 <p>
-  
+   <ol>
+      <li>Clonar o repositório.</li>
+      <li></li>
+   </ol>
 </p><br>
 <div style="justify-content: space-around">
   <img src="https://img.shields.io/badge/Made%20with-Java-1f425f.svg">
