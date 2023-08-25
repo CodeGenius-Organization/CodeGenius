@@ -77,11 +77,13 @@ public class UserServiceImpl implements UserService{
 
         repository.save(use);
 
-        userComp.setId(repository.findByEmailAndActiveTrue(use.getEmail()).get().getId());
-        userComp.setName(repository.findByEmailAndActiveTrue(use.getEmail()).get().getName());
-        userComp.setEmail(repository.findByEmailAndActiveTrue(use.getEmail()).get().getEmail());
-        userComp.setPassword(repository.findByEmailAndActiveTrue(use.getEmail()).get().getPassword());
-        userComp.setActive(repository.findByEmailAndActiveTrue(use.getEmail()).get().getActive());
+        if (userComp != null && use.getId() != null) {
+            userComp.setId(use.getId());
+            userComp.setName(use.getName());
+            userComp.setEmail(use.getEmail());
+            userComp.setPassword(use.getPassword());
+            userComp.setActive(use.getActive());
+        }
 
         return user;
     }
