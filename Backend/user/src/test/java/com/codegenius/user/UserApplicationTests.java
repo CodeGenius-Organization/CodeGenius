@@ -42,7 +42,7 @@ class UserServiceImplTest {
 	public void testUpdateUser_Success() {
 		UUID userId = UUID.randomUUID();
 		DadosCadastroUser userDTO = new DadosCadastroUser("Updated Name", "updated@code.genius", "newP4ssword!");
-		DadosCadastroCompleto userComp = new DadosCadastroCompleto(userId, "Updated Name", "updated@code-genius", "newP4ssword!", true);
+		DadosCadastroCompleto userComp = new DadosCadastroCompleto(userId, "Updated name", "updated@code-genius", "newP4ssword!", true);
 
 		UserModel existingUser = new UserModel();
 		existingUser.setId(userId);
@@ -106,6 +106,26 @@ class UserServiceImplTest {
 		UUID userId = UUID.randomUUID();
 		DadosCadastroUser userDTO = new DadosCadastroUser("Updated Name", "update@codegenius", "newP4ssword!");
 		DadosCadastroCompleto userComp = new DadosCadastroCompleto(userId, "Updated Name", "update@codegenius", "newP4ssword!", true);
+
+		UserModel existingUser = new UserModel();
+		existingUser.setId(userId);
+		existingUser.setName("Old Name");
+		existingUser.setEmail("old@code.genius");
+		existingUser.setPassword("oldP4ssword!");
+
+		when(userRepository.findById(userId)).thenReturn(Optional.of(existingUser));
+		when(userRepository.findByEmailAndActiveTrue(userDTO.getEmail())).thenReturn(Optional.empty());
+
+		assertThrows(GlobalExceptionHandler.BadRequestException.class, () -> userService.updateUser(userId, userDTO, userComp));
+
+		verify(userRepository, never()).save(any(UserModel.class));
+	}
+
+	@Test
+	public void testUpdateUserWithInvalidData_Failure() {
+		UUID userId = UUID.randomUUID();
+		DadosCadastroUser userDTO = new DadosCadastroUser("", "", "");
+		DadosCadastroCompleto userComp = new DadosCadastroCompleto(userId, "", "", "", true);
 
 		UserModel existingUser = new UserModel();
 		existingUser.setId(userId);
@@ -220,4 +240,102 @@ class UserServiceImplTest {
 		verify(userRepository, never()).save(any(UserModel.class));
 	}
 
+	@Test
+	public void testSaveUserWithInvalidData_Failure() {
+		UUID userId = UUID.randomUUID();
+		DadosCadastroUser userDTO = new DadosCadastroUser("", "", "");
+		DadosCadastroCompleto userComp = new DadosCadastroCompleto(userId, "", "", "", true);
+
+		when(userRepository.findByEmailAndActiveTrue(userDTO.getEmail())).thenReturn(Optional.empty());
+		when(passwordEncoder.encode(userDTO.getPassword())).thenReturn("encodedPassword");
+
+		UserModel userModel = new UserModel();
+		userModel.setName(userDTO.getName());
+		userModel.setEmail(userDTO.getEmail());
+		userModel.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+		userModel.setActive(userComp.getActive());
+
+		when(userRepository.save(any(UserModel.class))).thenReturn(userModel);
+
+		assertThrows(GlobalExceptionHandler.BadRequestException.class, () -> userService.saveUser(userDTO, userComp));
+
+		verify(userRepository, never()).save(any(UserModel.class));
+	}
+
+	@Test
+	public void testMarkUserAsInactive_Success() {
+		UUID userId = UUID.randomUUID();
+
+		UserModel user = new UserModel();
+		user.setId(userId);
+		user.setActive(true);
+
+		when(userRepository.findById(userId)).thenReturn(Optional.of(user));
+
+		userService.markUserAsInactive(userId);
+
+		assertFalse(user.getActive());
+
+		verify(userRepository).save(user);
+	}
+
+	@Test
+	public void testMarkUserAsInactive_Failure() {
+		UUID userId = UUID.randomUUID();
+
+		when(userRepository.findById(userId)).thenReturn(Optional.empty());
+
+		assertThrows(GlobalExceptionHandler.NotFoundException.class, () -> userService.markUserAsInactive(userId));
+
+		verify(userRepository, never()).save(any(UserModel.class));
+	}
+
+	@Test
+	public void testFindById_Success() {
+		UUID userId = UUID.randomUUID();
+
+		UserModel user = new UserModel();
+		user.setId(userId);
+		user.setName("Find");
+		user.setEmail("find@code.genius");
+		user.setPassword("hashedPassword");
+		user.setActive(true);
+
+		when(userRepository.findById(userId)).thenReturn(Optional.of(user));
+
+		DadosCadastroUser result = userService.findById(userId);
+
+		assertNotNull(result);
+		assertEquals("Find", result.getName());
+		assertEquals("find@code.genius", result.getEmail());
+		assertEquals("hashedPassword", result.getPassword());
+
+		verify(userRepository).findById(userId);
+	}
+
+	@Test
+	public void testFindByIdNotFound_Failure() {
+		UUID userId = UUID.randomUUID();
+
+		when(userRepository.findById(userId)).thenReturn(Optional.empty());
+
+		assertThrows(GlobalExceptionHandler.NotFoundException.class, () -> userService.findById(userId));
+
+		verify(userRepository).findById(userId);
+	}
+
+	@Test
+	public void testFindByIdAsInactive_Failure() {
+		UUID userId = UUID.randomUUID();
+
+		UserModel user = new UserModel();
+		user.setId(userId);
+		user.setActive(false);
+
+		when(userRepository.findById(userId)).thenReturn(Optional.of(user));
+
+		assertThrows(GlobalExceptionHandler.NotFoundException.class, () -> userService.findById(userId));
+
+		verify(userRepository).findById(userId);
+	}
 }

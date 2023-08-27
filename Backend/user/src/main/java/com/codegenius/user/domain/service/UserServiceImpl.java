@@ -144,6 +144,9 @@ public class UserServiceImpl implements UserService{
                 .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("User not found with ID: " + id));
 
         if (userDTO.getName() != null) {
+            if (userDTO.getName().isEmpty()) {
+                throw new GlobalExceptionHandler.BadRequestException("Name invalid");
+            }
             userToUpdate.setName(userDTO.getName());
         }
         if (userDTO.getEmail() != null) {
