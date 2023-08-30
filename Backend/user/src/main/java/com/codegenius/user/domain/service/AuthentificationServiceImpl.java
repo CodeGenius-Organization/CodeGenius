@@ -2,6 +2,7 @@ package com.codegenius.user.domain.service;
 
 import com.codegenius.user.domain.model.UserModel;
 import com.codegenius.user.domain.repository.UserRepository;
+import com.codegenius.user.infra.exception.GlobalExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -16,10 +17,22 @@ public class AuthentificationServiceImpl implements AuthentificationService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        UserModel user = repository.findByEmailAndActiveTrue(email)
-                .filter(userModel -> Boolean.TRUE.equals(userModel.getActive()))
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        if (isValidEmail(email)) {
+            UserModel user = repository.findByEmailAndActiveTrue(email)
+                    .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("User not found"));
 
-        return user;
+            if (user.getActive().equals(true)){
+                return user;
+            } else {
+                throw new GlobalExceptionHandler.NotFoundException("User not found");
+            }
+        } else {
+            throw new GlobalExceptionHandler.BadRequestException("Email is invalid");
+        }
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        return email.matches(emailRegex);
     }
 }

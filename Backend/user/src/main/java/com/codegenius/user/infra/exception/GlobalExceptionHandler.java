@@ -2,6 +2,7 @@ package com.codegenius.user.infra.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -77,6 +78,20 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<String> handleBadRequestException(BadRequestException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+    }
+
+
+    /**
+     * Handles BadRequestException and returns a bad request response.
+     *
+     * @return An ResponseEntity with a bad request status.
+     *
+     * @author hidek
+     * @since 2023-08-09
+     */
+    @ExceptionHandler(InternalAuthenticationServiceException.class)
+    public ResponseEntity handleInternalAuthentication() {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
 }

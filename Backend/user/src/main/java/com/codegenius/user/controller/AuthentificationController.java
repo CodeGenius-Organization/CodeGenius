@@ -36,7 +36,7 @@ public class AuthentificationController {
      * @since 2023-08-09
      */
     @GetMapping("/login")
-    public ResponseEntity login(@RequestBody DadosAuthentification dadosAuthentification) {
+    public ResponseEntity<DadosTokenJWT> login(@RequestBody DadosAuthentification dadosAuthentification) {
         // Create an authentication token based on user's email and password
         var authenticationToken = new UsernamePasswordAuthenticationToken(dadosAuthentification.getEmail(), dadosAuthentification.getPassword());
         // Authenticate the user using the AuthenticationManager
