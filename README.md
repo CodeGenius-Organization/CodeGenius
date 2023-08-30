@@ -31,6 +31,10 @@
       <li>Clonar o repositório.</li>
       <li></li>
    </ol>
+</p>
+<h3>Observações:</h3>
+<p>
+   Os arquivos fora da pasta backend com exceção ao README.md são as requisições que deverão ser importadas no insomnia para testes da aplicação.
 </p><br>
 <div style="justify-content: space-around">
   <img src="https://img.shields.io/badge/Made%20with-Java-1f425f.svg">
