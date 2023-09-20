@@ -3,6 +3,7 @@ package com.codegenius.user.infra.security;
 import com.codegenius.user.domain.repository.UserRepository;
 import com.codegenius.user.domain.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;

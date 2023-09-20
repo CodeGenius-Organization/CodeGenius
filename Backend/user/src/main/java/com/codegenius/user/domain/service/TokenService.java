@@ -1,6 +1,7 @@
 package com.codegenius.user.domain.service;
 
 import com.codegenius.user.domain.model.UserModel;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 

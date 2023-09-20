@@ -44,4 +44,20 @@ public class AppConfiguration {
             System.out.println("RODANDO O AMBIENTE DE PRODUÇÃO");
         };
     }
+
+    /**
+     * Bean configuration for test environment.
+     *
+     * @return A CommandLineRunner that prints a message for test environment.
+     *
+     * @author hidek
+     * @since 2023-09-19
+     */
+    @Bean
+    @Profile("test")
+    public CommandLineRunner executarTest(){
+        return args -> {
+            System.out.println("RODANDO O AMBIENTE DE TESTE");
+        };
+    }
 }
