@@ -51,10 +51,6 @@ public class UserServiceImpl implements UserService{
      * @since 2023-08-09
      */
     public DadosCadastroUser saveUser(DadosCadastroUser user, DadosCadastroCompleto userComp) {
-
-        if (user.getEmail().isBlank() || user.getName().isBlank() || user.getPassword().isBlank()) {
-            throw new GlobalExceptionHandler.BadRequestException("User invalid");
-        }
         Optional<UserModel> existingUser = repository.findByEmailAndActiveTrue(user.getEmail());
 
         if (existingUser.isPresent()) {
@@ -63,12 +59,6 @@ public class UserServiceImpl implements UserService{
             if (userFound.getActive().equals(true)) {
                 throw new GlobalExceptionHandler.BadRequestException("User with this email already exists.");
             }
-        }
-        if (!isValidEmail(user.getEmail())){
-            throw new GlobalExceptionHandler.BadRequestException("Email invalid");
-        }
-        if (!isValidPassword(user.getPassword())){
-            throw new GlobalExceptionHandler.BadRequestException("Password invalid");
         }
 
         UserModel use = new UserModel(null, user.getName(), user.getEmail(), user.getPassword(), true);
@@ -102,19 +92,9 @@ public class UserServiceImpl implements UserService{
     public DadosCadastroUser findById(UUID id) {
         DadosCadastroUser user = new DadosCadastroUser(repository.findById(id)
                 .filter(userModel -> Boolean.TRUE.equals(userModel.getActive()))
-                .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("User not found or inactive with ID: " + id)));
+                .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("User not found with ID: " + id)));
 
         return user;
-    }
-
-    private boolean isValidEmail(String email) {
-        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
-        return email.matches(emailRegex);
-    }
-
-    private boolean isValidPassword(String password) {
-        String passwordRegex = "^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
-        return password.matches(passwordRegex);
     }
 
     /**
@@ -141,26 +121,9 @@ public class UserServiceImpl implements UserService{
         UserModel userToUpdate = repository.findById(id)
                 .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("User not found with ID: " + id));
 
-        if (userDTO.getName() != null) {
-            if (userDTO.getName().isEmpty()) {
-                throw new GlobalExceptionHandler.BadRequestException("Name invalid");
-            }
-            userToUpdate.setName(userDTO.getName());
-        }
-        if (userDTO.getEmail() != null) {
-            if (isValidEmail(userDTO.getEmail())) {
-                userToUpdate.setEmail(userDTO.getEmail());
-            } else {
-                throw new GlobalExceptionHandler.BadRequestException("Email invalid");
-            }
-        }
-        if (userDTO.getPassword() != null) {
-            if (isValidPassword(userDTO.getPassword())){
-                userToUpdate.setPassword(userDTO.getPassword());
-            } else {
-                throw new GlobalExceptionHandler.BadRequestException("Password invalid");
-            }
-        }
+        userToUpdate.setName(userDTO.getName());
+        userToUpdate.setEmail(userDTO.getEmail());
+        userToUpdate.setPassword(userDTO.getPassword());
 
         repository.save(userToUpdate);
 
@@ -181,7 +144,9 @@ public class UserServiceImpl implements UserService{
     public void markUserAsInactive(UUID id) {
         UserModel user = repository.findById(id)
                 .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("User not found with ID: " + id));
-
+        if(user.getActive().equals(false)) {
+            throw new GlobalExceptionHandler.NotFoundException("User not found with ID: " + id);
+        }
         user.setActive(false);
 
         repository.save(user);

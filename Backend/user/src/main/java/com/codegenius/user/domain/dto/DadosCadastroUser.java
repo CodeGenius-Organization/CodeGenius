@@ -7,6 +7,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 /**
  * Data class representing user registration data for response.
  *
@@ -19,10 +23,15 @@ import lombok.Setter;
 @AllArgsConstructor
 public class DadosCadastroUser {
     @JsonProperty("nome")
+    @NotBlank
     private String name;
     @JsonProperty("email")
+    @NotBlank
+    @Email
     private String email;
     @JsonProperty("password")
+    @NotBlank
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$")
     private String password;
 
     /**

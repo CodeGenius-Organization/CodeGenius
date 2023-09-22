@@ -54,7 +54,7 @@ public class UserSecurity {
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/login").permitAll()
-                .antMatchers(HttpMethod.POST, "/user").permitAll()
+                .antMatchers(HttpMethod.POST, "/users").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 /**
  * Controller class for handling user authentication.
  *
@@ -37,7 +39,7 @@ public class AuthentificationController {
      * @since 2023-08-09
      */
     @GetMapping("/login")
-    public ResponseEntity<DadosTokenJWT> login(@RequestBody DadosAuthentification dadosAuthentification) {
+    public ResponseEntity<DadosTokenJWT> login(@RequestBody @Valid DadosAuthentification dadosAuthentification) {
         // Create an authentication token based on user's email and password
         var authenticationToken = new UsernamePasswordAuthenticationToken(dadosAuthentification.getEmail(), dadosAuthentification.getPassword());
         // Authenticate the user using the AuthenticationManager

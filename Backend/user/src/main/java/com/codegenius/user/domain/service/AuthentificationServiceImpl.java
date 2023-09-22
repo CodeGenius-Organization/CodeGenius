@@ -17,22 +17,13 @@ public class AuthentificationServiceImpl implements AuthentificationService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        if (isValidEmail(email)) {
-            UserModel user = repository.findByEmailAndActiveTrue(email)
-                    .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("User not found"));
+        UserModel user = repository.findByEmailAndActiveTrue(email)
+                .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("User not found"));
 
-            if (user.getActive().equals(true)){
-                return user;
-            } else {
-                throw new GlobalExceptionHandler.NotFoundException("User not found");
-            }
+        if (user.getActive().equals(false)){
+            return user;
         } else {
-            throw new GlobalExceptionHandler.BadRequestException("Email is invalid");
+            throw new GlobalExceptionHandler.NotFoundException("User not found");
         }
-    }
-
-    private boolean isValidEmail(String email) {
-        String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
-        return email.matches(emailRegex);
     }
 }
