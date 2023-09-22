@@ -8,12 +8,12 @@
 </p>
 <h3>Diagrama de Arquitetura:</h3>
 <div align="center">
-  <img width="500px" src="https://cdn.discordapp.com/attachments/1136482294996148225/1144352139666280458/Diagrama_de_Arqutetura_Tecnica.png">
+  <img width="500px" src="https://cdn.discordapp.com/attachments/1136481825435435131/1154919151882735696/image.png">
 </div>
 <h3>Funcionalidades:</h3>
 <p>
    <li>CRUD de usuarios.</li>
-   <li></li>
+   <li>CRUD de course.</li>
 </p>
 <h3>Tecnologias Utilizadas:</h3>
 <p>
