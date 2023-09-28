@@ -12,6 +12,7 @@
 </div>
 <h3>Funcionalidades:</h3>
 <p>
+   <li>Autentificação</li>
    <li>CRUD de usuarios.</li>
    <li>CRUD de course.</li>
 </p>
