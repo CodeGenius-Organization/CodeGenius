@@ -54,7 +54,7 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<DadosCadastroUser> findById(@PathVariable UUID id) {
         DadosCadastroUser user = userService.findById(id);
-        return ResponseEntity.ok(user);
+        return ResponseEntity.status(200).body(user);
     }
 
     /**
@@ -76,7 +76,7 @@ public class UserController {
             DadosCadastroCompleto userComp) {
 
         DadosCadastroUser updatedUser = userService.updateUser(id, userDTO, userComp);
-        return ResponseEntity.ok(updatedUser);
+        return ResponseEntity.status(200).body(updatedUser);
     }
 
     /**
@@ -91,7 +91,7 @@ public class UserController {
     @DeleteMapping("/{id}")
     public ResponseEntity deleteUser(@PathVariable UUID id) {
         userService.markUserAsInactive(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(200).build();
     }
 
 }

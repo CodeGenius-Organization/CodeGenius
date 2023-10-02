@@ -75,6 +75,7 @@ public class UserServiceImpl implements UserService{
             userComp.setActive(use.getActive());
         }
 
+        System.out.println("\u001B[32mCadastro realizado com sucesso!!!");
         return user;
     }
 
@@ -128,6 +129,7 @@ public class UserServiceImpl implements UserService{
         repository.save(userToUpdate);
 
         DadosCadastroUser updatedUser = new DadosCadastroUser(userToUpdate);
+        System.out.println("\u001B[32mAtualização realizada com sucesso!!!");
         return updatedUser;
     }
 
@@ -150,5 +152,6 @@ public class UserServiceImpl implements UserService{
         user.setActive(false);
 
         repository.save(user);
+        System.out.println("\u001B[32mDeleção realizada com sucesso!!!");
     }
 }
