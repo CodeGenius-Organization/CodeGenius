@@ -6,7 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -14,7 +19,12 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class DadosCoracaoUser {
     @JsonProperty("coracao")
+    @Min(value = 0)
+    @Max(value = 3)
     private int hearts;
     @JsonProperty("atualização")
     private LocalDateTime lastUpdate;
+    @JsonProperty("fkUser")
+    @NotNull
+    private UUID fkUser;
 }

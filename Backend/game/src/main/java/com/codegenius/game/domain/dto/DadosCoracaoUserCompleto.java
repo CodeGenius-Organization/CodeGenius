@@ -1,5 +1,6 @@
 package com.codegenius.game.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DadosCoracaoUserCompleto {
-    @JsonProperty("id")
+    @JsonIgnore
     private UUID id;
     @JsonProperty("coracao")
     private int hearts;
