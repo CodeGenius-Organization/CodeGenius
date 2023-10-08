@@ -20,15 +20,6 @@ public class GameController {
     public GameController(GameService gameService) {
         this.gameService = gameService;
     }
-    @GetMapping("/{fkUser}")
-    public ResponseEntity<DadosCoracaoUser> findByFkUser(@PathVariable UUID id) {
-        return null;
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<DadosCoracaoUser> updateHeart(@PathVariable UUID id, @Valid @RequestBody DadosCoracaoUser userHeartDTO, DadosCoracaoUserCompleto userHeartComp ) {
-        return null;
-    }
 
     @PostMapping
     public ResponseEntity<DadosCoracaoUserCompleto> createGame(
@@ -39,5 +30,11 @@ public class GameController {
 
         var uri = uriBuilder.path("/games/{id}").buildAndExpand(createdGame.getId()).toUri();
         return ResponseEntity.created(uri).body(createdGame);
+    }
+
+    @GetMapping("/{fkUser}")
+    public ResponseEntity<DadosCoracaoUser> getGameByFkUser(@PathVariable UUID fkUser) {
+        DadosCoracaoUser game = gameService.getGameByFkUserSimplified(fkUser);
+        return ResponseEntity.status(200).body(game);
     }
 }

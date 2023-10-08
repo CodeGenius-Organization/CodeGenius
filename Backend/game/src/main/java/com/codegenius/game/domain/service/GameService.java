@@ -35,6 +35,24 @@ public class GameService {
         return convertToDTOCompleto(createdGame);
     }
 
+    public DadosCoracaoUser getGameByFkUserSimplified(UUID fkUser) {
+        GameModel games = gameRepository.findByFkUser(fkUser);
+        if (games != null) {
+            GameModel game = games;
+            return convertToDTOSimplified(game);
+        } else {
+            throw new GlobalExceptionHandler.NotFoundException("User not found");
+        }
+    }
+
+    public DadosCoracaoUser convertToDTOSimplified(GameModel game) {
+        return new DadosCoracaoUser(
+                game.getHearts(),
+                game.getLastUpdate(),
+                game.getFkUser()
+        );
+    }
+
     private boolean isFkUserAlreadyUsed(UUID fkUser) {
         GameModel gamesWithSameFkUser = gameRepository.findByFkUser(fkUser);
         return gamesWithSameFkUser != null;
