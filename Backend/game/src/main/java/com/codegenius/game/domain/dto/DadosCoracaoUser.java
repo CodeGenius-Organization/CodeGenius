@@ -25,6 +25,5 @@ public class DadosCoracaoUser {
     @JsonProperty("atualização")
     private LocalDateTime lastUpdate;
     @JsonProperty("fkUser")
-    @NotNull
     private UUID fkUser;
 }

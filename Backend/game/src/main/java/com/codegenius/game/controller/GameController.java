@@ -37,4 +37,14 @@ public class GameController {
         DadosCoracaoUser game = gameService.getGameByFkUserSimplified(fkUser);
         return ResponseEntity.status(200).body(game);
     }
+
+    @PutMapping("/{fkUser}")
+    public ResponseEntity<DadosCoracaoUser> updateGameByFkUser(
+            @PathVariable UUID fkUser,
+            @Valid @RequestBody DadosCoracaoUser gameDTO) {
+
+        DadosCoracaoUser update = gameService.updateGameByFkUser(fkUser, gameDTO);
+
+        return ResponseEntity.status(200).body(update);
+    }
 }

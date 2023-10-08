@@ -7,8 +7,11 @@ import com.codegenius.game.domain.repository.GameRepository;
 import com.codegenius.game.infra.GlobalExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -45,6 +48,26 @@ public class GameService {
         }
     }
 
+    @PutMapping("/{fkUser}")
+    public DadosCoracaoUser updateGameByFkUser(
+            @PathVariable UUID fkUser,
+            @Valid @RequestBody DadosCoracaoUser gameDTO) {
+
+        GameModel existingGame = gameRepository.findByFkUser(fkUser);
+
+        if (existingGame != null) {
+            existingGame.setHearts(gameDTO.getHearts());
+            existingGame.setLastUpdate(LocalDateTime.now());
+            gameRepository.save(existingGame);
+
+            DadosCoracaoUser updatedGameDTO = convertToDTOSimplified(existingGame);
+
+            return updatedGameDTO;
+        } else {
+            throw new GlobalExceptionHandler.NotFoundException("User not found");
+        }
+    }
+
     public DadosCoracaoUser convertToDTOSimplified(GameModel game) {
         return new DadosCoracaoUser(
                 game.getHearts(),
@@ -70,7 +93,7 @@ public class GameService {
     private GameModel convertToEntity(DadosCoracaoUser gameDTO) {
         return new GameModel(
                 null,
-                3,
+                gameDTO.getHearts(),
                 null,
                 gameDTO.getFkUser()
         );
