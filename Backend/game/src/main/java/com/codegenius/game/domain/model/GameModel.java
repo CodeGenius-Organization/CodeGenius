@@ -9,6 +9,12 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * Entity class representing heart-related information for a user stored in the database.
+ *
+ * @author hidek
+ * @since 2023-10-08
+ */
 @Entity
 @Table(name = "user_hearts")
 @Getter

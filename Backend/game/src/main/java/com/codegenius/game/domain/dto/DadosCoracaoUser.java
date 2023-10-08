@@ -13,6 +13,12 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * Data class representing heart-related information for a user.
+ *
+ * @author hidek
+ * @since 2023-10-08
+ */
 @Getter
 @Setter
 @NoArgsConstructor

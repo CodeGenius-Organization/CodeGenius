@@ -10,6 +10,13 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * Data class representing complete heart-related information for a user.
+ *
+ * @author hidek
+ * @since 2023-10-08
+ */
+
 @Getter
 @Setter
 @NoArgsConstructor
