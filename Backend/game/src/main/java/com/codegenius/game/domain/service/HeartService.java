@@ -2,7 +2,7 @@ package com.codegenius.game.domain.service;
 
 import com.codegenius.game.domain.dto.DadosCoracaoUser;
 import com.codegenius.game.domain.dto.DadosCoracaoUserCompleto;
-import com.codegenius.game.domain.model.GameModel;
+import com.codegenius.game.domain.model.HeartModel;
 import com.codegenius.game.domain.repository.GameRepository;
 import com.codegenius.game.infra.GlobalExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +22,12 @@ import java.util.UUID;
  * @since 2023-10-08
  */
 @Service
-public class GameService {
+public class HeartService {
 
     private final GameRepository gameRepository;
 
     @Autowired
-    public GameService(GameRepository gameRepository) {
+    public HeartService(GameRepository gameRepository) {
         this.gameRepository = gameRepository;
     }
 
@@ -37,9 +37,12 @@ public class GameService {
      * @param gameDTO                                     The heart-related information to be created.
      * @return                                            The complete heart-related information for the newly created game.
      * @throws GlobalExceptionHandler.BadRequestException If the user's UUID is already associated with another game.
+     *
+     * @author hidek
+     * @since 2023-10-09
      */
     public DadosCoracaoUserCompleto createGame(DadosCoracaoUser gameDTO) {
-        GameModel gameModel = convertToEntity(gameDTO);
+        HeartModel gameModel = convertToEntity(gameDTO);
 
         if (isFkUserAlreadyUsed(gameDTO.getFkUser())) {
             throw new GlobalExceptionHandler.BadRequestException("User already used");
@@ -47,7 +50,7 @@ public class GameService {
 
         gameModel.setHearts(3);
         gameModel.setLastUpdate(LocalDateTime.now());
-        GameModel createdGame = gameRepository.save(gameModel);
+        HeartModel createdGame = gameRepository.save(gameModel);
         return convertToDTOCompleto(createdGame);
     }
 
@@ -57,11 +60,14 @@ public class GameService {
      * @param fkUser                                    The UUID of the user.
      * @return                                          The simplified heart-related information for the user.
      * @throws GlobalExceptionHandler.NotFoundException If the user is not found.
+     *
+     * @author hidek
+     * @since 2023-10-09
      */
     public DadosCoracaoUser getGameByFkUserSimplified(UUID fkUser) {
-        GameModel games = gameRepository.findByFkUser(fkUser);
+        HeartModel games = gameRepository.findByFkUser(fkUser);
         if (games != null) {
-            GameModel game = games;
+            HeartModel game = games;
             return convertToDTOSimplified(game);
         } else {
             throw new GlobalExceptionHandler.NotFoundException("User not found");
@@ -75,13 +81,16 @@ public class GameService {
      * @param gameDTO                                   The updated heart-related information.
      * @return                                          The updated heart-related information.
      * @throws GlobalExceptionHandler.NotFoundException If the user is not found.
+     *
+     * @author hidek
+     * @since 2023-10-09
      */
     @PutMapping("/{fkUser}")
     public DadosCoracaoUser updateGameByFkUser(
             @PathVariable UUID fkUser,
             @Valid @RequestBody DadosCoracaoUser gameDTO) {
 
-        GameModel existingGame = gameRepository.findByFkUser(fkUser);
+        HeartModel existingGame = gameRepository.findByFkUser(fkUser);
 
         if (existingGame != null) {
             existingGame.setHearts(gameDTO.getHearts());
@@ -101,8 +110,11 @@ public class GameService {
      *
      * @param game The GameModel entity.
      * @return     The simplified heart-related information.
+     *
+     * @author hidek
+     * @since 2023-10-09
      */
-    public DadosCoracaoUser convertToDTOSimplified(GameModel game) {
+    public DadosCoracaoUser convertToDTOSimplified(HeartModel game) {
         return new DadosCoracaoUser(
                 game.getHearts(),
                 game.getLastUpdate(),
@@ -115,9 +127,12 @@ public class GameService {
      *
      * @param fkUser The UUID of the user.
      * @return       True if the user's UUID is already associated with a game, false otherwise.
+     *
+     * @author hidek
+     * @since 2023-10-09
      */
     private boolean isFkUserAlreadyUsed(UUID fkUser) {
-        GameModel gamesWithSameFkUser = gameRepository.findByFkUser(fkUser);
+        HeartModel gamesWithSameFkUser = gameRepository.findByFkUser(fkUser);
         return gamesWithSameFkUser != null;
     }
 
@@ -126,9 +141,12 @@ public class GameService {
      *
      * @param game The GameModel entity.
      * @return     The complete heart-related information.
+     *
+     * @author hidek
+     * @since 2023-10-09
      */
 
-    private DadosCoracaoUserCompleto convertToDTOCompleto(GameModel game) {
+    private DadosCoracaoUserCompleto convertToDTOCompleto(HeartModel game) {
         return new DadosCoracaoUserCompleto(
                 game.getId(),
                 game.getHearts(),
@@ -142,9 +160,12 @@ public class GameService {
      *
      * @param gameDTO The heart-related information DTO.
      * @return        The GameModel entity.
+     *
+     * @author hidek
+     * @since 2023-10-09
      */
-    private GameModel convertToEntity(DadosCoracaoUser gameDTO) {
-        return new GameModel(
+    private HeartModel convertToEntity(DadosCoracaoUser gameDTO) {
+        return new HeartModel(
                 null,
                 gameDTO.getHearts(),
                 null,

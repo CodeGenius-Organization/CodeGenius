@@ -2,7 +2,7 @@ package com.codegenius.game.controller;
 
 import com.codegenius.game.domain.dto.DadosCoracaoUser;
 import com.codegenius.game.domain.dto.DadosCoracaoUserCompleto;
-import com.codegenius.game.domain.service.GameService;
+import com.codegenius.game.domain.service.HeartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +21,11 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/games")
 public class GameController {
-    private final GameService gameService;
+    private final HeartService heartService;
 
     @Autowired
-    public GameController(GameService gameService) {
-        this.gameService = gameService;
+    public GameController(HeartService heartService) {
+        this.heartService = heartService;
     }
 
     /**
@@ -43,7 +43,7 @@ public class GameController {
             @Valid
             @RequestBody DadosCoracaoUser gameDTO,
             UriComponentsBuilder uriBuilder) {
-        DadosCoracaoUserCompleto createdGame = gameService.createGame(gameDTO);
+        DadosCoracaoUserCompleto createdGame = heartService.createGame(gameDTO);
 
         var uri = uriBuilder.path("/games/{id}").buildAndExpand(createdGame.getId()).toUri();
         return ResponseEntity.created(uri).body(createdGame);
@@ -60,7 +60,7 @@ public class GameController {
      */
     @GetMapping("/{fkUser}")
     public ResponseEntity<DadosCoracaoUser> getGameByFkUser(@PathVariable UUID fkUser) {
-        DadosCoracaoUser game = gameService.getGameByFkUserSimplified(fkUser);
+        DadosCoracaoUser game = heartService.getGameByFkUserSimplified(fkUser);
         return ResponseEntity.status(200).body(game);
     }
 
@@ -79,7 +79,7 @@ public class GameController {
             @PathVariable UUID fkUser,
             @Valid @RequestBody DadosCoracaoUser gameDTO) {
 
-        DadosCoracaoUser update = gameService.updateGameByFkUser(fkUser, gameDTO);
+        DadosCoracaoUser update = heartService.updateGameByFkUser(fkUser, gameDTO);
 
         return ResponseEntity.status(200).body(update);
     }

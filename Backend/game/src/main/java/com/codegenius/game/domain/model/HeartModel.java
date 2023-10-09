@@ -21,7 +21,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GameModel {
+public class HeartModel {
     @Id
     @GeneratedValue(generator = "uuid")
     @Column(name = "id_hearts", length = 16, columnDefinition = "uuid")
