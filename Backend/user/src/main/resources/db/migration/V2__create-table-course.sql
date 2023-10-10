@@ -1,5 +1,5 @@
 CREATE TABLE course (
-    id_couser binary(16),
+    course_id binary(16) PRIMARY KEY,
     title VARCHAR(45) NOT NULL,
     course_description VARCHAR(100) NOT NULL,
     content_description VARCHAR(100) NOT NULL,
