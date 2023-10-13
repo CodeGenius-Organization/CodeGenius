@@ -1,4 +1,4 @@
-package com.codegenius.game.domain.model;
+package com.codegenius.user.domain.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,6 +30,7 @@ public class HeartModel {
     private int hearts;
     @Column(name = "last_update", length = 23, nullable = false)
     private LocalDateTime lastUpdate;
-    @Column(name = "fk_User", length = 16, columnDefinition = "uuid", nullable = false)
-    private UUID fkUser;
+    @OneToOne
+    @JoinColumn(name = "fk_User", referencedColumnName = "id_user", nullable = false)
+    private UserModel fkUser;
 }

@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService{
             }
         }
 
-        UserModel use = new UserModel(null, user.getName(), user.getEmail(), user.getPassword(), true);
+        UserModel use = new UserModel(null, user.getName(), user.getEmail(), user.getPassword(), true, null);
         use.setPassword(encoder.encode(use.getPassword()));
         user.setPassword(use.getPassword());
 
@@ -123,7 +123,7 @@ public class UserServiceImpl implements UserService{
 
         userToUpdate.setName(userDTO.getName());
         userToUpdate.setEmail(userDTO.getEmail());
-        userToUpdate.setPassword(userDTO.getPassword());
+        userToUpdate.setPassword(encoder.encode(userDTO.getPassword()));
 
         repository.save(userToUpdate);
 

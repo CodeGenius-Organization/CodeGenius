@@ -1,4 +1,4 @@
-package com.codegenius.game.domain.dto;
+package com.codegenius.user.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -28,7 +28,7 @@ public class DadosCoracaoUser {
     @Min(value = 0)
     @Max(value = 3)
     private int hearts;
-    @JsonProperty("atualização")
+    @JsonProperty("atualizacao")
     private LocalDateTime lastUpdate;
     @JsonProperty("fkUser")
     private UUID fkUser;

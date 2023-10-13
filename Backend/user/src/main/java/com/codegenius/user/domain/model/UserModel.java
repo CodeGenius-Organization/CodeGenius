@@ -39,6 +39,8 @@ public class UserModel implements UserDetails {
     private String password;
     @Column(name = "active", nullable = false)
     private Boolean active;
+    @OneToOne(mappedBy = "fkUser")
+    private HeartModel heart;
 
     /**
      * Returns the authorities granted to the user.

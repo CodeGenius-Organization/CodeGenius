@@ -1,4 +1,4 @@
-package com.codegenius.game.infra;
+package com.codegenius.game.infra.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

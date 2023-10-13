@@ -1,4 +1,4 @@
-package com.codegenius.game.domain.dto;
+package com.codegenius.user.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

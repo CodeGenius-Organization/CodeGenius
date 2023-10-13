@@ -20,7 +20,7 @@ public class AuthentificationServiceImpl implements AuthentificationService {
         UserModel user = repository.findByEmailAndActiveTrue(email)
                 .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("User not found"));
 
-        if (user.getActive().equals(false)){
+        if (user.getActive().equals(true)){
             return user;
         } else {
             throw new GlobalExceptionHandler.NotFoundException("User not found");

@@ -1,6 +1,9 @@
-package com.codegenius.game.domain.repository;
+package com.codegenius.user.domain.repository;
 
-import com.codegenius.game.domain.model.HeartModel;
+
+
+import com.codegenius.user.domain.model.HeartModel;
+import com.codegenius.user.domain.model.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
@@ -11,15 +14,15 @@ import java.util.UUID;
  * @author hidek
  * @since 2023-10-04
  */
-public interface GameRepository extends JpaRepository<HeartModel, UUID> {
+public interface HeartRepository extends JpaRepository<HeartModel, UUID> {
     /**
      * Find a game by the foreign key user (fkUser).
      *
-     * @param fkUser The foreign key user to search for.
+     * @param user The foreign key user to search for.
      * @return The game associated with the given fkUser, or null if not found.
      *
      * @author hidek
      * @since 2023-10-08
      */
-    HeartModel findByFkUser(UUID fkUser);
+    HeartModel findByFkUser(UserModel user);
 }
