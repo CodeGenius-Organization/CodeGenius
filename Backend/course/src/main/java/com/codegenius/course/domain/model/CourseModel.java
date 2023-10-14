@@ -67,4 +67,11 @@ public class CourseModel {
     )
     private Set<CourseModuleModel> modules = new HashSet<>();
 
+    public CourseModel(String title, String courseDescription, String contentDescription, String image, Boolean available) {
+        this.title = title;
+        this.courseDescription = courseDescription;
+        this.contentDescription = contentDescription;
+        this.image = image;
+        this.available = available;
+    }
 }

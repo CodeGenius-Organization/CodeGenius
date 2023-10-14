@@ -61,4 +61,8 @@ public class CourseService {
 
         this.courseRepository.deleteById(courseId);
     }
+
+    public List<CourseModel> createCourses(List<CourseModel> listaCurso){
+       return this.courseRepository.saveAll(listaCurso);
+    }
 }
