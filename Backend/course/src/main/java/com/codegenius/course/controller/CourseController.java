@@ -1,6 +1,7 @@
 package com.codegenius.course.controller;
 
 import com.codegenius.course.domain.dto.CourseCreationDTO;
+import com.codegenius.course.domain.dto.CourseCsvDTO;
 import com.codegenius.course.domain.model.CourseModel;
 import com.codegenius.course.domain.service.CourseService;
 import com.codegenius.course.utils.Arquivo;
@@ -68,5 +69,16 @@ public class CourseController {
 
         List<CourseModel> guardarArquivo = GerenciadorDeArquivos.importarArquivoCsv(arquivo.getNomeArq());
         return ResponseEntity.status(200).body(this.courseService.createCourses(guardarArquivo));
+    }
+
+    @GetMapping("/exportar-csv")
+    public ResponseEntity<List<CourseCsvDTO>> getCourseCsv(){
+        List<CourseCsvDTO> lista = courseService.getCourseCsv();
+
+        if(lista.isEmpty()){
+            return ResponseEntity.status(204).build();
+        }
+        GerenciadorDeArquivos.gravaArquivoCsv(lista, "Cursos");
+        return ResponseEntity.status(200).build();
     }
 }

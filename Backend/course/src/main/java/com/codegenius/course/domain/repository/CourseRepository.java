@@ -1,7 +1,9 @@
 package com.codegenius.course.domain.repository;
 
+import com.codegenius.course.domain.dto.CourseCsvDTO;
 import com.codegenius.course.domain.model.CourseModel;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 import java.util.UUID;
@@ -21,4 +23,9 @@ public interface CourseRepository extends JpaRepository<CourseModel, UUID> {
     List<CourseModel> findByAvailableIsTrue();
 
     List<CourseModel> findByAvailableIsTrueAndTitleContaining(String keyword);
+
+    @Query("""
+            select new com.codegenius.course.domain.dto.CourseCsvDTO(c.title,c.courseDescription, c.contentDescription, c.available) from CourseModel c
+            """)
+    List<CourseCsvDTO> pegarAllCsv();
 }

@@ -1,6 +1,7 @@
 package com.codegenius.course.domain.service;
 
 import com.codegenius.course.domain.dto.CourseCreationDTO;
+import com.codegenius.course.domain.dto.CourseCsvDTO;
 import com.codegenius.course.domain.dto.CourseMapper;
 import com.codegenius.course.domain.model.CategoryModel;
 import com.codegenius.course.domain.model.CourseModel;
@@ -64,5 +65,9 @@ public class CourseService {
 
     public List<CourseModel> createCourses(List<CourseModel> listaCurso){
        return this.courseRepository.saveAll(listaCurso);
+    }
+
+    public List<CourseCsvDTO> getCourseCsv(){
+        return this.courseRepository.pegarAllCsv();
     }
 }
