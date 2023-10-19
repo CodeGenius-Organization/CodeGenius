@@ -3,6 +3,9 @@ package com.codegenius.user.controller;
 import com.codegenius.user.domain.dto.DadosCoracaoUser;
 import com.codegenius.user.domain.dto.DadosCoracaoUserCompleto;
 import com.codegenius.user.domain.service.HeartService;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +23,8 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("/hearts")
+@SecurityRequirement(name = "Bearer Authentication")
+@CrossOrigin(origins = {"http://localhost:3000","http://localhost:8181"})
 public class HeartController {
     private final HeartService heartService;
 

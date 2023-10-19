@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2023-08-09
  */
 @RestController
+@CrossOrigin(origins = {"http://localhost:3000","http://localhost:8181"})
 public class AuthentificationController {
     @Autowired
     private AuthenticationManager manager;
@@ -37,7 +38,6 @@ public class AuthentificationController {
      * @since 2023-08-09
      */
     @PostMapping("/login")
-    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<DadosTokenJWT> login(@RequestBody @Valid DadosAuthentification dadosAuthentification) {
         // Create an authentication token based on user's email and password
         var authenticationToken = new UsernamePasswordAuthenticationToken(dadosAuthentification.getEmail(), dadosAuthentification.getPassword());

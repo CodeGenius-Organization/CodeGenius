@@ -3,6 +3,9 @@
     import com.codegenius.user.domain.dto.DadosCadastroCompleto;
     import com.codegenius.user.domain.dto.DadosCadastroUser;
     import com.codegenius.user.domain.service.UserService;
+    import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+    import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+    import io.swagger.v3.oas.annotations.security.SecurityScheme;
     import jakarta.validation.Valid;
     import lombok.RequiredArgsConstructor;
     import org.springframework.http.ResponseEntity;
@@ -20,7 +23,7 @@
     @RestController
     @RequestMapping("/users")
     @RequiredArgsConstructor
-    @CrossOrigin(origins = "http://localhost:8181")
+    @CrossOrigin(origins = {"http://localhost:3000","http://localhost:8181"})
     public class UserController {
         private final UserService userService;
 
@@ -53,6 +56,7 @@
          * @since 2023-08-09
          */
         @GetMapping("/{id}")
+        @SecurityRequirement(name = "Bearer Authentication")
         public ResponseEntity<DadosCadastroUser> findById(@PathVariable UUID id) {
             DadosCadastroUser user = userService.findById(id);
             return ResponseEntity.status(200).body(user);
@@ -70,6 +74,7 @@
          * @since 2023-08-15
          */
         @PutMapping("/{id}")
+        @SecurityRequirement(name = "Bearer Authentication")
         public ResponseEntity<DadosCadastroUser> updateUser(
                 @PathVariable UUID id,
                 @Valid
@@ -90,6 +95,7 @@
          * @since 2023-08-15
          */
         @DeleteMapping("/{id}")
+        @SecurityRequirement(name = "Bearer Authentication")
         public ResponseEntity deleteUser(@PathVariable UUID id) {
             userService.markUserAsInactive(id);
             return ResponseEntity.status(200).build();
