@@ -7,10 +7,10 @@ import com.codegenius.user.domain.model.UserModel;
 import com.codegenius.user.domain.repository.HeartRepository;
 import com.codegenius.user.domain.repository.UserRepository;
 import com.codegenius.user.infra.exception.GlobalExceptionHandler;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.UUID;
 

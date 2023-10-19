@@ -1,11 +1,12 @@
 package com.codegenius.game.domain.model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.UUID;
 
 /**
@@ -23,6 +24,14 @@ import java.util.UUID;
 public class QuestionModel {
     @Id
     @GeneratedValue(generator = "uuid")
-    @Column(name = "id_hearts", length = 16, columnDefinition = "uuid")
+    @Column(name = "id_question", length = 16, columnDefinition = "uuid")
     private UUID id;
+    @Column(name = "question_type", length = 50)
+    private String questionType;
+    @Column(name = "statement", length = 250)
+    private String statement;
+    @Column(name = "test_question")
+    private boolean testQuestion;
+    @Column(name = "lesson_content_fk")
+    private UUID leassonContent;
 }

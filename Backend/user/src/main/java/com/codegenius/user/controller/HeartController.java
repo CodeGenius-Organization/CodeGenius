@@ -3,12 +3,12 @@ package com.codegenius.user.controller;
 import com.codegenius.user.domain.dto.DadosCoracaoUser;
 import com.codegenius.user.domain.dto.DadosCoracaoUserCompleto;
 import com.codegenius.user.domain.service.HeartService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.validation.Valid;
 import java.util.UUID;
 
 

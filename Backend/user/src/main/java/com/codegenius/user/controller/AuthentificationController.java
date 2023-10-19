@@ -4,16 +4,14 @@ import com.codegenius.user.domain.dto.DadosAuthentification;
 import com.codegenius.user.domain.dto.DadosTokenJWT;
 import com.codegenius.user.domain.model.UserModel;
 import com.codegenius.user.domain.service.TokenService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 
 /**
  * Controller class for handling user authentication.
@@ -38,7 +36,8 @@ public class AuthentificationController {
      * @author hidek
      * @since 2023-08-09
      */
-    @GetMapping("/login")
+    @PostMapping("/login")
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<DadosTokenJWT> login(@RequestBody @Valid DadosAuthentification dadosAuthentification) {
         // Create an authentication token based on user's email and password
         var authenticationToken = new UsernamePasswordAuthenticationToken(dadosAuthentification.getEmail(), dadosAuthentification.getPassword());
