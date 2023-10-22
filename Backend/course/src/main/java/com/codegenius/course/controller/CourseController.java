@@ -5,7 +5,7 @@ import com.codegenius.course.domain.dto.CourseCsvDTO;
 import com.codegenius.course.domain.model.CourseModel;
 import com.codegenius.course.domain.service.CourseService;
 import com.codegenius.course.utils.Arquivo;
-import com.codegenius.course.utils.GerenciadorDeArquivos;
+import com.codegenius.course.utils.GerenciadorDeArquivosCourseCsv;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -67,7 +67,7 @@ public class CourseController {
 
 
 
-        List<CourseModel> guardarArquivo = GerenciadorDeArquivos.importarArquivoCsv(arquivo.getNomeArq());
+        List<CourseModel> guardarArquivo = GerenciadorDeArquivosCourseCsv.importarArquivoCsv(arquivo.getNomeArq());
         return ResponseEntity.status(200).body(this.courseService.createCourses(guardarArquivo));
     }
 
@@ -78,7 +78,7 @@ public class CourseController {
         if(lista.isEmpty()){
             return ResponseEntity.status(204).build();
         }
-        GerenciadorDeArquivos.gravaArquivoCsv(lista, "Cursos");
+        GerenciadorDeArquivosCourseCsv.gravaArquivoCsv(lista, "Cursos");
         return ResponseEntity.status(200).build();
     }
 }
