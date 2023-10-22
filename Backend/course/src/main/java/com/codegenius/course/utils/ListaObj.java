@@ -159,6 +159,10 @@ public class ListaObj <T> {
 //        System.out.println(nroElem);
     }
 
+    public void setElemento(T obj, int indice) {
+        vetor[indice] = obj;
+    }
+
     // Get do vetor
     // Não retirar, é usado nos testes
     public T[] getVetor() {

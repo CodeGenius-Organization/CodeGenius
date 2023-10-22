@@ -6,6 +6,7 @@ import com.codegenius.course.domain.model.CourseModel;
 import com.codegenius.course.domain.model.CourseModuleModel;
 import com.codegenius.course.domain.repository.CourseModuleRepository;
 import com.codegenius.course.domain.repository.CourseRepository;
+import com.codegenius.course.utils.ListaObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,17 @@ public class CourseModuleService {
     }
 
     public List<CourseModuleModel> getModulesByCourseIdOrdered(UUID courseId) {
+//        List<CourseModuleModel> modules = courseModuleRepository.findAllByCourse_Id(courseId);
+//        ListaObj<CourseModuleModel> modulesOrdered = new ListaObj<>(modules.size());
+//
+//        // Definição dos elementos da ListaObj
+//        for (CourseModuleModel module : modules) {
+//            modulesOrdered.adiciona(module);
+//        }
+//
+//        // Ordenação
+//        for (int i = 0; i < modulesOrdered.getTamanho() - 1; )
+
 
         return this.courseModuleRepository.findAllByCourse_IdOrderByModuleOrderAsc(courseId);
     }

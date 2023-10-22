@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 
-public class GerenciadorDeArquivos {
+public class GerenciadorDeArquivosCourseCsv {
     public static void gravaArquivoCsv(List<CourseCsvDTO> lista, String nomeArq) {
         FileWriter arq = null;
         Formatter saida = null;
