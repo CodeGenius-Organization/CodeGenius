@@ -26,7 +26,8 @@ public class DadosQuestoesCompleto {
     @NotBlank
     private String statement;
     @JsonProperty("teste")
-    private boolean test_question;
+    @NotNull
+    private Boolean test_question;
     @JsonProperty("fkLessonContent")
     @NotNull
     private UUID lesson_content;
@@ -35,7 +36,7 @@ public class DadosQuestoesCompleto {
         this.id = model.getId();
         this.question_type = model.getQuestionType();
         this.statement = model.getStatement();
-        this.test_question = model.isTestQuestion();
+        this.test_question = model.getTestQuestion();
         this.lesson_content = model.getLeassonContent();
     }
 }

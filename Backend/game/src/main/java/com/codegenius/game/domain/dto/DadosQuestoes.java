@@ -24,7 +24,8 @@ public class DadosQuestoes {
     @NotBlank
     private String statement;
     @JsonProperty("teste")
-    private boolean test_question;
+    @NotNull
+    private Boolean test_question;
     @JsonProperty("fkLessonContent")
     @NotNull
     private UUID lesson_content;

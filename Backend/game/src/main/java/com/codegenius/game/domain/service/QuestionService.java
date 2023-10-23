@@ -29,11 +29,11 @@ public class QuestionService {
     }
 
     public DadosQuestoesCompleto createQuestion(DadosQuestoes questionDTO) {
-        QuestionModel question = new QuestionModel(null, questionDTO.getQuestion_type(), questionDTO.getStatement(), questionDTO.isTest_question(), questionDTO.getLesson_content());
+        QuestionModel question = new QuestionModel(null, questionDTO.getQuestion_type(), questionDTO.getStatement(), questionDTO.getTest_question(), questionDTO.getLesson_content());
 
         questionRepository.save(question);
 
-        DadosQuestoesCompleto questionComp = new DadosQuestoesCompleto(question.getId(), question.getQuestionType(), question.getStatement(), question.isTestQuestion(), question.getLeassonContent());
+        DadosQuestoesCompleto questionComp = new DadosQuestoesCompleto(question.getId(), question.getQuestionType(), question.getStatement(), question.getTestQuestion(), question.getLeassonContent());
         return questionComp;
     }
 
@@ -51,8 +51,8 @@ public class QuestionService {
         if (questaoDTO.getQuestion_type() != null) {
             questao.setQuestionType(questaoDTO.getQuestion_type());
         }
-        if (questaoDTO.isTest_question() != questao.isTestQuestion()) {
-            questao.setTestQuestion(questaoDTO.isTest_question());
+        if (questaoDTO.getTest_question() != null) {
+            questao.setTestQuestion(questaoDTO.getTest_question());
         }
         if (questaoDTO.getStatement() != null) {
             questao.setStatement(questaoDTO.getStatement());
@@ -88,7 +88,7 @@ public class QuestionService {
     private DadosQuestoes convertToDTO(QuestionModel questao) {
         DadosQuestoes questaoDTO = new DadosQuestoes();
         questaoDTO.setQuestion_type(questao.getQuestionType());
-        questaoDTO.setTest_question(questao.isTestQuestion());
+        questaoDTO.setTest_question(questao.getTestQuestion());
         questaoDTO.setStatement(questao.getStatement());
         questaoDTO.setLesson_content(questao.getLeassonContent());
 

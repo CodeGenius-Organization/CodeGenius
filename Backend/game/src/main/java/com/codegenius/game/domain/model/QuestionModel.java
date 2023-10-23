@@ -31,7 +31,7 @@ public class QuestionModel {
     @Column(name = "statement", length = 250)
     private String statement;
     @Column(name = "test_question")
-    private boolean testQuestion;
+    private Boolean testQuestion;
     @Column(name = "lesson_content_fk")
     private UUID leassonContent;
 }
