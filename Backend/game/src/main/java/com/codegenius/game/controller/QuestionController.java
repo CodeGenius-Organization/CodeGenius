@@ -54,6 +54,7 @@ public class QuestionController {
     public ResponseEntity deleteQuestion (
             @RequestParam UUID id
     ) {
-        return null;
+        questionService.delete(id);
+        return ResponseEntity.status(200).build();
     }
 }

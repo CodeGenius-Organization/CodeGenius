@@ -46,8 +46,32 @@ public class QuestionService {
     }
 
     public DadosQuestoes update(UUID id, DadosQuestoes questaoDTO) {
-        QuestionModel questao = questionRepository.findById(id).orElseThrow();
-        return null;
+        QuestionModel questao = questionRepository.findById(id).orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("Question not found with id: " + id));
+
+        if (questaoDTO.getQuestion_type() != null) {
+            questao.setQuestionType(questaoDTO.getQuestion_type());
+        }
+        if (questaoDTO.isTest_question() != questao.isTestQuestion()) {
+            questao.setTestQuestion(questaoDTO.isTest_question());
+        }
+        if (questaoDTO.getStatement() != null) {
+            questao.setStatement(questaoDTO.getStatement());
+        }
+        if (questaoDTO.getLesson_content() != null) {
+            questao.setLeassonContent(questaoDTO.getLesson_content());
+        }
+
+        QuestionModel updatedQuestao = questionRepository.save(questao);
+
+        DadosQuestoes updatedQuestaoDTO = convertToDTO(updatedQuestao);
+
+        return updatedQuestaoDTO;
+    }
+
+    public void delete(UUID id) {
+        QuestionModel questao = questionRepository.findById(id).orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("Question not found with id: " + id));
+
+        questionRepository.deleteById(questao.getId());
     }
 
     private List<DadosQuestoesCompleto> convertToQuestaoModelList(List<QuestionModel> questoes) {
@@ -59,5 +83,15 @@ public class QuestionService {
         }
 
         return questao;
+    }
+
+    private DadosQuestoes convertToDTO(QuestionModel questao) {
+        DadosQuestoes questaoDTO = new DadosQuestoes();
+        questaoDTO.setQuestion_type(questao.getQuestionType());
+        questaoDTO.setTest_question(questao.isTestQuestion());
+        questaoDTO.setStatement(questao.getStatement());
+        questaoDTO.setLesson_content(questao.getLeassonContent());
+
+        return questaoDTO;
     }
 }
