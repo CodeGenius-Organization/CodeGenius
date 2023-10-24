@@ -6,6 +6,7 @@ import com.codegenius.course.domain.model.CourseModel;
 import com.codegenius.course.domain.service.CourseService;
 import com.codegenius.course.utils.Arquivo;
 import com.codegenius.course.utils.GerenciadorDeArquivosCourseCsv;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class CourseController {
     private CourseService courseService;
 
     @PostMapping("/")
-    public ResponseEntity<CourseModel> createCourse(@RequestBody CourseCreationDTO courseCreationDTO) {
+    public ResponseEntity<CourseModel> createCourse(@RequestBody @Valid CourseCreationDTO courseCreationDTO) {
         return ResponseEntity.status(201).body(this.courseService.createCourse(courseCreationDTO));
     }
 
@@ -64,10 +65,8 @@ public class CourseController {
 
     @PostMapping("/cadastrar")
     public ResponseEntity<List<CourseModel>> postCourseCadastrarCsv(@RequestBody Arquivo arquivo) {
-
-
-
         List<CourseModel> guardarArquivo = GerenciadorDeArquivosCourseCsv.importarArquivoCsv(arquivo.getNomeArq());
+        
         return ResponseEntity.status(200).body(this.courseService.createCourses(guardarArquivo));
     }
 

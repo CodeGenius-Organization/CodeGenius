@@ -1,22 +1,25 @@
 package com.codegenius.course.domain.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.List;
 import java.util.UUID;
 
 public class CourseCreationDTO {
 
+    @NotBlank
     private String title;
-
+    @NotBlank
     private String courseDescription;
-
+    @NotBlank
     private String contentDescription;
-
     private String image;
-
+    @NotNull
     private Boolean available;
-
+    @NotNull
     private List<UUID> languageIds;
-
+    @NotNull
     private List<UUID> categoryIds;
 
     public String getTitle() {

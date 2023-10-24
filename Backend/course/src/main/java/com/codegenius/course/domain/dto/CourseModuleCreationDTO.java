@@ -1,11 +1,17 @@
 package com.codegenius.course.domain.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.UUID;
 
 public class CourseModuleCreationDTO {
 
+    @NotBlank
     private String moduleName;
+    @NotNull
     private UUID courseId;
+    @NotNull
     private Integer moduleOrder;
 
     public String getModuleName() {

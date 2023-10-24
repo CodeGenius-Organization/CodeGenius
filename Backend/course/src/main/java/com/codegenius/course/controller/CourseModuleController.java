@@ -3,6 +3,7 @@ package com.codegenius.course.controller;
 import com.codegenius.course.domain.dto.CourseModuleCreationDTO;
 import com.codegenius.course.domain.model.CourseModuleModel;
 import com.codegenius.course.domain.service.CourseModuleService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class CourseModuleController {
     private CourseModuleService courseModuleService;
 
     @PostMapping("/")
-    public ResponseEntity<CourseModuleModel> createCourseModule(@RequestBody CourseModuleCreationDTO courseModuleCreationDTO) {
+    public ResponseEntity<CourseModuleModel> createCourseModule(@RequestBody @Valid CourseModuleCreationDTO courseModuleCreationDTO) {
         return ResponseEntity.status(200).body(courseModuleService.createCourseModule(courseModuleCreationDTO));
     }
 

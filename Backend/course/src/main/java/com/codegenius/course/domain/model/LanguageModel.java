@@ -1,6 +1,7 @@
 package com.codegenius.course.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import jakarta.persistence.*;
@@ -21,6 +22,7 @@ public class LanguageModel {
     private UUID id;
 
     @Column(name = "language", length = 45, nullable = false)
+    @NotBlank
     private String language;
 
     @ManyToMany(mappedBy = "languages")

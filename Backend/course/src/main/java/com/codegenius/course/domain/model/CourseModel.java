@@ -1,6 +1,8 @@
 package com.codegenius.course.domain.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,18 +30,22 @@ public class CourseModel {
     private UUID id;
 
     @Column(name = "title", length = 45, nullable = false)
+    @NotBlank
     private String title;
 
     @Column(name = "course_description", length = 100, nullable = false)
+    @NotBlank
     private String courseDescription;
 
     @Column(name = "content_description", length = 100, nullable = false)
+    @NotBlank
     private String contentDescription;
 
     @Column(name = "image", length = 100, nullable = false)
     private String image;
 
     @Column(name = "available", nullable = false)
+    @NotNull
     private Boolean available;
 
     @ManyToMany(cascade = {

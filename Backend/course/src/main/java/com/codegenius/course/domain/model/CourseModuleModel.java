@@ -1,6 +1,8 @@
 package com.codegenius.course.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,9 +27,11 @@ public class CourseModuleModel {
     private UUID id;
 
     @Column(name = "module_name", length = 30, nullable = false)
+    @NotBlank
     private String moduleName;
 
     @Column(name = "module_order", length = 10, nullable = false)
+    @NotNull
     private Integer moduleOrder;
 
     @JsonIgnore

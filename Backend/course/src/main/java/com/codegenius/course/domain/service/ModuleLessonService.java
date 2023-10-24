@@ -5,9 +5,12 @@ import com.codegenius.course.domain.model.CourseModuleModel;
 import com.codegenius.course.domain.model.ModuleLessonModel;
 import com.codegenius.course.domain.repository.CourseModuleRepository;
 import com.codegenius.course.domain.repository.ModuleLessonRepository;
+import com.codegenius.course.infra.exception.GlobalExceptionHandler;
 import com.codegenius.course.utils.ListaObj;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,30 +37,15 @@ public class ModuleLessonService {
         return moduleLessonRepository.save(moduleLesson);
     }
 
-    public ListaObj<ModuleLessonModel> getAllModuleLessonByModuleId(UUID moduleId) {
+    public List<ModuleLessonModel> getAllModuleLessonByModuleId(UUID moduleId) {
+        List<ModuleLessonModel> lessons = moduleLessonRepository.findAllByModule_Id(moduleId);
+
+        return lessons;
+    }
+
+    public ListaObj<ModuleLessonModel> getAllModuleLessonByModuleIdCsv(UUID moduleId) {
         List<ModuleLessonModel> moduleLessons = moduleLessonRepository.findAllByModule_Id(moduleId);
-        ListaObj<ModuleLessonModel> moduleLessonsOrdered = new ListaObj<>(moduleLessons.size());
-
-        for (ModuleLessonModel module : moduleLessons) {
-            moduleLessonsOrdered.adiciona(module);
-        }
-
-        ModuleLessonModel m = null;
-        int indiceMenor = 0;
-        for (int i = 0; i < moduleLessonsOrdered.getTamanho() - 1; i++) {
-            indiceMenor = i;
-            for (int j = i + 1; j < moduleLessonsOrdered.getTamanho(); j++) {
-                m = moduleLessonsOrdered.getElemento(j);
-                if (m.getLessonOrder() < moduleLessonsOrdered.getElemento(indiceMenor).getLessonOrder()) {
-                    indiceMenor = j;
-                }
-            }
-            ModuleLessonModel aux = moduleLessonsOrdered.getElemento(i);
-            moduleLessonsOrdered.setElemento(moduleLessonsOrdered.getElemento(indiceMenor), i);
-            moduleLessonsOrdered.setElemento(aux, indiceMenor);
-        }
-
-        return moduleLessonsOrdered;
+        return sortModuleLessonList(moduleLessons, moduleLessons.size());
     }
 
     public ModuleLessonModel updateModuleLesson(UUID lessonId, ModuleLessonModel newModuleLesson) {
@@ -84,12 +72,71 @@ public class ModuleLessonService {
     public List<ModuleLessonUpdateDTO> updateModuleLessons(List<ModuleLessonUpdateDTO> moduleLessonList) {
         if (!moduleLessonList.isEmpty()) {
             for (ModuleLessonUpdateDTO lesson : moduleLessonList) {
+                if (lesson.getContentDescription() == null || lesson.getContentDescription() == "") {
+                    throw new GlobalExceptionHandler.BadRequestException("The content description must not be null or blank.");
+                }
+
                 moduleLessonRepository.update(lesson.getId(), lesson.getLessonOrder(), lesson.getContentDescription());
             }
 
             return moduleLessonList;
         }
 
+        return null;
+    }
+
+    public ModuleLessonModel getModuleLessonByLessonOrder(UUID moduleId, Integer lessonOrder) {
+        List<ModuleLessonModel> lessons = this.moduleLessonRepository.findAllByModule_Id(moduleId);
+        ListaObj<ModuleLessonModel> moduleLessonsOrdered = sortModuleLessonList(lessons, lessons.size());
+
+        return binarySearch(moduleLessonsOrdered, lessonOrder);
+    }
+
+
+    // Método para ordenar
+    // retorna a ListaObj ordenada
+    public ListaObj<ModuleLessonModel> sortModuleLessonList(List<ModuleLessonModel> list, Integer size) {
+        ListaObj<ModuleLessonModel> moduleLessonsOrdered = new ListaObj<>(size);
+
+        for (ModuleLessonModel module : list) {
+            moduleLessonsOrdered.adiciona(module);
+        }
+
+        ModuleLessonModel m = null;
+        int indiceMenor = 0;
+        for (int i = 0; i < moduleLessonsOrdered.getTamanho() - 1; i++) {
+            indiceMenor = i;
+            for (int j = i + 1; j < moduleLessonsOrdered.getTamanho(); j++) {
+                m = moduleLessonsOrdered.getElemento(j);
+                if (m.getLessonOrder() < moduleLessonsOrdered.getElemento(indiceMenor).getLessonOrder()) {
+                    indiceMenor = j;
+                }
+            }
+            ModuleLessonModel aux = moduleLessonsOrdered.getElemento(i);
+            moduleLessonsOrdered.setElemento(moduleLessonsOrdered.getElemento(indiceMenor), i);
+            moduleLessonsOrdered.setElemento(aux, indiceMenor);
+        }
+
+        return moduleLessonsOrdered;
+    }
+
+    // Método pesquisa binária
+    // retorna um ModuleLessonModel caso encontre ou null
+    public ModuleLessonModel binarySearch(ListaObj<ModuleLessonModel> list, Integer lessonOrder) {
+        int indInf = 0;
+        int indSup = list.getTamanho() - 1;
+        int meio;
+
+        while (indInf <= indSup) {
+            meio = (indInf + indSup) / 2;
+            if (list.getElemento(meio).getLessonOrder().equals(lessonOrder)) {
+                return list.getElemento(meio);
+            } else if (lessonOrder < list.getElemento(meio).getLessonOrder()) {
+                indSup = meio - 1;
+            } else {
+                indInf = meio + 1;
+            }
+        }
         return null;
     }
 }

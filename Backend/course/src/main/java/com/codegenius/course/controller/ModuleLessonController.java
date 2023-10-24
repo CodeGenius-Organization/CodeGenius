@@ -5,6 +5,7 @@ import com.codegenius.course.domain.model.ModuleLessonModel;
 import com.codegenius.course.domain.service.ModuleLessonService;
 import com.codegenius.course.utils.GerenciadorDeArquivosLessonCsv;
 import com.codegenius.course.utils.ListaObj;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,9 +25,22 @@ public class ModuleLessonController {
         return newModuleLesson != null ? ResponseEntity.status(201).body(newModuleLesson) : ResponseEntity.status(400).build();
     }
 
+    @GetMapping("/{moduleId}/lessons/")
+    public ResponseEntity<List<ModuleLessonModel>> getAllModuleLessonsByModuleId(@PathVariable UUID moduleId) {
+        List<ModuleLessonModel> lessons = moduleLessonService.getAllModuleLessonByModuleId(moduleId);
+
+        return !lessons.isEmpty() ? ResponseEntity.status(200).body(lessons) : ResponseEntity.status(204).build();
+    }
+
+    @GetMapping("/{moduleId}/lessons/{lessonOrder}")
+    public ResponseEntity<ModuleLessonModel> getModuleLessonByLessonOrder(@PathVariable UUID moduleId, @PathVariable Integer lessonOrder) {
+        ModuleLessonModel lesson = moduleLessonService.getModuleLessonByLessonOrder(moduleId, lessonOrder);
+        return lesson != null ? ResponseEntity.status(200).body(lesson) : ResponseEntity.status(404).build();
+    }
+
     @GetMapping("/{moduleId}/lessons/csv/{nomeArq}")
-    public ResponseEntity<Integer> getAllModuleLessonByModuleId(@PathVariable UUID moduleId, @PathVariable String nomeArq) {
-        ListaObj<ModuleLessonModel> moduleLessons = moduleLessonService.getAllModuleLessonByModuleId(moduleId);
+    public ResponseEntity<Integer> getAllModuleLessonByModuleIdCsv(@PathVariable UUID moduleId, @PathVariable String nomeArq) {
+        ListaObj<ModuleLessonModel> moduleLessons = moduleLessonService.getAllModuleLessonByModuleIdCsv(moduleId);
 
         if (moduleLessons.getTamanho() > 0) {
             GerenciadorDeArquivosLessonCsv.gravaArquivoCsv(moduleLessons, nomeArq);

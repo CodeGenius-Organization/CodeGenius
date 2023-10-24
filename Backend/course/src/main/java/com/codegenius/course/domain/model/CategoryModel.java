@@ -1,6 +1,7 @@
 package com.codegenius.course.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class CategoryModel {
     private UUID id;
 
     @Column(name = "category", length = 20, nullable = false)
+    @NotBlank
     private String category;
 
     @ManyToMany(mappedBy = "categories")
