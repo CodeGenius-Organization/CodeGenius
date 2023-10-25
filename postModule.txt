@@ -1,5 +1,0 @@
-{
-	"moduleName": "Variáveis",
-	"courseId": "9b7d28bd-3d54-4610-a1d0-82b5f2f6bd2e",
-	"moduleOrder": 1
-}
