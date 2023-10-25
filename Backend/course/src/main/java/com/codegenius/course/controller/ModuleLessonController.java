@@ -49,6 +49,13 @@ public class ModuleLessonController {
         return moduleLessons.getTamanho() > 0 ? ResponseEntity.status(200).body(moduleLessons.getTamanho()) : ResponseEntity.status(204).build();
     }
 
+    @GetMapping("/{moduleId}/lessons/ordered")
+    public ResponseEntity<List<ModuleLessonModel>> getModuleLessonsOrdered(@PathVariable UUID moduleId) {
+        List<ModuleLessonModel> moduleLessons = moduleLessonService.getModuleLessonsOrdered(moduleId);
+
+        return ResponseEntity.status(200).body(moduleLessons);
+    }
+
     @PutMapping("/{moduleId}/lessons")
     public ResponseEntity<List<ModuleLessonUpdateDTO>> updateModuleLessons(@RequestBody List<ModuleLessonUpdateDTO> moduleLessonList, @PathVariable UUID moduleId) {
         List<ModuleLessonUpdateDTO> newModuleLessonList = moduleLessonService.updateModuleLessons(moduleLessonList);

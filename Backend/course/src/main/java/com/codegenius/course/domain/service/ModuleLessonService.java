@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -90,6 +91,18 @@ public class ModuleLessonService {
         ListaObj<ModuleLessonModel> moduleLessonsOrdered = sortModuleLessonList(lessons, lessons.size());
 
         return binarySearch(moduleLessonsOrdered, lessonOrder);
+    }
+
+    public List<ModuleLessonModel> getModuleLessonsOrdered(UUID moduleId) {
+        List<ModuleLessonModel> lessons = this.moduleLessonRepository.findAllByModule_Id(moduleId);
+        ListaObj<ModuleLessonModel> listaObjOrdered = sortModuleLessonList(lessons, lessons.size());
+        List<ModuleLessonModel> moduleLessonsOrdered = new ArrayList<>();
+
+        for (int i = 0; i < listaObjOrdered.getTamanho(); i++) {
+            moduleLessonsOrdered.add(listaObjOrdered.getElemento(i));
+        }
+
+        return moduleLessonsOrdered;
     }
 
 
