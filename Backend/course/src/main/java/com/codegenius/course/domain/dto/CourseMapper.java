@@ -11,21 +11,28 @@ public class CourseMapper {
 
     public static CourseModel of(CourseCreationDTO courseCreationDTO, List<LanguageModel> languages, List<CategoryModel> categories) {
 
-
         CourseModel course = new CourseModel();
 
-        course.setTitle(courseCreationDTO.getTitle());
+        if (courseCreationDTO.getTitle() != null)
+            course.setTitle(courseCreationDTO.getTitle());
 
-        course.setCourseDescription(courseCreationDTO.getCourseDescription());
-        course.setContentDescription(courseCreationDTO.getContentDescription());
+        if (courseCreationDTO.getCourseDescription() != null)
+            course.setCourseDescription(courseCreationDTO.getCourseDescription());
 
-        course.setImage(courseCreationDTO.getImage());
-        course.setAvailable(courseCreationDTO.getAvailable());
+        if (courseCreationDTO.getContentDescription() != null)
+            course.setContentDescription(courseCreationDTO.getContentDescription());
 
-        course.setLanguages(new HashSet<>(languages));
-        course.setCategories(new HashSet<>(categories));
+        if (courseCreationDTO.getImage() != null)
+            course.setImage(courseCreationDTO.getImage());
 
+        if (courseCreationDTO.getAvailable() != null)
+            course.setAvailable(courseCreationDTO.getAvailable());
 
+        if (!languages.isEmpty())
+            course.setLanguages(new HashSet<>(languages));
+
+        if (!categories.isEmpty())
+            course.setCategories(new HashSet<>(categories));
 
         return course;
     }

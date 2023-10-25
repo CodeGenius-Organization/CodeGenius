@@ -10,6 +10,7 @@ import com.codegenius.course.domain.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -69,5 +70,38 @@ public class CourseService {
 
     public List<CourseCsvDTO> getCourseCsv(){
         return this.courseRepository.pegarAllCsv();
+    }
+
+    public boolean existsById(UUID courseId) {
+        return courseRepository.existsById(courseId);
+    }
+
+    public CourseModel updateCourse(UUID courseId, CourseCreationDTO newCourse) {
+        Optional<CourseModel> course = courseRepository.findById(courseId);
+        List<LanguageModel> languages = languageService.findLanguageByIdIn(newCourse.getLanguageIds());
+        List<CategoryModel> categories = categoryService.findCategoryByIdIn(newCourse.getCategoryIds());
+
+        if (newCourse.getTitle() != null)
+            course.get().setTitle(newCourse.getTitle());
+
+        if (newCourse.getCourseDescription() != null)
+            course.get().setCourseDescription(newCourse.getCourseDescription());
+
+        if (newCourse.getContentDescription() != null)
+            course.get().setContentDescription(newCourse.getContentDescription());
+
+        if (newCourse.getImage() != null)
+            course.get().setImage(newCourse.getImage());
+
+        if (newCourse.getAvailable() != null)
+            course.get().setAvailable(newCourse.getAvailable());
+
+        if (!languages.isEmpty())
+            course.get().setLanguages(new HashSet<>(languages));
+
+        if (!categories.isEmpty())
+            course.get().setCategories(new HashSet<>(categories));
+
+        return this.courseRepository.save(course.get());
     }
 }

@@ -80,4 +80,13 @@ public class CourseController {
         GerenciadorDeArquivosCourseCsv.gravaArquivoCsv(lista, "Cursos");
         return ResponseEntity.status(200).build();
     }
+
+    @PutMapping("/{courseId}")
+    public ResponseEntity<CourseModel> updateCourse(@RequestBody @Valid CourseCreationDTO course, @PathVariable UUID courseId) {
+        if(!courseService.existsById(courseId)) {
+            return ResponseEntity.status(400).build();
+        }
+
+        return ResponseEntity.status(200).body(courseService.updateCourse(courseId, course));
+    }
 }

@@ -1,0 +1,9 @@
+{
+	"title": "Java 101",
+	"courseDescription": "Descrição do curso",
+	"contentDescription": "Descrição do conteúdo",
+	"image": "Endereço da imagem do curso",
+	"available": true,
+	"languageIds": ["4487295e-1399-4c17-a0cb-a49d7f11c7e6"],
+	"categoryIds": ["6bd4558b-fe8a-4465-9b83-47a2bb092632"]
+}
