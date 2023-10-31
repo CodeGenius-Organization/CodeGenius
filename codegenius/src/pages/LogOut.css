@@ -1,0 +1,26 @@
+.logout-container{
+    display: flex;
+    background-color: #121526;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.logout-container>button{
+    width: 20%;
+    margin-top: 39px;
+    border-radius: 20px;
+    color: #121526;
+    border: none;
+    background: #F070FF;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 16px;
+}

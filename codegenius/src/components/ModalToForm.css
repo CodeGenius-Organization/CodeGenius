@@ -1,0 +1,163 @@
+.modal-container{
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    visibility: hidden;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    background-color: #121526b6;
+    transition: 0.5s ease;
+}
+
+.off{
+    visibility: visible;
+    opacity: 1;
+}
+
+
+.modal-content{
+    color: #fff;
+    border-radius: 20px;
+    background: #121526;
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    height: 95%;
+    overflow: hidden;
+    transform: translateY(500px);
+    transition: 0.5s ease;
+
+}
+
+.block{
+    transform: translateY(0px);
+    
+}
+
+.modal-content:hover{
+    scale: 102%;
+}
+
+.login-form{
+    width: 50%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.login-content{
+    font-family: 'Titillium Web', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 55%;
+    height: 80%;
+}
+
+.login-content>p{
+    font-size: 30px;
+}
+
+.logo-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+}
+
+.logo-container>p{
+    font-size: 24px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.img-container{
+    width: 50%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url('../img/gato.png');
+    border-radius: 0px 20px 20px 0px;
+}
+
+.teste{
+    background-image: url('../img/gato2.png');   
+}
+
+.linear-gradient{
+    background: linear-gradient(90deg, #121526 0%, rgba(18, 21, 38, 0.00) 46.13%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+}
+
+.linear-gradient>p{
+    align-self: center;
+    font-family: 'Oxanium', sans-serif;
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.close-icon{
+    margin: 40px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.error {
+    border: 1px solid #F00 !important;
+}
+
+@media screen and (max-width: 740px){
+
+    .modal-content{
+        flex-direction: column-reverse;
+        justify-content: start;
+    }
+
+    .login-form{
+        width: 100%;
+        height: 80%;
+        padding: 0px;
+
+    }
+    
+    .login-content{
+        justify-content: space-around;
+        width: 80%;
+        height: 80%;
+    }
+
+    .img-container{
+        background:none;
+        width: 100%;
+        height: auto;
+       
+    }
+
+    .linear-gradient{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    .linear-gradient>p{
+        display: none;
+    }
+
+    .close-icon{
+        margin: 30px;
+        font-size: 30px;
+    }
+
+}
