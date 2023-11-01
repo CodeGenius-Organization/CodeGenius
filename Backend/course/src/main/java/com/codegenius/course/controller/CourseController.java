@@ -21,15 +21,22 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    @PostMapping("/")
-    public ResponseEntity<CourseModel> createCourse(@RequestBody @Valid CourseCreationDTO courseCreationDTO) {
-        return ResponseEntity.status(201).body(this.courseService.createCourse(courseCreationDTO));
-    }
-
+    //region GET
     @GetMapping("/")
     public ResponseEntity<List<CourseModel>> getAllCourses() {
         return ResponseEntity.status(200).body(this.courseService.getAllCourses());
     }
+
+    @GetMapping("/{courseId}")
+    public ResponseEntity<CourseModel> getCourseById(@PathVariable UUID courseId) {
+        return ResponseEntity.status(200).body(this.courseService.getCourseById(courseId));
+    }
+
+    @GetMapping(value = "/image/{courseId}", produces = "image/**")
+    public ResponseEntity<byte[]> getCourseImageById(@PathVariable UUID courseId) {
+        return ResponseEntity.status(200).body(courseService.getCourseImageById(courseId));
+    }
+
 
     @GetMapping("/available")
     public ResponseEntity<List<CourseModel>> getAvailableCourses() {
@@ -41,10 +48,10 @@ public class CourseController {
         return ResponseEntity.status(200).body(this.courseService.getCoursesAvailableByKeyword(keyword));
     }
 
-//    @GetMapping("/popularity")
-//    public ResponseEntity<List<Course>> getCoursesByPopularity() {
-//        return ResponseEntity.status(200).body(this.courseService.getCoursesByPopularity());
-//    }
+    // @GetMapping("/popularity")
+    // public ResponseEntity<List<Course>> getCoursesByPopularity() {
+    //     return ResponseEntity.status(200).body(this.courseService.getCoursesByPopularity());
+    // }
 
     @GetMapping("/language/{languageId}")
     public ResponseEntity<List<CourseModel>> getCoursesByLanguage(@PathVariable UUID languageId) {
@@ -54,20 +61,6 @@ public class CourseController {
     @GetMapping("/category/{categoryId}")
     public ResponseEntity<List<CourseModel>> getCoursesByCategory(@PathVariable UUID categoryId) {
         return ResponseEntity.status(200).body(this.courseService.getCoursesByCategory(categoryId));
-    }
-
-    @DeleteMapping("/{courseId}")
-    public ResponseEntity<Void> deleteCourseById(@PathVariable UUID courseId) {
-        this.courseService.deleteCourseById(courseId);
-
-        return ResponseEntity.status(200).build();
-    }
-
-    @PostMapping("/cadastrar")
-    public ResponseEntity<List<CourseModel>> postCourseCadastrarCsv(@RequestBody Arquivo arquivo) {
-        List<CourseModel> guardarArquivo = GerenciadorDeArquivosCourseCsv.importarArquivoCsv(arquivo.getNomeArq());
-        
-        return ResponseEntity.status(200).body(this.courseService.createCourses(guardarArquivo));
     }
 
     @GetMapping("/exportar-csv")
@@ -80,7 +73,23 @@ public class CourseController {
         GerenciadorDeArquivosCourseCsv.gravaArquivoCsv(lista, "Cursos");
         return ResponseEntity.status(200).build();
     }
+    //endregion
 
+    //region POST
+    @PostMapping("/")
+    public ResponseEntity<CourseModel> createCourse(@RequestBody @Valid CourseCreationDTO courseCreationDTO) {
+        return ResponseEntity.status(201).body(this.courseService.createCourse(courseCreationDTO));
+    }
+
+    @PostMapping("/cadastrar")
+    public ResponseEntity<List<CourseModel>> postCourseCadastrarCsv(@RequestBody Arquivo arquivo) {
+        List<CourseModel> guardarArquivo = GerenciadorDeArquivosCourseCsv.importarArquivoCsv(arquivo.getNomeArq());
+
+        return ResponseEntity.status(200).body(this.courseService.createCourses(guardarArquivo));
+    }
+    //endregion
+
+    //region PUT
     @PutMapping("/{courseId}")
     public ResponseEntity<CourseModel> updateCourse(@RequestBody @Valid CourseCreationDTO course, @PathVariable UUID courseId) {
         if(!courseService.existsById(courseId)) {
@@ -89,4 +98,22 @@ public class CourseController {
 
         return ResponseEntity.status(200).body(courseService.updateCourse(courseId, course));
     }
+    //endregion
+
+    //region DELETE
+    @DeleteMapping("/{courseId}")
+    public ResponseEntity<Void> deleteCourseById(@PathVariable UUID courseId) {
+        this.courseService.deleteCourseById(courseId);
+
+        return ResponseEntity.status(200).build();
+    }
+    //endregion
+
+    //region PATCH
+    @PatchMapping(value = "/image/{courseId}", consumes = "image/**")
+    public ResponseEntity<Integer> updateCourseImage(@PathVariable UUID courseId, @RequestBody byte[] image) {
+        courseService.updateCourseImage(courseId, image);
+        return ResponseEntity.status(200).build();
+    }
+    //endregion
 }

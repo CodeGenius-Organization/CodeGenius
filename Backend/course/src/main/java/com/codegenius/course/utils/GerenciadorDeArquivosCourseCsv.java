@@ -97,7 +97,7 @@ public class GerenciadorDeArquivosCourseCsv {
                 System.out.printf("%-15s %-30s %-50s %-12b\n" , title, course_description, content_description,
                         available);
 
-                listaCursos.add(new CourseModel(title, course_description, content_description, image, available));
+                listaCursos.add(new CourseModel(title, course_description, content_description, available));
             }
         } catch (NoSuchElementException erro) {
             System.out.println("Arquivo com problemas");

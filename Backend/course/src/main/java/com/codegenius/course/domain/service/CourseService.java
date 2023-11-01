@@ -8,7 +8,9 @@ import com.codegenius.course.domain.model.CourseModel;
 import com.codegenius.course.domain.model.LanguageModel;
 import com.codegenius.course.domain.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashSet;
 import java.util.List;
@@ -90,9 +92,6 @@ public class CourseService {
         if (newCourse.getContentDescription() != null)
             course.get().setContentDescription(newCourse.getContentDescription());
 
-        if (newCourse.getImage() != null)
-            course.get().setImage(newCourse.getImage());
-
         if (newCourse.getAvailable() != null)
             course.get().setAvailable(newCourse.getAvailable());
 
@@ -103,5 +102,28 @@ public class CourseService {
             course.get().setCategories(new HashSet<>(categories));
 
         return this.courseRepository.save(course.get());
+    }
+
+    public void updateCourseImage(UUID courseId, byte[] image) {
+        Optional<CourseModel> course = courseRepository.findById(courseId);
+        if (course.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Curso de ID " + courseId + " não existe");
+        }
+
+        courseRepository.updateCourseImage(courseId, image);
+    }
+
+    public CourseModel getCourseById(UUID courseId) {
+        return courseRepository.findById(courseId).get();
+    }
+
+    public byte[] getCourseImageById(UUID courseId) {
+        Optional<CourseModel> course = courseRepository.findById(courseId);
+
+        if (course.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Curso de ID " + courseId + " não existe");
+        }
+
+        return courseRepository.getCourseImage(courseId);
     }
 }
