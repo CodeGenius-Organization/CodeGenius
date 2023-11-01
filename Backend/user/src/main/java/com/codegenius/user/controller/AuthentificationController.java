@@ -4,6 +4,10 @@ import com.codegenius.user.domain.dto.DadosAuthentification;
 import com.codegenius.user.domain.dto.DadosTokenJWT;
 import com.codegenius.user.domain.model.UserModel;
 import com.codegenius.user.domain.service.TokenService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -38,6 +42,8 @@ public class AuthentificationController {
      * @since 2023-08-09
      */
     @PostMapping("/login")
+    @Operation(summary = "User login and token generation", description = "Endpoint to handle user login and generate an authentication token.")
+    @ApiResponse(responseCode = "200", description = "Token generated", content = @Content(mediaType = "application/json", schema = @Schema(implementation = DadosTokenJWT.class)))
     public ResponseEntity<DadosTokenJWT> login(@RequestBody @Valid DadosAuthentification dadosAuthentification) {
         // Create an authentication token based on user's email and password
         var authenticationToken = new UsernamePasswordAuthenticationToken(dadosAuthentification.getEmail(), dadosAuthentification.getPassword());

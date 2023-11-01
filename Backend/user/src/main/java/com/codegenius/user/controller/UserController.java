@@ -3,7 +3,11 @@
     import com.codegenius.user.domain.dto.DadosCadastroCompleto;
     import com.codegenius.user.domain.dto.DadosCadastroUser;
     import com.codegenius.user.domain.service.UserService;
+    import io.swagger.v3.oas.annotations.Operation;
     import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+    import io.swagger.v3.oas.annotations.media.Content;
+    import io.swagger.v3.oas.annotations.media.Schema;
+    import io.swagger.v3.oas.annotations.responses.ApiResponse;
     import io.swagger.v3.oas.annotations.security.SecurityRequirement;
     import io.swagger.v3.oas.annotations.security.SecurityScheme;
     import jakarta.validation.Valid;
@@ -39,6 +43,8 @@
          * @since 2023-08-09
          */
         @PostMapping("/")
+        @Operation(summary = "Save user registration data", description = "Endpoint to save user registration data and return the saved user details.")
+        @ApiResponse(responseCode = "201", description = "User data saved", content = @Content(mediaType = "application/json", schema = @Schema(implementation = DadosCadastroUser.class)))
         public ResponseEntity<DadosCadastroUser> saveUser(@RequestBody @Valid DadosCadastroUser userDTO, UriComponentsBuilder uriBuilder, DadosCadastroCompleto userComp){
             DadosCadastroUser savedUser = userService.saveUser(userDTO, userComp);
 
@@ -57,6 +63,8 @@
          */
         @GetMapping("/{id}")
         @SecurityRequirement(name = "Bearer Authentication")
+        @Operation(summary = "Retrieve user details by ID", description = "Endpoint to retrieve user details based on the provided user ID.")
+        @ApiResponse(responseCode = "200", description = "User details", content = @Content(mediaType = "application/json", schema = @Schema(implementation = DadosCadastroUser.class)))
         public ResponseEntity<DadosCadastroUser> findById(@PathVariable UUID id) {
             DadosCadastroUser user = userService.findById(id);
             return ResponseEntity.status(200).body(user);
@@ -75,6 +83,8 @@
          */
         @PutMapping("/{id}")
         @SecurityRequirement(name = "Bearer Authentication")
+        @Operation(summary = "Update user information by ID", description = "Endpoint to update user information based on the provided ID and user data.")
+        @ApiResponse(responseCode = "200", description = "Updated user details", content = @Content(mediaType = "application/json", schema = @Schema(implementation = DadosCadastroUser.class)))
         public ResponseEntity<DadosCadastroUser> updateUser(
                 @PathVariable UUID id,
                 @Valid
@@ -96,9 +106,11 @@
          */
         @DeleteMapping("/{id}")
         @SecurityRequirement(name = "Bearer Authentication")
+        @Operation(summary = "Mark a user as inactive", description = "Endpoint to mark a user as inactive based on the provided user ID.")
+        @ApiResponse(responseCode = "204", description = "User marked as inactive")
         public ResponseEntity deleteUser(@PathVariable UUID id) {
             userService.markUserAsInactive(id);
-            return ResponseEntity.status(200).build();
+            return ResponseEntity.status(204).build();
         }
 
     }
