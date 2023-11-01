@@ -72,11 +72,30 @@ function FormRegister({ toggleModal, changeForm }) {
    <>
     <p>Cadastre-se!</p>
             <form className="form-content" onSubmit={handleSubmit}>
+              <div className="form-content name">
+                <label>Nome:</label>
+                <input
+                  id="inpNome"
+                  placeholder="Digite seu nome"
+                  onchange={(e) => {
+                    setUserName(e.target.value)
+                    e.target.classList.remove("error")
+                  }}
+                />
+                <label>Sobrenome:</label>
+                <input
+                  id="inpSobrenome"
+                  placeholder="Digite seu sobrenome"
+                  onchange={(e) => {
+                    setUserName(e.target.value)
+                    e.target.classList.remove("error")
+                  }}
+                />
+              </div>
               <label>E-mail:</label>
               <input
                 id="inpEmail"
                 type="email"
-                className="input-margin"
                 placeholder="Digite seu e-mail"
                 onChange={(e) => {
                   setUserName(e.target.value)
@@ -93,7 +112,16 @@ function FormRegister({ toggleModal, changeForm }) {
                   e.target.classList.remove("error")
                 }}
               />
-              <a href="/">Esqueceu sua senha?</a>
+              <label>Confirmação de Senha:</label>
+              <input
+                id="inpConfirmacaoSenha"
+                type="password"
+                placeholder="Digite sua senha"
+                onChange={(e) => {
+                  setPassword(e.target.value)
+                  e.target.classList.remove("error")
+                }}
+              />
               <button type="submit" className="button-form">
                 ENTRAR
               </button>

@@ -14,12 +14,16 @@ function ModalLogoutConfirmationLogout() {
                         </div>
                     </div>
                     <div class="body_content">
-                        <div class="icon">
-
-                        </div>
-                        <div class="body_text">
-                            <p>TEM CERTEZA QUE DESEJA SAIR?</p>
-                            <p>Ao clicar em SAIR você terá que logar novamente.</p>
+                        <div class="text">
+                            <div class="round">
+                                <span class="material-symbols-outlined">
+                                    logout
+                                </span>
+                            </div>
+                            <div class="body_text">
+                                <p>TEM CERTEZA QUE DESEJA SAIR?</p>
+                                <p>Ao clicar em SAIR você terá que logar novamente.</p>
+                            </div>
                         </div>
                         <div class="buttons">
                             {/* <button onclick={handleCancel}>CANCELAR</button>

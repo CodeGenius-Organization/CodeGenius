@@ -24,10 +24,10 @@ function NavBar({ onLoginModal }) {
             className="menuButtonClose"
             onClick={() => handleMenuMobile()}
           />
-          <li>HOME</li>
-          <li>SOBRE NÓS</li>
-          <li>CODEGENIUS</li>
-          <li>EQUIPE</li>
+          <li className="nav_button">HOME</li>
+          <li className="nav_button">SOBRE NÓS</li>
+          <li className="nav_button">CODEGENIUS</li>
+          <li className="nav_button">EQUIPE</li>
           <li onClick={() => onLoginModal()}>
             <FiLogIn />
           </li>

@@ -13,16 +13,8 @@
     transition: 0.5s ease;
 }
 
-
-
 .form-content>label{
     margin-bottom: 10px;
-}
-
-.form-content>a{
-    margin-top: 5px;
-    color: #fff;
-    font-size: 12px;
 }
 
 .link-right-button{
@@ -39,6 +31,6 @@
     cursor: pointer;
 }
 
-.input-margin{
-    margin-bottom: 27px;
+.form-content .name{
+    display: flex;
 }
