@@ -42,11 +42,13 @@ public class CourseService {
     }
 
     public List<CourseModel> getCoursesByLanguage(UUID languageId) {
-        return this.courseRepository.findByLanguages_Id(languageId);
+        LanguageModel language = languageService.findLanguageById(languageId);
+        return this.courseRepository.findByLanguages_Id(language.getId());
     }
 
     public List<CourseModel> getCoursesByCategory(UUID categoryId) {
-        return this.courseRepository.findByCategories_Id(categoryId);
+        CategoryModel category = categoryService.findCategoryById(categoryId);
+        return this.courseRepository.findByCategories_Id(category.getId());
     }
 
     public List<CourseModel> getAvailableCourses() {
@@ -54,14 +56,19 @@ public class CourseService {
     }
 
     public List<CourseModel> getCoursesAvailableByKeyword(String keyword) {
-        return this.courseRepository.findByAvailableIsTrueAndTitleContaining(keyword);
+        List<CourseModel> courses = courseRepository.findByAvailableIsTrueAndTitleContaining(keyword);
+        if (courses.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Não existem cursos contendo a palavra-chave " + keyword);
+        }
+
+        return courses;
     }
 
     public void deleteCourseById(UUID courseId) {
         Optional<CourseModel> course = this.courseRepository.findById(courseId);
 
         if (course.isEmpty())
-            throw new IllegalStateException();
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Curso de ID " + courseId + " não encontrado.");
 
         this.courseRepository.deleteById(courseId);
     }
