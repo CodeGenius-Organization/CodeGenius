@@ -1,11 +1,99 @@
-.bg1,.bg2{
-    height: 300px;
-}
-
-.bg1{
+.background{
     background-color: #121526;
+    width: 100%;
+    display: flex;
 }
 
-.bg2{
-    background-color: #23294a;
+.gradient{
+    width: 100%;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    /* border: solid 2px blue; */
+}
+
+.content{
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.home{
+    height: 571px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /* border: solid 2px fuchsia; */
+}
+
+.home .left-side{
+    /* border: solid 2px firebrick; */
+    display: flex;
+    flex-direction: column;
+    width: 570px;
+    justify-content: center;
+    gap: 32px 30px;
+    flex-wrap: wrap;
+}
+
+.home .left-side>h1, p{
+    color: #fff;
+    font-family: 'Raleway';
+}
+
+.home .left-side>h1{
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.home .left-side>p{
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+}
+
+.home .left-side .bt-home{
+    display: flex;
+    align-items: flex-end;
+    gap: 30px;
+}
+
+.home .left-side .bt-home .cadastre-se{
+    border-radius: 20px;
+    border: 1px solid #F070FF;
+    width: 170px;
+    height: 32px;
+    padding: 0px 40px;
+    font-family: 'Raleway';
+    color: #F070FF;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.home .left-side .bt-home .saiba-mais{
+    border-radius: 20px;
+    border: 1px solid #F070FF;
+    width: 170px;
+    height: 32px;
+    padding: 0px 40px;
+    font-family: 'Raleway';
+    color: #121526;
+    background-color: #F070FF;
+    cursor: pointer;
+}
+
+.right-side{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-side .home-img{
+    width: 584.65px;
 }
