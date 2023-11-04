@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+* {
+    background-color: #121526;
+}
+
+.lesson-card {
+    /* border: solid 2px red; */
+    
+    height: 135px;
+    width: 487px;
+
+    display: flex;
+
+    gap: 16px;
+}
+
+.lesson-order {
+    /* border: solid 2px red; */
+    border-radius: 100%;
+    width: 133px;
+    height: 133px;
+
+    min-height: 133px;
+    min-width: 133px;
+    
+    background: linear-gradient(44deg, #7f60bcbf, #d968ff89 );
+    
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.lesson-order span {
+    color: white;
+    font-family: 'Titillium Web';
+    font-size: 32px;
+    font-weight: 600;
+    background-color: inherit;
+}
+
+.lesson-details {
+    /* border: solid 2px red; */
+    display: flex;
+    flex-direction: column;
+}
+
+.details-header {
+    display: flex;
+    gap: 16px;
+}
+
+.details-header span {
+    font-family: 'Titillium Web';
+    font-size: 24px;
+    font-weight: 600;
+    color: white;
+}
+
+
+.content {
+    /* border: solid 2px red; */
+
+    width: 100%;
+    
+    color: white;
+    font-family: 'Titillium Web';
+    font-size: 20px;
+    font-weight: 500;
+}
