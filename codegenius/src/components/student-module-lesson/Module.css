@@ -1,0 +1,22 @@
+.module {
+    /* border: solid 2px red; */
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    /* padding-top: 32px; */
+}
+
+.module>span {
+    font-family: 'Raleway';
+    font-weight: 600;
+    font-size: 24px;
+    color: #FFF;
+    padding-bottom: 32px;
+}
+
+.lessons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
