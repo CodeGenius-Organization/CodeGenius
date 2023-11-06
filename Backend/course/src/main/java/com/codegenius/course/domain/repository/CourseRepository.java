@@ -2,7 +2,9 @@ package com.codegenius.course.domain.repository;
 
 import com.codegenius.course.domain.dto.CourseCsvDTO;
 import com.codegenius.course.domain.model.CourseModel;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
@@ -28,4 +30,15 @@ public interface CourseRepository extends JpaRepository<CourseModel, UUID> {
             select new com.codegenius.course.domain.dto.CourseCsvDTO(c.title,c.courseDescription, c.contentDescription, c.available) from CourseModel c
             """)
     List<CourseCsvDTO> pegarAllCsv();
+
+    @Modifying
+    @Transactional
+    @Query("""
+            UPDATE CourseModel c SET c.image = ?2
+            WHERE c.id = ?1
+            """)
+    void updateCourseImage(UUID courseId, byte[] image);
+
+    @Query("SELECT c.image FROM CourseModel c WHERE c.id = ?1")
+    byte[] getCourseImage(UUID courseId);
 }

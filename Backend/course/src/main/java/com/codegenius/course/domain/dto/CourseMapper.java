@@ -22,9 +22,6 @@ public class CourseMapper {
         if (courseCreationDTO.getContentDescription() != null)
             course.setContentDescription(courseCreationDTO.getContentDescription());
 
-        if (courseCreationDTO.getImage() != null)
-            course.setImage(courseCreationDTO.getImage());
-
         if (courseCreationDTO.getAvailable() != null)
             course.setAvailable(courseCreationDTO.getAvailable());
 

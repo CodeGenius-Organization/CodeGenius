@@ -14,7 +14,6 @@ public class CourseCreationDTO {
     private String courseDescription;
     @NotBlank
     private String contentDescription;
-    private String image;
     @NotNull
     private Boolean available;
     @NotNull
@@ -44,14 +43,6 @@ public class CourseCreationDTO {
 
     public void setContentDescription(String contentDescription) {
         this.contentDescription = contentDescription;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public Boolean getAvailable() {

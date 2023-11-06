@@ -1,5 +1,6 @@
 package com.codegenius.course.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -41,8 +42,9 @@ public class CourseModel {
     @NotBlank
     private String contentDescription;
 
-    @Column(name = "image", length = 100, nullable = false)
-    private String image;
+    @JsonIgnore
+    @Column(name = "image", nullable = false, columnDefinition = "BLOB")
+    private byte[] image;
 
     @Column(name = "available", nullable = false)
     @NotNull
@@ -73,11 +75,10 @@ public class CourseModel {
     )
     private Set<CourseModuleModel> modules = new HashSet<>();
 
-    public CourseModel(String title, String courseDescription, String contentDescription, String image, Boolean available) {
+    public CourseModel(String title, String courseDescription, String contentDescription, Boolean available) {
         this.title = title;
         this.courseDescription = courseDescription;
         this.contentDescription = contentDescription;
-        this.image = image;
         this.available = available;
     }
 }

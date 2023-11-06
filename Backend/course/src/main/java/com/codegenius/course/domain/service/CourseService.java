@@ -8,7 +8,9 @@ import com.codegenius.course.domain.model.CourseModel;
 import com.codegenius.course.domain.model.LanguageModel;
 import com.codegenius.course.domain.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashSet;
 import java.util.List;
@@ -40,11 +42,13 @@ public class CourseService {
     }
 
     public List<CourseModel> getCoursesByLanguage(UUID languageId) {
-        return this.courseRepository.findByLanguages_Id(languageId);
+        LanguageModel language = languageService.findLanguageById(languageId);
+        return this.courseRepository.findByLanguages_Id(language.getId());
     }
 
     public List<CourseModel> getCoursesByCategory(UUID categoryId) {
-        return this.courseRepository.findByCategories_Id(categoryId);
+        CategoryModel category = categoryService.findCategoryById(categoryId);
+        return this.courseRepository.findByCategories_Id(category.getId());
     }
 
     public List<CourseModel> getAvailableCourses() {
@@ -52,14 +56,19 @@ public class CourseService {
     }
 
     public List<CourseModel> getCoursesAvailableByKeyword(String keyword) {
-        return this.courseRepository.findByAvailableIsTrueAndTitleContaining(keyword);
+        List<CourseModel> courses = courseRepository.findByAvailableIsTrueAndTitleContaining(keyword);
+        if (courses.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT, "Não existem cursos contendo a palavra-chave " + keyword);
+        }
+
+        return courses;
     }
 
     public void deleteCourseById(UUID courseId) {
         Optional<CourseModel> course = this.courseRepository.findById(courseId);
 
         if (course.isEmpty())
-            throw new IllegalStateException();
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Curso de ID " + courseId + " não encontrado.");
 
         this.courseRepository.deleteById(courseId);
     }
@@ -90,9 +99,6 @@ public class CourseService {
         if (newCourse.getContentDescription() != null)
             course.get().setContentDescription(newCourse.getContentDescription());
 
-        if (newCourse.getImage() != null)
-            course.get().setImage(newCourse.getImage());
-
         if (newCourse.getAvailable() != null)
             course.get().setAvailable(newCourse.getAvailable());
 
@@ -103,5 +109,28 @@ public class CourseService {
             course.get().setCategories(new HashSet<>(categories));
 
         return this.courseRepository.save(course.get());
+    }
+
+    public void updateCourseImage(UUID courseId, byte[] image) {
+        Optional<CourseModel> course = courseRepository.findById(courseId);
+        if (course.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Curso de ID " + courseId + " não existe");
+        }
+
+        courseRepository.updateCourseImage(courseId, image);
+    }
+
+    public CourseModel getCourseById(UUID courseId) {
+        return courseRepository.findById(courseId).get();
+    }
+
+    public byte[] getCourseImageById(UUID courseId) {
+        Optional<CourseModel> course = courseRepository.findById(courseId);
+
+        if (course.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Curso de ID " + courseId + " não existe");
+        }
+
+        return courseRepository.getCourseImage(courseId);
     }
 }
