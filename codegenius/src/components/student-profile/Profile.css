@@ -14,8 +14,6 @@
 }
 
 .profile-info {
-    /* border: solid 2px red; */
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,12 +25,9 @@
 }
 
 .pfp-name-section {
-    /* border: solid 2px red; */
-    
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center; */
 
     height: 313px;
     width: 315px;
@@ -47,8 +42,6 @@
 }
 
 .name-email {
-    /* border: solid 2px blue; */
-    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -74,8 +67,6 @@
 }
 
 .follower-section {
-    /* border: solid 2px blue; */
-    
     display: flex;
     flex-direction: column;
 
@@ -86,8 +77,6 @@
 }
 
 .follow-numbers {
-    /* border: solid 2px red; */
-    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -125,4 +114,15 @@
     color: white;
 
     width: 166px;
+}
+
+.stats-section {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: space-between;
+
+    height: 294px;
+    width: 268px;
 }
