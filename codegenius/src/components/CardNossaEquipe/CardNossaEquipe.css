@@ -1,0 +1,55 @@
+.card-equipe {
+    width: 23.125rem;
+    height: 23.125rem;
+    flex-shrink: 0;
+    /* border: solid 2px forestgreen; */
+}
+
+.image{
+    width: 370px;
+    height: 370px;
+    border-radius: 20px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.shadow {
+    display: none;
+}
+
+.card-geral:hover .shadow {
+    position: relative;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 0px 0px 20px 20px;
+    background: rgba(24, 29, 49, 0.50);
+    bottom: 6.5rem;
+}
+
+.shadow>h1 {
+    color: #FFFFFF;
+    text-align: center;
+    font-family: 'Titillium Web';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.shadow>h2 {
+    color: #FFF;
+    text-align: center;
+    font-family: 'Titillium Web';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.card-geral {
+    position: absolute;
+    /* border: solid 2px gray; */
+}
