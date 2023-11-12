@@ -4,7 +4,7 @@
     background-color: #121526;
 }
 
-.modules-container {
+.modules_container {
     /* border: solid 2px red; */
 
     display: flex;
@@ -17,14 +17,14 @@
     padding-right: 32px;
 }
 
-.modules-list {
+.modules_list {
     /* border: solid 2px pink; */
     display: flex;
     flex-direction: column;
     gap: 32px;
 }
 
-.modules-container > .title {
+.modules_container > .title {
     /* border: solid 2px red; */
     font-family: 'Raleway';
     font-size: 32px;

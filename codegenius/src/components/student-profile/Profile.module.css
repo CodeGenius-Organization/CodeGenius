@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 
 
-.profile-container {
+.profile_container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -13,7 +13,7 @@
     border-radius: 20px;
 }
 
-.profile-info {
+.profile_info {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -24,7 +24,7 @@
     width: 315px;
 }
 
-.pfp-name-section {
+.pfp_name_section {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,13 +35,13 @@
     gap: 18px;
 }
 
-.pfp-name-section > img {
+.pfp_name_section > img {
     width: 228px;
     height: 228px;
     border-radius: 100%;
 }
 
-.name-email {
+.name_email {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -52,21 +52,21 @@
     width: 100%;
 }
 
-.name-email > .name {
+.name_email > .name {
     font-family: 'Raleway';
     font-size: 32px;
     font-weight: bold;
     color: #FFF;
 }
 
-.name-email > .email {
+.name_email > .email {
     font-family: 'Raleway';
     font-size: 22px;
     font-weight: bold;
     color: #FFF;
 }
 
-.follower-section {
+.follower_section {
     display: flex;
     flex-direction: column;
 
@@ -76,7 +76,7 @@
     width: 268px;
 }
 
-.follow-numbers {
+.follow_numbers {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -85,14 +85,14 @@
     height: 60px;
 }
 
-.follow-numbers > span {
+.follow_numbers > span {
     font-family: 'Raleway';
     font-size: 22px;
     font-weight: bold;
     color: #FFF;
 }
 
-.follower-section > .follow-button {
+.follower_section > .follow_button {
     border: solid 1px white;
     border-radius: 100px;
     
@@ -107,7 +107,7 @@
     
 }
 
-.follower-section > .follow-button > span {
+.follower_section > .follow_button > span {
     font-family: 'Titillium Web';
     font-size: 24px;
     font-weight: normal;
@@ -116,7 +116,7 @@
     width: 166px;
 }
 
-.stats-section {
+.stats_section {
     display: flex;
     flex-direction: column;
 

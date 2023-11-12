@@ -1,14 +1,14 @@
 import React from "react";
-import './TextAreaWithIcon.css'
+import style from './TextAreaWithIcon.module.css'
 
 function TextAreaWithIcon({ icon, textAreaDivStyle, placeholder }) {
     return (
         <>
-            <div className="div-input-icon" style={ textAreaDivStyle }>
-                <div className="icon">
+            <div className={style.div_input_icon} style={ textAreaDivStyle }>
+                <div className={style.icon}>
                     {icon}
                 </div>
-                <div className="input" style={ textAreaDivStyle }>
+                <div className={style.input} style={ textAreaDivStyle }>
                     <textarea name="" id="" cols="30" rows="10" placeholder={ placeholder }></textarea>
                 </div>
             </div>

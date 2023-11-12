@@ -73,6 +73,7 @@ function FormRegister({ toggleModal, changeForm }) {
     <p>Cadastre-se!</p>
             <form className="form-content" onSubmit={handleSubmit}>
               <div className="form-content name">
+              <div className='vertical-content'>
                 <label>Nome:</label>
                 <input
                   id="inpNome"
@@ -82,6 +83,8 @@ function FormRegister({ toggleModal, changeForm }) {
                     e.target.classList.remove("error")
                   }}
                 />
+                </div>
+                <div className='vertical-content'>
                 <label>Sobrenome:</label>
                 <input
                   id="inpSobrenome"
@@ -91,6 +94,7 @@ function FormRegister({ toggleModal, changeForm }) {
                     e.target.classList.remove("error")
                   }}
                 />
+                </div>
               </div>
               <label>E-mail:</label>
               <input

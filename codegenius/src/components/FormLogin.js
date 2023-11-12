@@ -24,12 +24,12 @@ function FormLogin({ toggleModal, changeForm }) {
     }
 
     api.post(
-        "/login",
+        "user/login",
         {
           email: username,
           password: password,
         },
-        {
+        { 
           headers: {
             "Content-Type": "application/json",
           },

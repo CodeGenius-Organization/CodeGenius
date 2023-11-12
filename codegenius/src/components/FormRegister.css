@@ -1,10 +1,21 @@
 .form-content{
     font-family: 'Raleway', sans-serif;
-    display: flex;
-    flex-direction: column;
+    display: flex; 
 }
 
-.form-content>input{
+.name {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.vertical-content{
+  display: flex;
+  flex-direction: column;
+  width: 47%;
+}
+
+.vertical-content>input{
+    
     border-radius: 20px;
     border: 1px solid #FFF; 
     background-color: transparent;
@@ -14,7 +25,11 @@
 }
 
 .form-content>label{
-    margin-bottom: 10px;
+    margin: 10px 0px;
+}
+
+.vertical-content>label{
+    margin: 10px 0px;
 }
 
 .link-right-button{
@@ -29,8 +44,4 @@
     background: #F070FF;
     padding: 10px;
     cursor: pointer;
-}
-
-.form-content .name{
-    display: flex;
 }
