@@ -1,5 +1,5 @@
 import React from 'react'
-import './CardLesson.css';
+import style from './CardLesson.module.css';
 import {useState} from 'react'
 import img from '../img/Mask group.svg';
 import img2 from '../img/Frame 70.svg';
@@ -15,25 +15,25 @@ function CardLesson() {
 
     return (
         <>
-            <div class ="card">
-                <div class ='img' >
+            <div class ={style.card}>
+                <div class ={style.img}>
                     <img src = {img} alt='image'/>
 
-                    <div class ='fav'>
-                        <img id= 'img3' src={img3}/>
+                    <div class = {style.fav}>
+                        <img id= {style.img3} src={img3}/>
                     </div>
-                    <img id= 'img4' src={img4}  onClick={showOrHide}/>
-                    {showElement ? <img id= 'img5' src={img5} onClick={showOrHide} /> : true }
+                    <img id= {style.img4} src={img4}  onClick={showOrHide}/>
+                    {showElement ? <img id={style.img5} src={img5} onClick={showOrHide} /> : true }
                 </div>   
 
-                <div class="container">
-                    <div class="card-lesson">
-                        <div class="info-card">
-                            <p class="card-title"><span>Lógica de Programação</span></p>
+                <div class={style.container}>
+                    <div class={style.card_lesson}>
+                        <div class={style.info_card}>
+                            <p class={style.card_title}><span>Lógica de Programação</span></p>
                             <p>JAVA ° HTML ° CSS</p>
                             <p><span>Feito por:</span>Helen Pêra</p>
                             <p>Em andamento</p>
-                            <div class='rate'>
+                            <div class={style.rate}>
                                 <img src={img2}></img>
                                 <p>4.0 (1987)</p>
                             </div>
