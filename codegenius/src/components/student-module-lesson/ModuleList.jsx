@@ -1,6 +1,6 @@
 import React from "react";
 import api from "../../Api";
-import './ModuleList.css'
+import style from './ModuleList.module.css'
 import Module from "./Module";
 
 const payload = [
@@ -43,9 +43,9 @@ const payload = [
 function ModuleList() {
     return (
         <>
-            <div className="modules-container">
-                <span className="title">Lista de módulos:</span>
-                <div className="modules-list">
+            <div className={style.modules_container}>
+                <span className={style.title}>Lista de módulos:</span>
+                <div className={style.modules_list}>
                     {payload.map((modulo) => (
                         <Module module={modulo}/>
                     ))}

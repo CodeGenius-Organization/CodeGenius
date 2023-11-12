@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 
-.new-course-wrapper {
+.new_course_wrapper {
     display: flex;
 
     width: 1445px;
@@ -11,7 +11,7 @@
     background-color: #121526;
 }
 
-.color-blend {
+.color_blend {
     background-color: rgba(128, 87, 189, 0.6);
 
     border-radius: 10px;
@@ -24,7 +24,7 @@
     justify-content: center;
 }
 
-.img-upload-section {
+.img_upload_section {
     border-radius: 10px;
 
     width: 806px;
@@ -33,7 +33,7 @@
     background-image: url("./imgs/Img.png");
 }
 
-.upload-text {
+.upload_text {
     display: flex;
     flex-direction: column;
 
@@ -43,7 +43,7 @@
     align-items: center;
 }
 
-.upload-text>label {
+.upload_text>label {
     font-family: 'Titillium Web';
     font-size: 24px;
     font-weight: normal;
@@ -52,11 +52,11 @@
     text-align: center;
 }
 
-.upload-text>input {
+.upload_text>input {
     display: none;
 }
 
-.course-infos {
+.course_infos {
     /* border: solid 2px red; */
     width: 100%;
 
@@ -68,7 +68,7 @@
     justify-content: center;
 }
 
-.language-selection {
+.language_selection {
     /* border: solid 2px red; */
     width: 100%;
 
@@ -77,14 +77,14 @@
     justify-content: space-between;
 }
 
-.language-selection > span {
+.language_selection > span {
     font-family: 'Titillium Web';
     font-size: 24px;
     font-weight: normal;
     color: #FFF;
 }
 
-.language-selection > select {
+.language_selection > select {
     width: 300px;
     height: 57px;
 
@@ -95,7 +95,7 @@
     color: #FFF;
 }
 
-.inputs-section {
+.inputs_section {
     display: flex;
     flex-direction: column;
 

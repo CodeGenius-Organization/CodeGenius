@@ -1,6 +1,6 @@
 import React from "react";
 import api from "../../Api"
-import "./Profile.css"
+import style from "./Profile.module.css"
 import pfp from "./imgs/imgtest.png"
 import {MdFormatColorFill, MdOutlineGroupAdd} from "react-icons/md"
 import {BsCalendarCheck} from "react-icons/bs"
@@ -16,26 +16,26 @@ function Profile() {
     
     return (
         <>
-            <div className="profile-container">
-                <div className="profile-info">
-                    <div className="pfp-name-section">
+            <div className={style.profile_container}>
+                <div className={style.profile_info}>
+                    <div className={style.pfp_name_section}>
                         <img src={pfp} alt="" srcset="" />
-                        <div className="name-email">
-                            <span className="name">Mariana Ribeiro</span>
-                            <span className="email">mariana.ribeiro@gmail.com</span>
+                        <div className={style.name_email}>
+                            <span className={style.name}>Mariana Ribeiro</span>
+                            <span className={style.email}>mariana.ribeiro@gmail.com</span>
                         </div>
                     </div>
-                    <div className="follower-section">
-                        <div className="follow-numbers">
-                            <span className="following">Segue 2</span>
-                            <span className="followers">Tem 2 seguidores</span>
+                    <div className={style.follower_section}>
+                        <div className={style.follow_numbers}>
+                            <span className={style.following}>Segue 2</span>
+                            <span className={style.followers}>Tem 2 seguidores</span>
                         </div>
-                        <div className="follow-button">
+                        <div className={style.follow_button}>
                             <MdOutlineGroupAdd style={followStyle}/>
                             <span>SIGA UM AMIGO</span>
                         </div>
                     </div>
-                    <div className="stats-section">
+                    <div className={style.stats_section}>
                         <Stat 
                         icon={<BsCalendarCheck style={calendarStyle}/>} 
                         number={15}
@@ -64,7 +64,7 @@ export default Profile
 
 
 
-// <div className="day-streak">
+// <div className="day_streak">
 //                             <BsCalendarCheck style={calendarStyle} />
 //                             <div className="streak-info">
 //                                 <span className="streak-days">

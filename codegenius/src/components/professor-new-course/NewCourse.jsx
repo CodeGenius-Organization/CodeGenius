@@ -1,6 +1,6 @@
 import React from "react";
 import api from "../../Api"
-import './NewCourse.css'
+import style from './NewCourse.module.css'
 
 import {MdUploadFile} from "react-icons/md"
 import InputWithIcon from "./InputWithIcon";
@@ -19,18 +19,18 @@ function NewCourse() {
     
     return (
         <>
-            <div className="new-course-wrapper">
-                <div className="img-upload-section">
-                    <div className="color-blend">
-                        <div className="upload-text">
+            <div className={style.new_course_wrapper}>
+                <div className={style.img_upload_section}>
+                    <div className={style.color_blend}>
+                        <div className={style.upload_text}>
                             <MdUploadFile htmlFor="add-img" style={uploadStyle}/>
                             <label htmlFor="add-img">Clique aqui</label>
                             <input type="file" id="add-img" />
                         </div>
                     </div>
                 </div>
-                <div className="course-infos">
-                    <div className="inputs-section">
+                <div className={style.course_infos}>
+                    <div className={style.inputs_section}>
                         <InputWithIcon
                         icon={<RiText style={titleIconStyle}/>} 
                         inputDivStyle={titleDivStyle}
@@ -41,7 +41,7 @@ function NewCourse() {
                         textAreaDivStyle={ descriptionDivStyle }
                         placeholder={ descriptionPlaceholderText }
                         />
-                        <div className="language-selection">
+                        <div className={style.language_selection}>
                             <span>Selecione as linguagens:</span>
                             <select name="" id="">
                                 <option value="1">JavaScript</option>
