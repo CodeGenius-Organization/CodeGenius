@@ -2,6 +2,7 @@
 
 .new_course_wrapper {
     display: flex;
+    align-self: center;
 
     width: 1445px;
     height: 490px;
@@ -93,6 +94,8 @@
     font-size: 24px;
     font-weight: normal;
     color: #FFF;
+
+    padding-left: 13px;
 }
 
 .inputs_section {

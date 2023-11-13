@@ -10,7 +10,7 @@ import {IoText} from 'react-icons/io5'
 
 
 function NewCourse() {
-    const uploadStyle = {color: "white", width: "60px", height: "60px"}
+    const uploadStyle = {color: "white", width: "100px", height: "100px"}
     const titleIconStyle = {color: "#FFF", height: "18px", width: "18px"}
     const titleDivStyle = {width: "595px", height: "56px"}
     const titlePlaceholderText = "Adicione o título"

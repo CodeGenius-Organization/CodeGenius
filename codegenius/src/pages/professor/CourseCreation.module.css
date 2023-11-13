@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+.container {
+    /* border: solid 2px red; */
+    
+    height: 1080px;
+    /* width: 1920px; */
+
+    display: flex;
+}
+
+.left_section {
+    width: 375px;
+    height: 100%;
+}
+
+.main_section {
+    display: flex;
+    flex-direction: column;
+    width: 1545px;
+    height: 100%;
+
+    background-color: #121526;
+}
+
+.breadcrumb {
+    /* border: solid 2px red; */
+    
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin: 56px 0 56px 50px;
+}
+
+.breadcrumb_element {
+    font-family: 'Raleway';
+    font-size: 20px;
+    font-weight: 400;
+    color: #FFF;
+}
+
+.now {
+    font-weight: bold;
+}
+
+.content {
+    /* border: solid 2px blueviolet; */
+
+    display: flex;
+    flex-direction: column;
+
+    padding-top: 155px;
+
+    height: 100%;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+
+    gap: 62px;
+
+    margin-top: 121px;
+}
+
+.cancelar {
+    border: none;
+    border-radius: 100px;
+
+    background-color: #7F56BC;
+    height: 47px;
+    width: 212px;
+    color: #FFF;
+
+    font-family: 'Titillium Web';
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.criar {
+    border: none;
+    border-radius: 100px;
+    
+    background-color: #4476E0;
+    height: 47px;
+    width: 256px;
+    color: #FFF;
+    
+    font-family: 'Titillium Web';
+    font-size: 24px;
+    font-weight: 600;
+}
