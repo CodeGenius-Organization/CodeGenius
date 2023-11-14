@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+.container {
+    display: flex;
+    
+    height: 1080px;
+}
+
+.left_section {
+    width: 375px;
+    height: 100%;
+}
+
+.main_section {
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    display: flex;
+    margin-left: 50px;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin: 56px 0 56px 50px;
+}
+
+.breadcrumb_element {
+    font-family: 'Raleway';
+    font-size: 20px;
+    font-weight: 400;
+    color: #FFF;
+}
+
+.now {
+    font-weight: bold;
+}
+
+.learn_section {
+    margin-left: 25px;
+    
+    display: flex;
+    flex-direction: column;
+
+    width: 902px;
+
+    gap: 32px;
+
+    overflow-y: auto;
+}
+
+.learn_section > span {
+    font-family: 'Raleway';
+    font-size: 32px;
+    font-weight: 600;
+    color: #FFF;
+}
+
+.learn_section > img {
+    width: 902px;
+}
+
+.lesson_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lesson_header > span {
+    font-family: 'Titillium Web';
+    font-size: 48px;
+    font-weight: 600;
+    color: #FFF;
+}
+
+.like_button {
+    border: solid 1px #FFF;
+    border-radius: 100px;
+
+    width: 109px;
+    height: 40px;
+    
+    display: flex;
+    align-items: center;
+    
+    color: #FFF;
+    gap: 8px;
+    padding: 0px 15px;
+}
+
+.like_button > span {
+    font-family: 'Raleway';
+    font-size: 16px;
+    font-weight: normal;
+    
+}
+
+.lesson_body {
+    font-family: 'Titillium Web';
+    font-size: 24px;
+    font-weight: normal;
+    color: #FFF;
+}
