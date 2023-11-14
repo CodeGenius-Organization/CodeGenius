@@ -227,6 +227,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    margin-bottom: 5px;
 }
 
 .line {
@@ -255,6 +256,10 @@
 .right-side .text{
     text-align: end;
     color: #FFF;
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .right-side .text h1{
