@@ -81,12 +81,12 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-image: url('../img/gato.png');
+    background-image: url('../../img/gato.png');
     border-radius: 0px 20px 20px 0px;
 }
 
 .teste{
-    background-image: url('../img/gato2.png');   
+    background-image: url('../../img/gato2.png');   
 }
 
 .linear-gradient{

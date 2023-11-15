@@ -1,7 +1,7 @@
 import React from "react";
 import api from "../../Api"
 import style from "./Profile.module.css"
-import pfp from "./imgs/imgtest.png"
+import pfp from "../../img/imgtest.png"
 import {MdFormatColorFill, MdOutlineGroupAdd} from "react-icons/md"
 import {BsCalendarCheck} from "react-icons/bs"
 import {LiaMedalSolid} from "react-icons/lia"

@@ -1,5 +1,5 @@
 import React from "react";
-import "../CardNossaEquipe/CardNossaEquipe.css";
+import "./CardNossaEquipe.css";
 
 function CardNossaEquipe(props) {
     

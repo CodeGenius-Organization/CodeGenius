@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import api from '../Api'
+import api from '../../Api'
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import './FormLogin.css'
+import '../form-login/FormLogin.css'
 
 function FormLogin({ toggleModal, changeForm }) {
 

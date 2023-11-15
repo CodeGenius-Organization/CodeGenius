@@ -1,26 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import NavBar from '../components/NavBar';
-import ModaltoForm from '../components/ModalToForm';
-import './Home.css';
-import CardNossaEquipe from '../components/CardNossaEquipe/CardNossaEquipe';
+import NavBar from '../../components/nav-institutional/NavBar';
+import ModaltoForm from '../../components/modal-to-form/ModalToForm';
+import '../institutional/Institutional.css';
+import CardNossaEquipe from '../../components/card-our-team/CardNossaEquipe';
 
 // imagem
-import home_img from '../img/Computer1.png';
-import mission from '../img/Icon_Mission_white.svg';
-import mission_colorful from '../img/Icon_Mission_hover.svg';
-import vision from '../img/Icon_Vision_white.svg';
-import values from '../img/Icon_Values_white.svg';
-import codegenius_img from '../img/Computer 2.svg';
-import codegenius_logo from '../img/codegenius.svg';
-import kaue from '../img/kaue.png';
-import lucas from '../img/lucas.png';
-import mariana from '../img/mariana.png';
-import paula from '../img/paula.png';
-import thiago from '../img/thiago.png';
-import victor from '../img/victor.png';
-import face from '../img/face.svg';
-import insta from '../img/insta.svg';
-import whats from '../img/whats.svg';
+import home_img from '../../img/Computer1.png';
+import mission from '../../img/Icon_Mission_white.svg';
+import vision from '../../img/Icon_Vision_white.svg';
+import values from '../../img/Icon_Values_white.svg';
+import codegenius_img from '../../img/Computer 2.svg';
+import codegenius_logo from '../../img/codegenius.svg';
+import kaue from '../../img/kaue.png';
+import lucas from '../../img/lucas.png';
+import mariana from '../../img/mariana.png';
+import paula from '../../img/paula.png';
+import thiago from '../../img/thiago.png';
+import victor from '../../img/victor.png';
+import face from '../../img/face.svg';
+import insta from '../../img/insta.svg';
+import whats from '../../img/whats.svg';
 
 function Home() {
     const [modalVisible, setModalVisible] = useState(false);

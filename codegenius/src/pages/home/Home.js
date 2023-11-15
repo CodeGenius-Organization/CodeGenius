@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./LogOut.css";
+import "../home/Home.css";
 import {FiLogOut} from 'react-icons/fi'
 import { toast } from "react-toastify";
 
