@@ -1,15 +1,15 @@
 import React from "react";
 import api from "../../Api";
-import './Module.css'
+import style from './Module.module.css'
 import Lesson from "./Lesson";
 
 function Module({ module }) {
     const { moduleName, lessons, moduleOrder } = module;
     
     return (
-        <div className="module">
+        <div className={style.module}>
             <span>{moduleName}</span>
-            <div className="lessons">
+            <div className={style.lessons}>
                 {lessons.map((lesson) => (
                     <Lesson 
                     lesson={lesson}

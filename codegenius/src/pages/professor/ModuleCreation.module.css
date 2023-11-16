@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+*::-webkit-scrollbar {
+    width: 10px;
+    /* width of the entire scrollbar */
+}
+
+*::-webkit-scrollbar-track {
+    background: #121526;
+    /* color of the tracking area */
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgba(127, 86, 188, 1);
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb /  / creates padding around scroll thumb */
+}
+
+.content {
+    /* border: solid 2px red; */
+
+    /* height: 100%; */
+
+    display: flex;
+    justify-content: space-between;
+}
+
+/* LEFT SIDE */
+.module_section {
+    /* border: solid 2px purple; */
+
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+
+    width: 590px;
+    /* height: 338px; */
+
+    margin-left: 105px;
+}
+
+.course_select_section {
+    display: flex;
+    gap: 50px;
+
+    align-items: center;
+    /* width: 421px; */
+}
+
+.course_select_section>span {
+    font-family: 'Titillium Web';
+    font-size: 24px;
+    font-weight: normal;
+    color: #FFF;
+}
+
+.course_select_section>select {
+    font-family: 'Titillium Web';
+    font-size: 24px;
+    font-weight: normal;
+
+    padding-left: 17px;
+    width: 323px;
+    height: 57px;
+
+    background: transparent;
+    color: #FFF;
+}
+
+.module_list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 29px;
+
+    max-height: 367px;
+
+    overflow-y: auto;
+}
+
+.item {
+    flex-shrink: 0;
+
+    border: solid 1px #FFF;
+    border-radius: 10px;
+
+    height: 103px;
+
+    color: #FFF;
+    font-family: 'Titillium Web';
+    font-size: 24px;
+    font-weight: 600;
+
+    text-align: center;
+    padding-top: 33px;
+}
+
+.btn {
+    background-color: #7F56BC;
+
+    height: 103px;
+
+    border: none;
+    border-radius: 100px;
+
+    text-align: center;
+
+    color: #FFF;
+    font-family: 'Titillium Web';
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* END LEFT SIDE */
+
+/* RIGHT SIDE */
+.edit_section {
+    /* border: solid 2px chocolate; */
+    display: flex;
+    flex-direction: column;
+
+    width: 568px;
+
+    margin-right: 122px;
+}
+
+.input_section {
+    display: flex;
+    flex-direction: column;
+    /* gap: 24px; */
+}
+
+.buttons_section {
+    margin-top: 78px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* END RIGHT SIDE */
+
+.finish_buttons {
+    /* border: solid 2px beige; */
+
+    margin-top: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 62px;
+}
+
+.finish_btn {
+    background-color: #4476E0;
+
+    border: none;
+    border-radius: 100px;
+
+    width: 209px;
+    height: 47px;
+
+    color: #FFF;
+    font-family: 'Titillium Web';
+    font-size: 24px;
+    font-weight: 600;
+}

@@ -1,0 +1,25 @@
+:root {
+    --cyan: #5CE1E6;
+    --blue: #38B6FF;
+    --pink: #D88B92;
+    --off-white: #F2F2F2;
+    --pure-black: #000000;
+    --pure-black-transparent: #000000b2;
+    --dark-color: #333333;
+    --btn-green: #27AE60;
+    --font-defaut: 'Roboto Mono', monospace;
+    --font-dark-color: #383838;
+    --purple: #5662B7;
+    --light-color: #f2f2f2;
+    --light-color-2: #8f8f8f;
+  }
+
+*{
+    color: #181D31;
+  }
+
+  .container{
+    height: 100px;
+    width: 100px;
+    border: 1px solid red;
+  }

@@ -1,18 +1,18 @@
 import React from "react";
-import './Stat.css'
+import style from './Stat.module.css'
 
 function Stat({ icon, number, text }) {
     return (
         <>
-            <div className="stats-wrapper">
-                <div className="icon-wrapper">
+            <div className={style.stats_wrapper}>
+                <div className={style.icon_wrapper}>
                     {icon}
                 </div>
-                <div className="stats-info">
-                    <span className="stats-number">
+                <div className={style.stats_info}>
+                    <span className={style.stats_number}>
                         {number}
                     </span>
-                    <span className="stats-text">
+                    <span className={style.stats_text}>
                         {text}
                     </span>
                 </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import {MdDone} from "react-icons/md";
 import api from "../../Api";
-import './Lesson.css'
+import style from './Lesson.module.css'
 
 function Lesson({ lesson, moduleOrder }) {
     const { lessonOrder, contentDescription } = lesson;
@@ -12,17 +12,17 @@ function Lesson({ lesson, moduleOrder }) {
     
     return (
         <>
-            <div className="lesson-card">
-                <div className="lesson-order">
+            <div className={style.lesson_card}>
+                <div className={style.lesson_order}>
                     <span>{moduleOrder} - {lessonOrder}</span>
                 </div>
-                <div className="lesson-details">
-                    <div className="details-header">
-                        <span className="lesson-title">Parte 1</span> 
+                <div className={style.lesson_details}>
+                    <div className={style.details_header}>
+                        <span className={style.lesson_title}>Parte 1</span> 
                         <MdDone style={doneStyle}/>
                     </div>
-                    <div className="details-body">
-                        <span className="content">
+                    <div className={style.details_body}>
+                        <span className={style.content}>
                             {contentDescription}
                         </span>
                     </div>

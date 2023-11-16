@@ -29,7 +29,7 @@ function FormLogin({ toggleModal, changeForm }) {
           email: username,
           password: password,
         },
-        {
+        { 
           headers: {
             "Content-Type": "application/json",
           },

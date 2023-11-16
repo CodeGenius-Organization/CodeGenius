@@ -4,7 +4,7 @@
     background-color: #121526;
 } */
 
-.lesson-card {
+.lesson_card {
     /* border: solid 2px red; */
     
     height: 135px;
@@ -15,7 +15,7 @@
     gap: 16px;
 }
 
-.lesson-order {
+.lesson_order {
     /* border: solid 2px red; */
     border-radius: 100%;
     width: 133px;
@@ -32,7 +32,7 @@
     justify-content: center;
 }
 
-.lesson-order span {
+.lesson_order span {
     color: white;
     font-family: 'Titillium Web';
     font-size: 32px;
@@ -40,18 +40,18 @@
     background-color: inherit;
 }
 
-.lesson-details {
+.lesson_details {
     /* border: solid 2px red; */
     display: flex;
     flex-direction: column;
 }
 
-.details-header {
+.details_header {
     display: flex;
     gap: 16px;
 }
 
-.details-header span {
+.details_header span {
     font-family: 'Titillium Web';
     font-size: 24px;
     font-weight: 600;
@@ -59,7 +59,7 @@
 }
 
 
-.details-body > .content {
+.details_body > .content {
     /* border: solid 2px red; */
 
     width: 100%;

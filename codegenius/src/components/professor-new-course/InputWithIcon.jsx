@@ -1,14 +1,14 @@
 import React from "react";
-import './InputWithIcon.css'
+import style from './InputWithIcon.module.css'
 
 function InputWithIcon({ icon, inputDivStyle, placeholder }) {
     return (
         <>
-            <div className="div-input-icon" style={inputDivStyle}>
-                <div className="icon">
+            <div className={style.div_input_icon} style={inputDivStyle}>
+                <div className={style.icon}>
                     {icon}
                 </div>
-                <div className="input" style={inputDivStyle}>
+                <div className={style.input} style={inputDivStyle}>
                     <input type="text" placeholder={placeholder}/>
                 </div>
             </div>
