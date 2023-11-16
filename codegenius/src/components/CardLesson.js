@@ -1,11 +1,11 @@
 import React from 'react'
 import style from './CardLesson.module.css';
 import {useState} from 'react'
-import img from '../../img/Mask group.svg';
-import img2 from '../../img/Frame 70.svg';
-import img3 from '../../img/Ellipse 49.svg';
-import img4 from '../../img/favorite.svg';
-import img5 from '../../img/favorite (1).svg';
+import img from '../img/Mask group.svg';
+import img2 from '../img/Frame 70.svg';
+import img3 from '../img/Ellipse 49.svg';
+import img4 from '../img/favorite.svg';
+import img5 from '../img/favorite (1).svg';
 
 function CardLesson() {
 

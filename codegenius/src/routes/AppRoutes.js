@@ -1,17 +1,17 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from '../pages/home/Home'
-import Institucional from '../pages/institutional/Institutional'
+import Home from '../pages/Home'
+import LogOut from '../pages/LogOut'
 import Profile from '../components/student-profile/Profile'
-import CardLesson from '../components/card-lesson/CardLesson'
-import FormContact from '../components/form-contact/FormContact'
+import CardLesson from '../components/CardLesson'
+import FormContact from '../components/FormContact'
 
 function AppRoutes() {
     return (
         <BrowserRouter>
             <Routes>
-            <Route path='/' element={<Institucional/>}/>
-            <Route path='/logout' element={<Home/>}/>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/logout' element={<LogOut/>}/>
             <Route path='/profile' element={<Profile/>}/>
             <Route path='/cardlesson' element={<CardLesson/>}/>
             <Route path='/formcontact' element={<FormContact/>}/>

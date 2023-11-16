@@ -2,7 +2,7 @@ import React from "react";
 import ccStyle from './CourseCreation.module.css'
 import mcStyle from './ModuleCreation.module.css'
 
-import TextAreaWithIcon from "../../components/teacher-new-course/TextAreaWithIcon";
+import TextAreaWithIcon from "../../components/professor-new-course/TextAreaWithIcon";
 
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import { AiOutlineUnorderedList } from 'react-icons/ai'

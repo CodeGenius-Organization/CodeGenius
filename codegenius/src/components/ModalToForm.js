@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import '../modal-to-form/ModalToForm.css'
-import codegenius from "../../img/codegenius.png";
-import FormLogin from "../form-login/FormLogin";
+import './ModalToForm.css'
+import codegenius from "../img/codegenius.png";
+import FormLogin from "./FormLogin";
 import { AiOutlineClose } from "react-icons/ai";
-import FormRegister from "../form-register/FormRegister";
+import FormRegister from "./FormRegister";
 
 
 function LoginModal({ toggleModal, visible }) {
