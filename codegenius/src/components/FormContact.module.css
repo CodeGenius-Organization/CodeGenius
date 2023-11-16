@@ -96,7 +96,7 @@
   /* border: 1px solid red; */
 }
 
-textarea{
+.inputs > textarea{
   height: 289px;
   width: 648px;
   margin-top: 10px;
@@ -243,7 +243,7 @@ textarea{
   /* border: 1px solid red; */
 }
 
-button {
+.enderecoDeEmail > button {
   font-size: 20px;
   background: linear-gradient(to bottom, #4476E0 0%,#4476E0 100%);
   color: white;
@@ -258,30 +258,30 @@ button {
   margin-top: 48px;
 }
 
-button:hover {
+.enderecoDeEmail > button:hover {
   transform: translateY(-3px);
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
 }
 
-button:active {
+.enderecoDeEmail > button:active {
   transform: scale(0.95);
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-button span {
+.enderecoDeEmail > button span {
   display: block;
   margin-left: 0.4em;
   transition: all 0.3s;
 }
 
-button svg {
+.enderecoDeEmail > button svg {
   width: 20px;
   height: 20px;
   fill: white;
   transition: all 0.3s;
 }
 
-button .svg_wrapper {
+.enderecoDeEmail > button .svg_wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -293,10 +293,10 @@ button .svg_wrapper {
   transition: all 0.3s;
 }
 
-button:hover .svg_wrapper {
+.enderecoDeEmail > button:hover .svg_wrapper {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-button:hover svg {
+.enderecoDeEmail > button:hover svg {
   transform: rotate(45deg);
 }

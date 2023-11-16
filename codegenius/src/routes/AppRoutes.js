@@ -5,6 +5,7 @@ import LogOut from '../pages/LogOut'
 import Profile from '../components/student-profile/Profile'
 import CardLesson from '../components/CardLesson'
 import FormContact from '../components/FormContact'
+import Course from '../pages/student/Course'
 
 function AppRoutes() {
     return (
@@ -15,6 +16,7 @@ function AppRoutes() {
             <Route path='/profile' element={<Profile/>}/>
             <Route path='/cardlesson' element={<CardLesson/>}/>
             <Route path='/formcontact' element={<FormContact/>}/>
+            <Route path='/course' element={<Course/>}/>
             </Routes>
         </BrowserRouter>
     )

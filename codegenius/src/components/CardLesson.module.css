@@ -48,7 +48,7 @@
   border-radius: 10px 10px 0px 0px;
 }
 
-span{
+.info_card > span{
   font-weight: bold;
   margin-right: 5px;
 }
