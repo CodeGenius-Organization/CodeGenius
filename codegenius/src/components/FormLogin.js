@@ -24,7 +24,7 @@ function FormLogin({ toggleModal, changeForm }) {
     }
 
     api.post(
-        "user/login",
+        "/user/login",
         {
           email: username,
           password: password,
