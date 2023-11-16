@@ -19,8 +19,12 @@
 }
 
 .content {
+    /* border: solid 2px red; */
+    
     display: flex;
     margin-left: 50px;
+
+    gap: 57px;
 }
 
 .breadcrumb {
@@ -43,68 +47,3 @@
     font-weight: bold;
 }
 
-.learn_section {
-    margin-left: 25px;
-    
-    display: flex;
-    flex-direction: column;
-
-    width: 902px;
-
-    gap: 32px;
-
-    overflow-y: auto;
-}
-
-.learn_section > span {
-    font-family: 'Raleway';
-    font-size: 32px;
-    font-weight: 600;
-    color: #FFF;
-}
-
-.learn_section > img {
-    width: 902px;
-}
-
-.lesson_header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.lesson_header > span {
-    font-family: 'Titillium Web';
-    font-size: 48px;
-    font-weight: 600;
-    color: #FFF;
-}
-
-.like_button {
-    border: solid 1px #FFF;
-    border-radius: 100px;
-
-    width: 109px;
-    height: 40px;
-    
-    display: flex;
-    align-items: center;
-    
-    color: #FFF;
-    gap: 8px;
-    padding: 0px 15px;
-}
-
-.like_button > span {
-    font-family: 'Raleway';
-    font-size: 16px;
-    font-weight: normal;
-    
-}
-
-.lesson_body {
-    font-family: 'Titillium Web';
-    font-size: 24px;
-    font-weight: normal;
-    color: #FFF;
-}
