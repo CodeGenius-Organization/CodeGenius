@@ -10,6 +10,7 @@
     opacity: 0;
     background-color: #121526b6;
     transition: 0.5s ease;
+    z-index: 2;
 }
 
 .off{
