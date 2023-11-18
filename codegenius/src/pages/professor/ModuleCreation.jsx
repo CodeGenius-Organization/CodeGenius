@@ -14,10 +14,10 @@ function ModuleCreation() {
 
     return (
         <>
-            <div className={ccStyle.container}>
+            {/* <div className={ccStyle.container}>
                 <div className={ccStyle.left_section}>
 
-                </div>
+                </div> */}
                 <div className={ccStyle.main_section}>
                     <div className={ccStyle.breadcrumb}>
                         <span className={ccStyle.breadcrumb_element}>
@@ -81,7 +81,7 @@ function ModuleCreation() {
                         <button className={mcStyle.finish_btn}>Próximo</button>
                     </div>
                 </div>
-            </div>
+            {/* </div> */}
         </>
     )
 }

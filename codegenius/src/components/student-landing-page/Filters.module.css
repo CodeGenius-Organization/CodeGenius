@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+.container {
+    /* border: solid 1px red; */
+
+    background-color: #121526;
+    
+    display: flex;
+    justify-content: space-between;
+
+    max-width: 1445px;
+    max-height: 45px;
+}
+
+.search_section {
+    display: flex;
+    gap: 8px;
+}
+
+.input_icon {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    
+    display: flex;
+    align-items: center;
+    background-color: #FFF;
+}
+
+.input_icon > .icon {
+    padding: 12px 0px 12px 20px;
+}
+
+.input_icon > input {
+    font-family: 'Titillium Web';
+    font-size: 16px;
+    font-weight: normal;
+    color: #000;
+    
+    border: none;
+    text-align: start;
+    
+    padding-left: 10px;
+    
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    
+    width: 293px;
+    height: 100%;
+}
+
+.input_icon > input:focus {
+    outline: none;
+}
+
+.search_section > button {
+    width: 87px;
+    
+    border: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    
+    background-color: #4476E0;
+    
+    font-family: 'Titillium Web';
+    font-size: 16px;
+    color: #FFF;
+    
+    text-align: center;
+}
+
+.search_section > select {
+    background-color: #FFF;
+    
+    width: 141px;
+    
+    border-radius: 15px;
+    
+    padding-left: 20px;
+    
+    font-family: 'Titillium Web';
+    font-size: 16px;
+    color: #000;
+}
+
+.search_section > select:focus {
+    outline: none;
+}
+
+.filter_section {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+}
+
+.filter_section > span {
+    font-family: 'Titillium Web';
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.filter_section > select {
+    background-color: transparent;
+    
+    border: none;
+
+    font-family: 'Titillium Web';
+    font-size: 16px;
+    color: #FFF;
+}

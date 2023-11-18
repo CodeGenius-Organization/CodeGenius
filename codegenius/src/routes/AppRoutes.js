@@ -5,8 +5,9 @@ import Institutional from '../pages/institutional/Institutional'
 import Profile from '../components/student-profile/Profile'
 import CardLesson from '../components/CardLesson'
 import FormContact from '../components/FormContact'
-import Course from '../pages/student/Course'
-import TopBar from '../pages/student/TopBar'
+import Course from '../pages/student/course/Course'
+import Filters from '../components/student-landing-page/Filters'
+import LandingPage from '../pages/student/landing-page/LandingPage'
 
 function AppRoutes() {
     return (
@@ -17,6 +18,7 @@ function AppRoutes() {
             <Route path='/profile' element={<Profile/>}/>
             <Route path='/cardlesson' element={<CardLesson/>}/>
             <Route path='/formcontact' element={<FormContact/>}/>
+            <Route path='/lp' element={<LandingPage/>}/>
             <Route path='/course' element={<Course/>}/>
             </Routes>
         </BrowserRouter>

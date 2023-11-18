@@ -7,8 +7,10 @@ import img3 from '../img/Ellipse 49.svg';
 import img4 from '../img/favorite.svg';
 import img5 from '../img/favorite (1).svg';
 
-function CardLesson() {
+import { FaCircle } from "react-icons/fa6";
 
+function CardLesson() {
+    const circleStyle = {width: "5px", height: "5px"}
 
     const [showElement, setShowElement] = useState(false)
     const showOrHide = () => setShowElement(true)
@@ -17,25 +19,32 @@ function CardLesson() {
         <>
             <div class ={style.card}>
                 <div class ={style.img}>
-                    <img src = {img} alt='image'/>
-
-                    <div class = {style.fav}>
+                    {/* <img src = {img} alt='image'/> */}
+                    {/* <div class = {style.fav}>
                         <img id= {style.img3} src={img3}/>
+                    </div> */}
+                    <div className={style.fav}>
+                        <img id={style.img4} src={img4}  onClick={showOrHide}/>
+                        {showElement ? <img id={style.img5} src={img5} onClick={showOrHide} /> : true }
                     </div>
-                    <img id= {style.img4} src={img4}  onClick={showOrHide}/>
-                    {showElement ? <img id={style.img5} src={img5} onClick={showOrHide} /> : true }
                 </div>   
 
                 <div class={style.container}>
                     <div class={style.card_lesson}>
                         <div class={style.info_card}>
-                            <p class={style.card_title}><span>Lógica de Programação</span></p>
-                            <p>JAVA ° HTML ° CSS</p>
-                            <p><span>Feito por:</span>Helen Pêra</p>
-                            <p>Em andamento</p>
+                            <span class={style.card_title}>Lógica de Programação</span>
+                            <div className={style.languages}>
+                                <span>JavaScript</span>
+                                <FaCircle style={ circleStyle }/>
+                                <span>HTML</span>
+                                <FaCircle style={ circleStyle }/>
+                                <span>CSS</span>
+                            </div>
+                            <span>Feito por: Helen Pêra</span>
+                            <span>Em andamento</span>
                             <div class={style.rate}>
                                 <img src={img2}></img>
-                                <p>4.0 (1987)</p>
+                                <span>4.0 (1987)</span>
                             </div>
 
                         </div>

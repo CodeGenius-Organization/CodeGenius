@@ -10,10 +10,10 @@ function CourseCreation() {
     
     return (
         <>
-            <div className={style.container}>
+            {/* <div className={style.container}>
                 <div className={style.left_section}>
 
-                </div>
+                </div> */}
                 <div className={style.main_section}>
                     <div className={style.breadcrumb}>
                         <span className={style.breadcrumb_element}>
@@ -32,7 +32,7 @@ function CourseCreation() {
                         </div>
                     </div>
                 </div>
-            </div>
+            {/* </div> */}
         </>
     )
 }

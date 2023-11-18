@@ -15,7 +15,10 @@ import {
 } from "react-icons/md";
 import codegenius from "../../img/codegenius.svg";
 
-
+import Course from "../student/course/Course";
+import CourseCreation from "../professor/CourseCreation";
+import ModuleCreation from "../professor/ModuleCreation"
+import LandingPage from "../student/landing-page/LandingPage";
 
 
 function LogOut() {
@@ -104,7 +107,9 @@ function LogOut() {
 
 
         <div className="logout-container">
-          <h2>Bem vindo ao CodeGenius</h2>
+            {/* <Course /> */}
+            <LandingPage />
+          {/* <h2>Bem vindo ao CodeGenius</h2> */}
         </div>
       </div>
     </>

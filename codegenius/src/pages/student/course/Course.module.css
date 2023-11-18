@@ -22,7 +22,7 @@
     /* border: solid 2px red; */
     
     display: flex;
-    margin-left: 50px;
+    /* margin-left: 50px; */
 
     gap: 40px;
 }
@@ -33,7 +33,7 @@
 
     gap: 8px;
 
-    margin: 56px 0 56px 50px;
+    margin: 0px 0 56px 0px;
 }
 
 .breadcrumb_element {

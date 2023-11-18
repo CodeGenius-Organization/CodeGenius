@@ -2,9 +2,9 @@ import React from "react";
 import CourseContent from "./CourseContent";
 
 import style from "./Course.module.css"
-import img from "../../img/video.png"
+import img from "../../../img/video.png"
 
-import ModuleList from "../../components/student-module-lesson/ModuleList"
+import ModuleList from "../../../components/student-module-lesson/ModuleList"
 
 import { MdKeyboardArrowRight } from 'react-icons/md'
 
@@ -15,10 +15,10 @@ function Course() {
 
     return (
         <>
-            <div className={style.container}>
+            {/* <div className={style.container}>
                 <div className={style.left_section}>
 
-                </div>
+                </div> */}
                 <div className={style.main_section}>
                     {/* TODO: componentizar o breadcrumb */}
                     <div className={style.breadcrumb}>
@@ -39,7 +39,7 @@ function Course() {
                         />
                     </div>
                 </div>
-            </div>
+            {/* </div> */}
         </>
     )
 }
