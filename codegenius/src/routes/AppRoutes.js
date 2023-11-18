@@ -6,6 +6,7 @@ import Profile from '../components/student-profile/Profile'
 import CardLesson from '../components/CardLesson'
 import FormContact from '../components/FormContact'
 import Course from '../pages/student/Course'
+import TopBar from '../pages/student/TopBar'
 
 function AppRoutes() {
     return (

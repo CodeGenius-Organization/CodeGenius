@@ -1,6 +1,8 @@
 import React from "react";
 import style from "./CourseContent.module.css"
     
+import TopBar from "./TopBar";
+
 import { CiHeart } from "react-icons/ci";
 
 function CourseContent({ media, lessonTitle, lessonContent }) {
@@ -9,6 +11,7 @@ function CourseContent({ media, lessonTitle, lessonContent }) {
     return (
         <>
             <div className={style.learn_section}>
+                <TopBar />
                 <span>O que aprenderá:</span>
                 <img src={media} alt="" />
                 <div className={style.lesson_content}>

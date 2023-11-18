@@ -2,7 +2,7 @@ import React from "react";
 import CourseContent from "./CourseContent";
 
 import style from "./Course.module.css"
-import img from "./imgs/img.png"
+import img from "../../img/video.png"
 
 import ModuleList from "../../components/student-module-lesson/ModuleList"
 
@@ -23,7 +23,7 @@ function Course() {
                     {/* TODO: componentizar o breadcrumb */}
                     <div className={style.breadcrumb}>
                         <span className={style.breadcrumb_element}>
-                            Criar/Editar cursos
+                            Cursos
                         </span>
                         <MdKeyboardArrowRight style={arrowStyle} />
                         <span className={`${style.breadcrumb_element} ${style.now}`}>
