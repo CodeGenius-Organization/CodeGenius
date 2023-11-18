@@ -15,5 +15,12 @@
     display: flex;
     flex-wrap: wrap;
 
+    max-height: inherit;
+    overflow-y: auto;
+    
     gap: 40px 28px;
+}
+
+.course_list::-webkit-scrollbar {
+    display: none;
 }

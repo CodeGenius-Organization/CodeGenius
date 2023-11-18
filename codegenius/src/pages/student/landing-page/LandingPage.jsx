@@ -20,6 +20,19 @@ function LandingPage() {
                     <CardLesson />
                     <CardLesson />
                     <CardLesson />
+                    <CardLesson />
+                    <CardLesson />
+                    <CardLesson />
+                    <CardLesson />
+                    <CardLesson />
+                    <CardLesson />
+                    <CardLesson />
+                    <CardLesson />
+                    <CardLesson />
+                    <CardLesson />
+                    <CardLesson />
+                    <CardLesson />
+                    <CardLesson />
                 </div>
             </div>
         </>
