@@ -23,6 +23,10 @@ public class ModuleLessonModel {
     @Column(name = "module_lesson_id", length = 16, columnDefinition = "uuid")
     private UUID id;
 
+    @Column(name = "lesson_title", nullable = false)
+    @NotNull
+    private String lessonTitle;
+
     @Column(name = "lesson_order", nullable = false)
     @NotNull
     private Integer lessonOrder;

@@ -73,13 +73,15 @@ public class ModuleLessonService {
     public List<ModuleLessonUpdateDTO> updateModuleLessons(List<ModuleLessonUpdateDTO> moduleLessonList) {
         if (!moduleLessonList.isEmpty()) {
             for (ModuleLessonUpdateDTO lesson : moduleLessonList) {
-                if (lesson.getContentDescription() == null || lesson.getContentDescription() == "") {
+                if (lesson.getContentDescription() == null || lesson.getContentDescription().equals("")) {
                     throw new GlobalExceptionHandler.BadRequestException("The content description must not be null or blank.");
                 }
+                if (lesson.getLessonTitle() == null || lesson.getLessonTitle().equals("")) {
+                    throw new GlobalExceptionHandler.BadRequestException("The lesson title must not be null or blank.");
+                }
 
-                moduleLessonRepository.update(lesson.getId(), lesson.getLessonOrder(), lesson.getContentDescription());
+                moduleLessonRepository.update(lesson.getId(), lesson.getLessonOrder(), lesson.getContentDescription(), lesson.getLessonTitle());
             }
-
             return moduleLessonList;
         }
 

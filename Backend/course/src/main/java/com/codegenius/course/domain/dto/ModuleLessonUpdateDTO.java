@@ -9,12 +9,15 @@ public class ModuleLessonUpdateDTO {
     @NotNull
     private UUID id;
     @NotNull
+    private String lessonTitle;
+    @NotNull
     private Integer lessonOrder;
     @NotBlank
     private String contentDescription;
 
-    public ModuleLessonUpdateDTO(UUID id, Integer lessonOrder, String contentDescription) {
+    public ModuleLessonUpdateDTO(UUID id, String lessonTitle, Integer lessonOrder, String contentDescription) {
         this.id = id;
+        this.lessonTitle = lessonTitle;
         this.lessonOrder = lessonOrder;
         this.contentDescription = contentDescription;
     }
@@ -29,5 +32,9 @@ public class ModuleLessonUpdateDTO {
 
     public String getContentDescription() {
         return contentDescription;
+    }
+
+    public String getLessonTitle() {
+        return lessonTitle;
     }
 }

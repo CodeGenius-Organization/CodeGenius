@@ -20,8 +20,8 @@ public interface ModuleLessonRepository extends JpaRepository<ModuleLessonModel,
     @Modifying
     @Transactional
     @Query("""
-            UPDATE ModuleLessonModel ml SET ml.lessonOrder = ?2, ml.contentDescription = ?3
+            UPDATE ModuleLessonModel ml SET ml.lessonOrder = ?2, ml.contentDescription = ?3, ml.lessonTitle = ?4
             WHERE ml.id = ?1
             """)
-    void update(UUID lessonId, Integer lessonOrder, String contentDescription);
+    void update(UUID lessonId, Integer lessonOrder, String contentDescription, String lessonTitle);
 }
