@@ -107,8 +107,8 @@ function LogOut() {
 
 
         <div className="logout-container">
-            {/* <Course /> */}
-            <LandingPage />
+            <Course />
+            {/* <LandingPage /> */}
           {/* <h2>Bem vindo ao CodeGenius</h2> */}
         </div>
       </div>

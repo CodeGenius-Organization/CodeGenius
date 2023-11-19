@@ -11,7 +11,6 @@ function CourseContent({ media, lessonTitle, lessonContent }) {
     return (
         <>
             <div className={style.learn_section}>
-                <TopBar />
                 <span>O que aprenderá:</span>
                 <img src={media} alt="" />
                 <div className={style.lesson_content}>
