@@ -39,4 +39,7 @@ public class ModuleLessonModel {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_module_fk")
     private CourseModuleModel module;
+
+    @OneToOne(mappedBy = "moduleLesson")
+    private LessonContentModel lessonContent;
 }

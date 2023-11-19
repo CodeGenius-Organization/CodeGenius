@@ -9,8 +9,10 @@ import com.codegenius.course.infra.exception.GlobalExceptionHandler;
 import com.codegenius.course.utils.ListaObj;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,10 @@ public class ModuleLessonService {
 
     @Autowired
     private CourseModuleRepository courseModuleRepository;
+
+    public ModuleLessonModel getModuleLessonById(UUID moduleLessonId) {
+        return moduleLessonRepository.findById(moduleLessonId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Lição do módulo não encontrada."));
+    }
 
     public ModuleLessonModel createModuleLesson(UUID moduleId, ModuleLessonModel moduleLesson) {
         Optional<CourseModuleModel> courseModule = courseModuleRepository.findById(moduleId);
