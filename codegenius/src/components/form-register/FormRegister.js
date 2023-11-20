@@ -24,9 +24,6 @@ function FormRegister({ toggleModal, changeForm }) {
     const passwordElement = document.querySelector("#inpPassword")
     const confirmPassElement = document.querySelector("#inpConfirmPass")
 
-    console.log(firstNameElement.value)
-    console.log(surnameElement.value)
-
     if (firstName.trim() === "" || surname.trim() === "" || email.trim() === "" || password.trim() === "" || confirmPass.trim() === "") {
       if (firstName.trim() === "") firstNameElement.classList.add("error")
       if (surname.trim() === "") surnameElement.classList.add("error")
@@ -38,10 +35,12 @@ function FormRegister({ toggleModal, changeForm }) {
     }
 
     const fullName = `${firstNameElement.value} ${surnameElement.value}`
-    console.log(fullName)
+
     if (password !== confirmPass) {
       confirmPassElement.classList.add("error")
       passwordElement.classList.add("error")
+      confirmPassElement.value = ""
+      passwordElement.value = ""
       toast.error('Senhas não coincidem!')
       return
     }
@@ -61,7 +60,6 @@ function FormRegister({ toggleModal, changeForm }) {
     )
       .then((response) => {
         if (response.status === 201) {
-          alert("Deu certo")
           toast.success("Cadastro realizado com sucesso!")
           firstNameElement.value = "";
           surnameElement.value = "";
@@ -82,8 +80,17 @@ function FormRegister({ toggleModal, changeForm }) {
             toast.error("Esse e-mail já está sendo usado!")
             break;
           case 400:
+            console.log(error)
+            if (error.response.data === "User with this email already exists.") {
+              emailElement.classList.add("error")
+              passwordElement.value = "";
+              confirmPassElement.value = "";
+              toast.error("Esse e-mail já está sendo usado!")
+              return
+            }
 
-            const erro = error.response.errors
+            const erro = error.response.data.errors
+            console.log(erro)
 
             for (let i = 0; i < erro.length; i++) {
               if (erro[i].field === "password") {
@@ -98,7 +105,8 @@ function FormRegister({ toggleModal, changeForm }) {
                 emailElement.classList.add("error")
                 passwordElement.value = "";
                 confirmPassElement.value = "";
-                toast.error("Esse e-mail já está sendo usado!")
+                toast.error("Precisa ser um e-mail bem formatado!")
+                return
               }
 
               if (erro[i].field === "name") {
