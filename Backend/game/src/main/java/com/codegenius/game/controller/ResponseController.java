@@ -72,7 +72,7 @@ public class ResponseController {
     }
 
     @DeleteMapping("/question/{fkQuestion}")
-    @Operation(summary = "Delete all respoonse by question id", description = "Endpoint to delete details of all response by specific question id.")
+    @Operation(summary = "Delete all response by question id", description = "Endpoint to delete details of all response by specific question id.")
     @ApiResponse(responseCode = "204", description = "Response deleted")
     public ResponseEntity deleteAllResponse (
             @RequestParam UUID id

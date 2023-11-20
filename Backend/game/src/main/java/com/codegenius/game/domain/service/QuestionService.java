@@ -9,7 +9,6 @@ import com.codegenius.game.infra.exception.GlobalExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -24,9 +23,12 @@ import java.util.UUID;
 public class QuestionService {
     private final QuestionRepository questionRepository;
 
+    private final ResponseService responseService;
+
     @Autowired
-    public QuestionService(QuestionRepository questionRepository) {
+    public QuestionService(QuestionRepository questionRepository, ResponseService responseService) {
         this.questionRepository = questionRepository;
+        this.responseService = responseService;
     }
 
     public DadosQuestoesCompleto createQuestion(DadosQuestoes questionDTO) {
@@ -72,6 +74,7 @@ public class QuestionService {
     public void delete(UUID id) {
         QuestionModel questao = questionRepository.findById(id).orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("Question not found with id: " + id));
 
+        responseService.deleteAll(questao.getId());
         questionRepository.deleteById(questao.getId());
     }
 
