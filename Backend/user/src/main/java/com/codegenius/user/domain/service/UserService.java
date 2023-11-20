@@ -61,4 +61,6 @@ public interface UserService {
      * @since 2023-08-15
      */
     void markUserAsInactive(UUID id);
+
+    DadosCadastroCompleto findByEmail(String email);
 }

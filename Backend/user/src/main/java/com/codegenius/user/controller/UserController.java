@@ -113,4 +113,14 @@
             return ResponseEntity.status(204).build();
         }
 
+        @GetMapping("/info/{email}")
+        @SecurityRequirement(name = "Bearer Authentication")
+        @Operation(summary = "Retrieve user details by email", description = "Endpoint to retrieve user details based on the provided user email.")
+        @ApiResponse(responseCode = "200", description = "User details", content = @Content(mediaType = "application/json", schema = @Schema(implementation = DadosCadastroUser.class)))
+        public ResponseEntity<DadosCadastroCompleto> findByEmail(@PathVariable String email) {
+            DadosCadastroCompleto user = userService.findByEmail(email);
+            return ResponseEntity.status(200).body(user);
+        }
+
+
     }

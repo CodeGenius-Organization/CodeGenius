@@ -2,6 +2,7 @@ package com.codegenius.game.domain.service;
 
 import com.codegenius.game.domain.dto.DadosQuestoes;
 import com.codegenius.game.domain.dto.DadosQuestoesCompleto;
+import com.codegenius.game.domain.dto.DadosQuestoesUpdate;
 import com.codegenius.game.domain.model.QuestionModel;
 import com.codegenius.game.domain.repository.QuestionRepository;
 import com.codegenius.game.infra.exception.GlobalExceptionHandler;
@@ -45,7 +46,7 @@ public class QuestionService {
         return questoesDTO;
     }
 
-    public DadosQuestoes update(UUID id, DadosQuestoes questaoDTO) {
+    public DadosQuestoes update(UUID id, DadosQuestoesUpdate questaoDTO) {
         QuestionModel questao = questionRepository.findById(id).orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("Question not found with id: " + id));
 
         if (questaoDTO.getQuestion_type() != null) {

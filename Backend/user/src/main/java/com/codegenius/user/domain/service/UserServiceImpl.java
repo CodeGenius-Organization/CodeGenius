@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService{
      * @author hidek
      * @since 2023-08-09
      */
+    @Override
     public DadosCadastroUser saveUser(DadosCadastroUser user, DadosCadastroCompleto userComp) {
         Optional<UserModel> existingUser = repository.findByEmailAndActiveTrue(user.getEmail());
 
@@ -151,5 +152,15 @@ public class UserServiceImpl implements UserService{
 
         repository.save(user);
         System.out.println("\u001B[32mDeleção realizada com sucesso!!!");
+    }
+
+    @Override
+    public DadosCadastroCompleto findByEmail(String email) {
+        UserModel user = repository.findByEmailAndActiveTrue(email)
+                .orElseThrow(() -> new GlobalExceptionHandler.NotFoundException("User with email not exist"));
+
+        DadosCadastroCompleto userComp = new DadosCadastroCompleto(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user.getActive());
+
+        return userComp;
     }
 }

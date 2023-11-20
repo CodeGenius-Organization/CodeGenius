@@ -2,6 +2,7 @@ package com.codegenius.game.controller;
 
 import com.codegenius.game.domain.dto.DadosQuestoes;
 import com.codegenius.game.domain.dto.DadosQuestoesCompleto;
+import com.codegenius.game.domain.dto.DadosQuestoesUpdate;
 import com.codegenius.game.domain.service.QuestionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -58,7 +59,7 @@ public class QuestionController {
     @ApiResponse(responseCode = "200", description = "Updated question", content = @Content(mediaType = "application/json", schema = @Schema(implementation = DadosQuestoes.class)))
     public ResponseEntity<DadosQuestoes> putQuestion (
             @RequestParam UUID id,
-            @RequestBody @Valid DadosQuestoes questionDTO
+            @RequestBody @Valid DadosQuestoesUpdate questionDTO
     ) {
         DadosQuestoes questao = questionService.update(id,questionDTO);
         return ResponseEntity.status(200).body(questao);
