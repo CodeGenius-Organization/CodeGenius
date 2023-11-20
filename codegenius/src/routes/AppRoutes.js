@@ -17,7 +17,7 @@ function AppRoutes() {
             <Route path='/institutional' element={<Institutional/>}/>
             <Route path='/profile' element={<Profile/>}/>
             <Route path='/cardlesson' element={<CardLesson/>}/>
-            <Route path='/formcontact' element={<FormContact/>}/>
+            <Route path='/form-contact' element={<FormContact/>}/>
             <Route path='/lp' element={<LandingPage/>}/>
             <Route path='/course' element={<Course/>}/>
             </Routes>

@@ -1,4 +1,4 @@
-import React, { useState }from 'react'
+import React, { useState } from 'react'
 import api from "../../Api"
 import "./FormRegister.css"
 
@@ -6,134 +6,184 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 
 function FormRegister({ toggleModal, changeForm }) {
- 
-  const navigate = useNavigate();
 
-  const [username, setUserName] = useState("");
+
+  const [firstName, setFirstName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+  const [confirmPass, setPasswordConfirm] = useState("");
+
+
   function handleSubmit(e) {
     e.preventDefault();
-    const senha = document.querySelector("#inpSenha")
-    const email = document.querySelector("#inpEmail")
 
-    if (username.trim() === "" || password.trim() === "") {
-      if(username.trim() === "") email.classList.add("error")
-      if(password.trim() === "") senha.classList.add("error")
+    const firstNameElement = document.querySelector("#inpName")
+    const surnameElement = document.querySelector("#inpSurname")
+    const emailElement = document.querySelector("#inpEmail")
+    const passwordElement = document.querySelector("#inpPassword")
+    const confirmPassElement = document.querySelector("#inpConfirmPass")
+
+    console.log(firstNameElement.value)
+    console.log(surnameElement.value)
+
+    if (firstName.trim() === "" || surname.trim() === "" || email.trim() === "" || password.trim() === "" || confirmPass.trim() === "") {
+      if (firstName.trim() === "") firstNameElement.classList.add("error")
+      if (surname.trim() === "") surnameElement.classList.add("error")
+      if (email.trim() === "") emailElement.classList.add("error")
+      if (password.trim() === "") passwordElement.classList.add("error")
+      if (confirmPass.trim() === "") confirmPassElement.classList.add("error")
       toast.error('Preencha os campos corretamente')
       return
     }
 
+    const fullName = `${firstNameElement.value} ${surnameElement.value}`
+    console.log(fullName)
+    if (password !== confirmPass) {
+      confirmPassElement.classList.add("error")
+      passwordElement.classList.add("error")
+      toast.error('Senhas não coincidem!')
+      return
+    }
+
     api.post(
-        "/login",
-        {
-          email: username,
-          password: password,
+      "user/users/",
+      {
+        name: fullName,
+        email: email,
+        password: password,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+      }
+    )
       .then((response) => {
-        if (response.status === 200 && response.data?.token) {
-          sessionStorage.setItem("authToken", response.data.token);
-          toast.success("Login realizado com sucesso!")
-          navigate("/logout");
-          toggleModal();
+        if (response.status === 201) {
+          alert("Deu certo")
+          toast.success("Cadastro realizado com sucesso!")
+          firstNameElement.value = "";
+          surnameElement.value = "";
+          emailElement.value = "";
+          passwordElement.value = "";
+          confirmPassElement.value = "";
+          changeForm()
         } else {
           throw new Error("Ocorreu um erro interno!");
         }
       })
       .catch((error) => {
         switch (error.response.status) {
-          case 403:
-            email.classList.add("error")
-            senha.classList.add("error")
-            senha.value = "";
-            toast.error("Credenciais incorretas")
+          case 409:
+            emailElement.classList.add("error")
+            passwordElement.value = "";
+            confirmPassElement.value = "";
+            toast.error("Esse e-mail já está sendo usado!")
             break;
-          case 404:
-            email.classList.add("error")
-            senha.classList.add("error")
-            senha.value = "";
-            toast.error("Credenciais incorretas")
+          case 400:
+
+            const erro = error.response.errors
+
+            for (let i = 0; i < erro.length; i++) {
+              if (erro[i].field === "password") {
+                passwordElement.classList.add("error")
+                confirmPassElement.classList.add("error")
+                confirmPassElement.value = "";
+                passwordElement.value = "";
+                toast.error("Senha deve ter números, letras maiúsculas e caracteres especiais!")
+              }
+
+              if (erro[i].field === "email") {
+                emailElement.classList.add("error")
+                passwordElement.value = "";
+                confirmPassElement.value = "";
+                toast.error("Esse e-mail já está sendo usado!")
+              }
+
+              if (erro[i].field === "name") {
+                firstNameElement.classList.add("error")
+                surnameElement.classList.add("error")
+                firstNameElement.value = "";
+                surnameElement.value = "";
+                toast.error("Nome inválido, Digite apenas o primeiro nome e um sobrenome!")
+              }
+            }
             break;
-        default:
+
+          default:
             break;
         }
 
       });
-
   }
 
   return (
-   <>
-    <p>Cadastre-se!</p>
-            <form className="form-content" onSubmit={handleSubmit}>
-              <div className="form-content name">
-              <div className='vertical-content'>
-                <label>Nome:</label>
-                <input
-                  id="inpNome"
-                  placeholder="Digite seu nome"
-                  onChange={(e) => {
-                    setUserName(e.target.value)
-                    e.target.classList.remove("error")
-                  }}
-                />
-                </div>
-                <div className='vertical-content'>
-                <label>Sobrenome:</label>
-                <input
-                  id="inpSobrenome"
-                  placeholder="Digite seu sobrenome"
-                  onChange={(e) => {
-                    setUserName(e.target.value)
-                    e.target.classList.remove("error")
-                  }}
-                />
-                </div>
-              </div>
-              <label>E-mail:</label>
-              <input
-                id="inpEmail"
-                type="email"
-                placeholder="Digite seu e-mail"
-                onChange={(e) => {
-                  setUserName(e.target.value)
-                  e.target.classList.remove("error")
-                }}
-              />
-              <label>Senha:</label>
-              <input
-                id="inpSenha"
-                type="password"
-                placeholder="Digite sua senha"
-                onChange={(e) => {
-                  setPassword(e.target.value)
-                  e.target.classList.remove("error")
-                }}
-              />
-              <label>Confirmação de Senha:</label>
-              <input
-                id="inpConfirmacaoSenha"
-                type="password"
-                placeholder="Digite sua senha"
-                onChange={(e) => {
-                  setPassword(e.target.value)
-                  e.target.classList.remove("error")
-                }}
-              />
-              <button type="submit" className="button-form">
-                ENTRAR
-              </button>
-              <p onClick={() => changeForm()} className="link-right-button">
-                Já tem um cadastro? Entre aqui!
-              </p>
-            </form>
-   </>
+    <>
+      <p>Cadastre-se!</p>
+      <form className="form-content" onSubmit={handleSubmit}>
+        <div className="form-content name">
+          <div className='vertical-content'>
+            <label>Nome:</label>
+            <input
+              id="inpName"
+              placeholder="Digite seu nome"
+              onChange={(e) => {
+                setFirstName(e.target.value)
+                e.target.classList.remove("error")
+              }}
+            />
+          </div>
+          <div className='vertical-content'>
+            <label>Sobrenome:</label>
+            <input
+              id="inpSurname"
+              placeholder="Digite seu sobrenome"
+              onChange={(e) => {
+                setSurname(e.target.value)
+                e.target.classList.remove("error")
+              }}
+            />
+          </div>
+        </div>
+        <label>E-mail:</label>
+        <input
+          id="inpEmail"
+          type="email"
+          placeholder="Digite seu e-mail"
+          onChange={(e) => {
+            setEmail(e.target.value)
+            e.target.classList.remove("error")
+          }}
+        />
+        <label>Senha:</label>
+        <input
+          id="inpPassword"
+          type="password"
+          placeholder="Digite sua senha"
+          onChange={(e) => {
+            setPassword(e.target.value)
+            e.target.classList.remove("error")
+          }}
+        />
+        <label>Confirmação de Senha:</label>
+        <input
+          id="inpConfirmPass"
+          type="password"
+          placeholder="Digite sua senha"
+          onChange={(e) => {
+            setPasswordConfirm(e.target.value)
+            e.target.classList.remove("error")
+          }}
+        />
+        <button type="submit" className="button-form">
+          CADASTRAR
+        </button>
+        <p onClick={() => changeForm()} className="link-right-button">
+          Já tem um cadastro? Entre aqui!
+        </p>
+      </form>
+    </>
   )
 }
 

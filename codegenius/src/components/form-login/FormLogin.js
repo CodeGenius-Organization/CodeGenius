@@ -39,7 +39,7 @@ function FormLogin({ toggleModal, changeForm }) {
         if (response.status === 200 && response.data?.token) {
           sessionStorage.setItem("authToken", response.data.token);
           toast.success("Login realizado com sucesso!")
-          navigate("/logout");
+          navigate("/");
           toggleModal();
         } else {
           throw new Error("Ocorreu um erro interno!");
