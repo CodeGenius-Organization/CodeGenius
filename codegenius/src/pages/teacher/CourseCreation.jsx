@@ -2,7 +2,7 @@ import React from 'react'
 import style from './CourseCreation.module.css'
 import api from '../../Api'
 
-import NewCourse from '../../components/professor-new-course/NewCourse'
+import NewCourse from '../../components/teacher-new-course/NewCourse'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 
 function CourseCreation() {

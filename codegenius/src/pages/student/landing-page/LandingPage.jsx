@@ -4,7 +4,7 @@ import style from './LandingPage.module.css'
 
 import DevTopBar from '../../../components/student-landing-page/DevTopBar'
 import Filters from '../../../components/student-landing-page/Filters'
-import CardLesson from '../../../components/CardLesson'
+import CardLesson from '../../../components/card-lesson/CardLesson'
 
 function LandingPage() {
     return (

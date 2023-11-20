@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import NavBar from '../../components/NavBar';
-import ModaltoForm from '../../components/ModalToForm';
+import NavBar from '../../components/nav-bar/NavBar';
+import ModaltoForm from '../../components/modal-to-form/ModalToForm';
 import './Institutional.css';
-import CardNossaEquipe from '../../components/CardNossaEquipe/CardNossaEquipe';
+import CardOurTeam from '../../components/card-our-team/CardOurTeam';
 
 // imagem
 import home_img from '../../img/Computer1.png';
@@ -123,35 +123,35 @@ function Home() {
                             <div className='equipe'>
                                 <h1 className='title-equipe'>Nossa Equipe</h1>
                                 <div className='cards-equipe'>
-                                    <CardNossaEquipe
+                                    <CardOurTeam
                                         person={kaue}
                                         name={"Kaue Victor"}
                                         funcao={"Negócios"}
                                     />
-                                    <CardNossaEquipe
+                                    <CardOurTeam
                                         person={lucas}
                                         name={"Lucas Jorge"}
                                         funcao={"Quality Assurance"}
 
                                     />
-                                    <CardNossaEquipe
+                                    <CardOurTeam
                                         person={mariana}
                                         name={"Mariana Namie"}
                                         funcao={"Front-end"}
                                     />
                                 </div>
                                 <div className='cards-equipe'>
-                                    <CardNossaEquipe
+                                    <CardOurTeam
                                         person={paula}
                                         name={"Paula Maria"}
                                         funcao={"DevOps"}
                                     />
-                                    <CardNossaEquipe
+                                    <CardOurTeam
                                         person={thiago}
                                         name={"Thiago Hideki"}
                                         funcao={"Back-end"}
                                     />
-                                    <CardNossaEquipe
+                                    <CardOurTeam
                                         person={victor}
                                         name={"Victor Daniel "}
                                         funcao={"Back-end"}

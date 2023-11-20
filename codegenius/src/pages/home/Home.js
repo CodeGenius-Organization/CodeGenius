@@ -16,8 +16,8 @@ import {
 import codegenius from "../../img/codegenius.svg";
 
 import Course from "../student/course/Course";
-import CourseCreation from "../professor/CourseCreation";
-import ModuleCreation from "../professor/ModuleCreation"
+import CourseCreation from "../teacher/CourseCreation";
+import ModuleCreation from "../teacher/ModuleCreation"
 import LandingPage from "../student/landing-page/LandingPage";
 
 

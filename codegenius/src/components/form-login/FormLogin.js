@@ -1,12 +1,11 @@
-import React, { useState }from 'react'
-import api from "../Api"
-import "./FormRegister.css"
-
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
+import api from '../../Api'
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import './FormLogin.css'
 
-function FormRegister({ toggleModal, changeForm }) {
- 
+function FormLogin({ toggleModal, changeForm }) {
+
   const navigate = useNavigate();
 
   const [username, setUserName] = useState("");
@@ -25,12 +24,12 @@ function FormRegister({ toggleModal, changeForm }) {
     }
 
     api.post(
-        "/login",
+        "user/login",
         {
           email: username,
           password: password,
         },
-        {
+        { 
           headers: {
             "Content-Type": "application/json",
           },
@@ -70,36 +69,13 @@ function FormRegister({ toggleModal, changeForm }) {
 
   return (
    <>
-    <p>Cadastre-se!</p>
+    <p>Olá novamente!</p>
             <form className="form-content" onSubmit={handleSubmit}>
-              <div className="form-content name">
-              <div className='vertical-content'>
-                <label>Nome:</label>
-                <input
-                  id="inpNome"
-                  placeholder="Digite seu nome"
-                  onchange={(e) => {
-                    setUserName(e.target.value)
-                    e.target.classList.remove("error")
-                  }}
-                />
-                </div>
-                <div className='vertical-content'>
-                <label>Sobrenome:</label>
-                <input
-                  id="inpSobrenome"
-                  placeholder="Digite seu sobrenome"
-                  onchange={(e) => {
-                    setUserName(e.target.value)
-                    e.target.classList.remove("error")
-                  }}
-                />
-                </div>
-              </div>
               <label>E-mail:</label>
               <input
                 id="inpEmail"
                 type="email"
+                className="input-margin"
                 placeholder="Digite seu e-mail"
                 onChange={(e) => {
                   setUserName(e.target.value)
@@ -116,25 +92,16 @@ function FormRegister({ toggleModal, changeForm }) {
                   e.target.classList.remove("error")
                 }}
               />
-              <label>Confirmação de Senha:</label>
-              <input
-                id="inpConfirmacaoSenha"
-                type="password"
-                placeholder="Digite sua senha"
-                onChange={(e) => {
-                  setPassword(e.target.value)
-                  e.target.classList.remove("error")
-                }}
-              />
+              <a href="/">Esqueceu sua senha?</a>
               <button type="submit" className="button-form">
                 ENTRAR
               </button>
               <p onClick={() => changeForm()} className="link-right-button">
-                Já tem um cadastro? Entre aqui!
+                Não tem cadastro? Cadastre-se aqui
               </p>
             </form>
    </>
   )
 }
 
-export default FormRegister
+export default FormLogin

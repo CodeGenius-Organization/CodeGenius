@@ -54,7 +54,7 @@
 }
 
 .card .img {
-  background-image: url('../img/Mask\ group.svg');
+  background-image: url('../../img/Mask\ group.svg');
   background-size: cover;
 
   height: 100%;
