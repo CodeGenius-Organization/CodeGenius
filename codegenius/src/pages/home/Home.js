@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
-import { FiLogOut } from 'react-icons/fi'
 import { toast } from "react-toastify";
 import {
   MdArrowBackIosNew,
@@ -18,6 +17,9 @@ import codegenius from "../../img/codegenius.svg";
 import Course from "../student/course/Course";
 import LandingPage from "../student/landing-page/LandingPage";
 import Profile from "../../components/student-profile/Profile";
+import Contact from "../form-contact/Contact";
+import Social from "../student-social/Social";
+import Courses from "../student/courses/Courses";
 // import CourseCreation from "../professor/CourseCreation";
 // import ModuleCreation from "../professor/ModuleCreation"
 // import LandingPage from "../student/landing-page/LandingPage";
@@ -32,13 +34,19 @@ function LogOut() {
   useEffect(()=>{
     switch (navigateMenu){
       case 'seus-cursos':
-        setContentHome(<LandingPage/>)
+        setContentHome(<Courses/>)
         break;
       case 'profile':
         setContentHome(<Profile/>)
         break;
+      case 'social':
+        setContentHome(<Social/>)
+        break;
+      case 'contact':
+        setContentHome(<Contact/>)
+        break;
       default:
-        setContentHome(<Course/>)
+        setContentHome(<LandingPage/>)
     }
   }, [navigateMenu])
 
@@ -71,11 +79,11 @@ function LogOut() {
             <div className={`list-menu-container`}>
               <h4>APRENDIZADO</h4>
               <ul>
-                <li className={`${navigateMenu == 'cursos' ? 'active' : ''}`} onClick={() => setNavigateMenu('cursos')}>
+                <li className={`${navigateMenu === 'cursos' ? 'active' : ''}`} onClick={() => setNavigateMenu('cursos')}>
                   <MdOutlineLocalLibrary className={`logo-item-list ${menuToggle ? 'center-items' : ''}`} />
                   <p className={`${menuToggle ? 'text-toggle' : ''}`}>CURSOS</p>
                 </li>
-                <li className={`${navigateMenu == 'seus-cursos' ? 'active' : ''}`} onClick={() => setNavigateMenu('seus-cursos')}>
+                <li className={`${navigateMenu === 'seus-cursos' ? 'active' : ''}`} onClick={() => setNavigateMenu('seus-cursos')}>
                   <MdOutlineHiking className={`logo-item-list ${menuToggle ? 'center-items' : ''}`} />
                   <p className={`${menuToggle ? 'text-toggle' : ''}`}>SEUS CURSOS</p>
                 </li>
@@ -85,11 +93,11 @@ function LogOut() {
             <div className={`list-menu-container`}>
               <h4>SOBRE VOCÊ</h4>
               <ul>
-                <li className={`${navigateMenu == 'profile' ? 'active' : ''}`} onClick={() => setNavigateMenu('profile')}>
+                <li className={`${navigateMenu === 'profile' ? 'active' : ''}`} onClick={() => setNavigateMenu('profile')}>
                   <MdOutlinePerson className={`logo-item-list ${menuToggle ? 'center-items' : ''}`} />
                   <p className={`${menuToggle ? 'text-toggle' : ''}`}>PERFIL</p>
                 </li>
-                <li>
+                <li className={`${navigateMenu === 'social' ? 'active' : ''}`} onClick={() => setNavigateMenu('social')}>
                   <MdOutlineDiversity3 className={`logo-item-list ${menuToggle ? 'center-items' : ''}`} />
                   <p className={`${menuToggle ? 'text-toggle' : ''}`}>SOCIAL</p>
                 </li>
@@ -106,7 +114,7 @@ function LogOut() {
 
             <div className={`list-menu-container flex-end-style`}>
               <ul>
-                <li>
+                <li className={`${navigateMenu === 'contact' ? 'active' : ''}`} onClick={() => setNavigateMenu('contact')}>
                   <MdHelpOutline className={`logo-item-list ${menuToggle ? 'center-items' : ''}`} />
                   <p className={`${menuToggle ? 'text-toggle' : ''}`}>FALE CONOSCO</p>
                 </li>

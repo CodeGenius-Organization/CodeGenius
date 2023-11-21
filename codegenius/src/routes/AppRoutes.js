@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from '../pages/home/Home'
 import Institutional from '../pages/institutional/Institutional'
-import FormContact from '../components/form-contact/FormContact'
+import FormContact from '../pages/form-contact/FormContact'
 
 function AppRoutes() {
     return (

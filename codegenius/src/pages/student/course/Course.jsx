@@ -9,7 +9,7 @@ import ModuleList from "../../../components/student-module-lesson/ModuleList"
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import TopBar from "./TopBar";
 import SingleAnswerQuestion from "../../../components/questions/SingleAnswerQuestion"
-import FriendCard from "../../../components/student-social/FriendCard"
+import FriendCard from "../../student-social/FriendCard"
 
 function Course() {
     const arrowStyle = { color: "#FFF", width: "24px", height: "24px" }

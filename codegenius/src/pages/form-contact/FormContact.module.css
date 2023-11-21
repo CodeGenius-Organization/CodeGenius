@@ -17,16 +17,15 @@
 
   .containerForm{
     height: 980px;
-    width: 648px;
+    width: 648px; 
     /* border: 1px solid red; */
-    background-color: #181D31;
+    background-color: #121526;
     color: #FFF;
     font-family: 'Titillium Web', sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin-left: 30%;
   }
 
   .titles{
@@ -108,9 +107,10 @@
   font-weight: 400;
   line-height: normal;
   border-radius: 20px;
-  border-color: transparent;
+  border-color: transparent;  
   /* border: 1px solid red; */
 }
+
 
 ::placeholder{
   display: flex;

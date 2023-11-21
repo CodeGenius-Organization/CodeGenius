@@ -1,0 +1,26 @@
+.main_section {
+    background-color: #121526;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    max-width: 1445px;
+    max-height: 953px;
+}
+
+.course_list {
+    /* border: solid 1px red; */
+    
+    display: flex;
+    flex-wrap: wrap;
+
+    max-height: inherit;
+    overflow-y: auto;
+    
+    gap: 40px 28px;
+}
+
+.course_list::-webkit-scrollbar {
+    display: none;
+}

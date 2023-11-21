@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+.container {
+    /* border: solid 2px red; */
+
+    display: flex;
+    
+    justify-content: space-between;
+    align-items: center;
+    /* gap: 40px; */
+
+    background-color: #121526;
+
+    max-width: 790px;
+    max-height: 37px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    
+    gap: 8px;
+}
+
+.container > .item > span {
+    color: #FFF;
+    font-family: 'Titillium Web';
+    font-size: 20px;
+    font-weight: normal;
+}
