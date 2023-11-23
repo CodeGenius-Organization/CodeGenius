@@ -3,6 +3,7 @@ package com.codegenius.course.controller;
 import com.codegenius.course.domain.dto.LessonContentCreationDTO;
 import com.codegenius.course.domain.model.LessonContentModel;
 import com.codegenius.course.domain.service.LessonContentService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
+@SecurityRequirement(name = "Bearer Authentication")
+@CrossOrigin(origins = {"http://localhost:3000","http://localhost:8181"})
 @RequestMapping("/lessons-content")
 public class LessonContentController {
     @Autowired

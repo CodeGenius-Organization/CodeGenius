@@ -6,6 +6,7 @@ import com.codegenius.course.domain.model.CourseModel;
 import com.codegenius.course.domain.service.CourseService;
 import com.codegenius.course.utils.Arquivo;
 import com.codegenius.course.utils.GerenciadorDeArquivosCourseCsv;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,8 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
+@SecurityRequirement(name = "Bearer Authentication")
+@CrossOrigin(origins = {"http://localhost:3000","http://localhost:8181"})
 @RequestMapping("/courses")
 public class CourseController {
 

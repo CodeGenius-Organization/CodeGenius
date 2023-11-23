@@ -2,6 +2,7 @@ package com.codegenius.course.controller;
 
 import com.codegenius.course.domain.model.LanguageModel;
 import com.codegenius.course.domain.service.LanguageService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@SecurityRequirement(name = "Bearer Authentication")
+@CrossOrigin(origins = {"http://localhost:3000","http://localhost:8181"})
 @RequestMapping("/languages")
 public class LanguageController {
 
