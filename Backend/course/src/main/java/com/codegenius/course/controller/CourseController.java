@@ -61,9 +61,9 @@ public class CourseController {
         return ResponseEntity.status(200).body(this.courseService.getCoursesByLanguage(languageId));
     }
 
-    @GetMapping("/category/{categoryId}")
-    public ResponseEntity<List<CourseModel>> getCoursesByCategory(@PathVariable UUID categoryId) {
-        return ResponseEntity.status(200).body(this.courseService.getCoursesByCategory(categoryId));
+    @GetMapping("/category/{categoryName}")
+    public ResponseEntity<List<CourseModel>> getCoursesByCategory(@PathVariable String categoryName) {
+        return ResponseEntity.status(200).body(this.courseService.getCoursesByCategory(categoryName));
     }
 
     @GetMapping("/exportar-csv")
