@@ -36,4 +36,12 @@ public class CategoryService {
         }
         return category.get();
     }
+
+    public CategoryModel findCategoryByName(String name) {
+        CategoryModel category = categoryRepository.findByCategory(name);
+        if (category == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Categoria de nome " + category.getCategory() + " não encontrada.");
+        }
+        return category;
+    }
 }

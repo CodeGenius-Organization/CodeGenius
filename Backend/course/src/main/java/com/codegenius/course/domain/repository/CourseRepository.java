@@ -41,4 +41,6 @@ public interface CourseRepository extends JpaRepository<CourseModel, UUID> {
 
     @Query("SELECT c.image FROM CourseModel c WHERE c.id = ?1")
     byte[] getCourseImage(UUID courseId);
+
+    List<CourseModel> findByCategories_Category(String name);
 }
