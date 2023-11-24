@@ -92,7 +92,7 @@ public class QuestionService {
         for (int i = 0; i < 5; i++) {
             boolean b = true;
 
-            int n = random.nextInt(questoes.size() - 1);
+            int n = random.nextInt(questoes.size());
 
             for (int j = 0; j < aux.size(); j++) {
                 if (n == aux.get(j)) {
