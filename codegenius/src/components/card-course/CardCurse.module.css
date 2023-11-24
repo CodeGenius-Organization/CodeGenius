@@ -1,0 +1,45 @@
+.container{
+    margin-top: 15%;
+    margin-left: 30%;
+    width: 910px;
+    height: auto;
+    /* border: 1px solid red; */
+    display: flex;
+    color: #FFF;
+}
+
+.card{
+    width: 252px;
+    height: 194px;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    /* border: 1px solid red; */
+}
+
+.container .info{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    margin-left: 26px;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    color: #FFF;
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 24px;
+}
+
+.bold{
+    font-weight: 700;
+    color: #FFF;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+
+.container .info span{
+    color: #fff;
+}
+
+.info img{
+    width: 167px;
+    height: 26px;
+}
