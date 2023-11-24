@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -78,6 +79,38 @@ public class QuestionService {
         questionRepository.deleteById(questao.getId());
     }
 
+    public Fila<DadosQuestoesCompleto> fila() {
+        Random random = new Random();
+        List<QuestionModel> questoes = questionRepository.findAll();
+        Fila<DadosQuestoesCompleto> data = new Fila<>(5);
+
+        if (questoes.size() - 1 < 5) {
+            throw new GlobalExceptionHandler.NotFoundException("insufficient quantity of questions");
+        }
+
+        List<Integer> aux = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            boolean b = true;
+
+            int n = random.nextInt(questoes.size() - 1);
+
+            for (int j = 0; j < aux.size(); j++) {
+                if (n == aux.get(j)) {
+                    b = false;
+                }
+            }
+
+            if (b) {
+                aux.add(n);
+                data.insert(convertToDTOCompleto(questoes.get(n)));
+            } else {
+                i--;
+            }
+        }
+
+        return data;
+    }
+
     private List<DadosQuestoesCompleto> convertToQuestaoModelList(List<QuestionModel> questoes) {
         List<DadosQuestoesCompleto> questao = new ArrayList<>();
 
@@ -97,5 +130,17 @@ public class QuestionService {
         questaoDTO.setLesson_content(questao.getLeassonContent());
 
         return questaoDTO;
+    }
+
+    private DadosQuestoesCompleto convertToDTOCompleto(QuestionModel questao) {
+        DadosQuestoesCompleto questoeDTO = new DadosQuestoesCompleto();
+
+        questoeDTO.setId(questao.getId());
+        questoeDTO.setQuestion_type(questao.getQuestionType());
+        questoeDTO.setTest_question(questao.getTestQuestion());
+        questoeDTO.setStatement(questao.getStatement());
+        questoeDTO.setLesson_content(questao.getLeassonContent());
+
+        return questoeDTO;
     }
 }

@@ -65,7 +65,7 @@ public class ResponseController {
     @Operation(summary = "Delete a response", description = "Endpoint to delete details of a specific response.")
     @ApiResponse(responseCode = "204", description = "Response deleted")
     public ResponseEntity deleteResponse (
-            @RequestParam UUID id
+            @PathVariable UUID id
     ) {
         responseService.delete(id);
         return ResponseEntity.status(204).build();
@@ -75,7 +75,7 @@ public class ResponseController {
     @Operation(summary = "Delete all response by question id", description = "Endpoint to delete details of all response by specific question id.")
     @ApiResponse(responseCode = "204", description = "Response deleted")
     public ResponseEntity deleteAllResponse (
-            @RequestParam UUID id
+            @PathVariable UUID id
     ) {
         responseService.deleteAll(id);
         return ResponseEntity.status(204).build();

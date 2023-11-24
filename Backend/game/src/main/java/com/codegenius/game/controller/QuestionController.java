@@ -3,6 +3,7 @@ package com.codegenius.game.controller;
 import com.codegenius.game.domain.dto.DadosQuestoes;
 import com.codegenius.game.domain.dto.DadosQuestoesCompleto;
 import com.codegenius.game.domain.dto.DadosQuestoesUpdate;
+import com.codegenius.game.domain.service.Fila;
 import com.codegenius.game.domain.service.QuestionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -58,7 +59,7 @@ public class QuestionController {
     @Operation(summary = "Update a question", description = "Endpoint to update details of a specific question.")
     @ApiResponse(responseCode = "200", description = "Updated question", content = @Content(mediaType = "application/json", schema = @Schema(implementation = DadosQuestoes.class)))
     public ResponseEntity<DadosQuestoes> putQuestion (
-            @RequestParam UUID id,
+            @PathVariable UUID id,
             @RequestBody @Valid DadosQuestoesUpdate questionDTO
     ) {
         DadosQuestoes questao = questionService.update(id,questionDTO);
@@ -69,9 +70,17 @@ public class QuestionController {
     @Operation(summary = "Delete a question", description = "Endpoint to delete details of a specific question.")
     @ApiResponse(responseCode = "204", description = "Question deleted")
     public ResponseEntity deleteQuestion (
-            @RequestParam UUID id
+            @PathVariable UUID id
     ) {
         questionService.delete(id);
         return ResponseEntity.status(204).build();
+    }
+
+    @GetMapping("/fila")
+    public ResponseEntity<Fila<DadosQuestoesCompleto>> filaQuestions() {
+        Fila<DadosQuestoesCompleto> questoes = questionService.fila();
+        return questoes.isEmpty()
+                ? ResponseEntity.status(204).build()
+                : ResponseEntity.status(200).body(questoes);
     }
 }
