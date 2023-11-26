@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import NavBar from '../../components/nav-bar/NavBar';
-import ModaltoForm from '../../components/modal-to-form/ModalToForm';
 import './Institutional.css';
-import CardOurTeam from '../../components/card-our-team/CardOurTeam';
+import ModaltoForm from '../../components/modal-to-form/ModalToForm';
+
+import { NavBar, CardOurTeam, Carousel } from '../../components'
 
 // imagem
 import home_img from '../../img/Computer1.png';
@@ -89,7 +89,7 @@ function Home() {
                                 <div className='left-side'>
                                     <img className='codegenius-img' src={codegenius_img} />
                                 </div>
-                                <div className='right-side'>
+                                {/* <div className='right-side'>
                                     <div className='carroussel'>
                                         <div className='line-box'>
                                             <p>01</p>
@@ -118,7 +118,8 @@ function Home() {
                                         <p>A MindTech sempre prioriza o seu aprendizado, pois acreditamos que o conhecimento é a chave para abrir portas ilimitadas. Por isso, contamos com uma equipe de especialistas dedicados a guiá-lo em cada passo do seu percurso de aprendizagem.</p>
                                     </div>
                                     <button className='cadastre-se'>Cadastre-se</button>
-                                </div>
+                                </div> */}
+                                <Carousel />
                             </div>
                             <div className='equipe'>
                                 <h1 className='title-equipe'>Nossa Equipe</h1>
