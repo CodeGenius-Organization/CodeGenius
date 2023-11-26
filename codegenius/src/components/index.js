@@ -3,3 +3,4 @@
 export { default as NavBar } from './nav-bar/NavBar'
 export { default as CardOurTeam } from './card-our-team/CardOurTeam'
 export { default as Carousel } from './carousel-institucional/CarouselInstitucional'
+export { default as CardInstitucional } from './card-institucional/CardInstitucional'

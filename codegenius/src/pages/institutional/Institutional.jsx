@@ -2,14 +2,13 @@ import React, { useEffect, useState } from 'react';
 import './Institutional.css';
 import ModaltoForm from '../../components/modal-to-form/ModalToForm';
 
-import { NavBar, CardOurTeam, Carousel } from '../../components'
+import { NavBar, CardOurTeam, Carousel, CardInstitucional } from '../../components'
 
 // imagem
 import home_img from '../../img/Computer1.png';
-import mission from '../../img/Icon_Mission_white.svg';
-import mission_colorful from '../../img/Icon_Mission_hover.svg';
-import vision from '../../img/Icon_Vision_white.svg';
-import values from '../../img/Icon_Values_white.svg';
+// import mission from '../../img/Icon_Mission_white.svg';
+// import vision from '../../img/Icon_Vision_white.svg';
+// import values from '../../img/Icon_Values_white.svg';
 import codegenius_img from '../../img/Computer 2.svg';
 import codegenius_logo from '../../img/codegenius.svg';
 import kaue from '../../img/kaue.png';
@@ -62,63 +61,13 @@ function Home() {
                                     <p>A MindTech vem se destacando na indústria tecnológica, buscando tornrar-se referência em ensino e tecnologia. Nossa missão é proporcionar um aprendizado dinâmico e didático, abrangendo uma ampla gama de conceitos na área de Tecnologia da Informação (TI). Contamos com uma equipe de profissionais excepcionalmente qualificados, que acumulam anos de experiência no mercado, prontos para orientar tanto aqueles que desejam adentrar o campo quanto aqueles que já possuem um conhecimento prévio.</p>
                                 </div>
                                 <div className='cards'>
-                                    <div className='card mission'>
-                                        <div className='card-content'>
-                                            <img className="mission-img" src={mission}/>
-                                            <h1>missão</h1>
-                                            <p>Queremos oferecer educação gratuita e consistente para todas as pessoas.</p>
-                                        </div>
-                                    </div>
-                                    <div className='card vision'>
-                                        <div className='card-content'>
-                                            <img className='mission-img' src={vision} />
-                                            <h1>visão</h1>
-                                            <p>Nossa visão é motivar as pessoas a aprender e aprimorar seu conhecimento técnico.</p>
-                                        </div>
-                                    </div>
-                                    <div className='card values'>
-                                        <div className='card-content'>
-                                            <img className='mission-img' src={values} />
-                                            <h1>valores</h1>
-                                            <p>Temos como fundamentos confiança mútua e na entrega de um ensino de qualidade.</p>
-                                        </div>
-                                    </div>
+                                    <CardInstitucional />
                                 </div>
                             </div>
                             <div className='codegenius'>
                                 <div className='left-side'>
                                     <img className='codegenius-img' src={codegenius_img} />
                                 </div>
-                                {/* <div className='right-side'>
-                                    <div className='carroussel'>
-                                        <div className='line-box'>
-                                            <p>01</p>
-                                            <div className='line'></div>
-                                        </div>
-                                        <div className='line-box'>
-                                            <p>02</p>
-                                            <div className='line'></div>
-                                        </div>
-                                        <div className='line-box'>
-                                            <p>03</p>
-                                            <div className='line'></div>
-                                        </div>
-                                        <div className='line-box'>
-                                            <p>04</p>
-                                            <div className='line'></div>
-                                        </div>
-                                    </div>
-                                    <div className='logomarca-codegenius'>
-                                        <img src={codegenius_logo} />
-                                        <p>CodeGenius</p>
-                                    </div>
-                                    <div className='text'>
-                                        <h1>Olá, visitante!</h1>
-                                        <h2>Seja nosso aluno!</h2>
-                                        <p>A MindTech sempre prioriza o seu aprendizado, pois acreditamos que o conhecimento é a chave para abrir portas ilimitadas. Por isso, contamos com uma equipe de especialistas dedicados a guiá-lo em cada passo do seu percurso de aprendizagem.</p>
-                                    </div>
-                                    <button className='cadastre-se'>Cadastre-se</button>
-                                </div> */}
                                 <Carousel />
                             </div>
                             <div className='equipe'>
