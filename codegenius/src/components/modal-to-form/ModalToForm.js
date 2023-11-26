@@ -60,10 +60,14 @@ function LoginModal({ toggleModal, visible }) {
               </div>
               {changeForm ? <FormLogin
                 changeForm={changeVisibleForm}
-                toggleModal={toggleModal} /> :
+                toggleModal={toggleModal} 
+                modalVisible={visible}
+                /> :
                 <FormRegister
                   changeForm={changeVisibleForm}
-                  toggleModal={toggleModal} />}
+                  toggleModal={toggleModal}
+                  modalVisible={visible}
+                  />}
             </div>
           </div>
 

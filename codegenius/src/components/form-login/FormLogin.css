@@ -13,6 +13,10 @@
     transition: 0.5s ease;
 }
 
+.form-content>input::placeholder{
+    padding: 0;
+}
+
 
 
 .form-content>label{

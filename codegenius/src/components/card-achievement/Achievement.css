@@ -1,0 +1,47 @@
+.achievement-content {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    color: #FFF;
+    font-style: normal;
+    font-family: 'Raleway';
+    line-height: normal;
+    gap: 8px;
+   
+}
+
+.img-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+}
+
+.img-content>img {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.achievement-content>button {
+    height: 33px;
+    color: #FFF;
+    border-radius: 100px;
+    border: 1px solid #FFF;
+    background-color: transparent;
+
+    font-family: "Raleway";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.achievement-title {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.description {
+    font-size: 20px;
+    font-weight: 400;
+}

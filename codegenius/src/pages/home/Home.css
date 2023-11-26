@@ -12,7 +12,8 @@
 .logout-container{
     /* border: solid 1px red; */
     
-    padding: 50px 0 0 50px;
+    /* padding: 50px 0 0 50px; */
+    padding: 50px 0 50px 50px;
     
     display: flex;
     /* width: 100vw; */
@@ -134,6 +135,10 @@
     gap: 18px;
     white-space: nowrap;
     padding:  10px 45px;
+}
+
+.cursor-none{
+    cursor: auto !important;
 }
 
 .active{

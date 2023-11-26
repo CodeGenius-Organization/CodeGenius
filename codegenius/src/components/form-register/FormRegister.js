@@ -1,18 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import api from "../../Api"
 import "./FormRegister.css"
 
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 
-function FormRegister({ toggleModal, changeForm }) {
+function FormRegister({ toggleModal, changeForm, modalVisible }) {
 
+  useEffect(() => {
+    console.log(modalVisible)
+    if(modalVisible === false){
+    document.querySelector("#inpName").value = ''
+    document.querySelector("#inpSurname").value = ''
+    document.querySelector("#inpEmail").value = ''
+    document.querySelector("#inpPassword").value = ''
+    document.querySelector("#inpConfirmPass").value = ''
+
+    document.querySelector("#inpName").classList.remove("error")
+    document.querySelector("#inpSurname").classList.remove("error")
+    document.querySelector("#inpEmail").classList.remove("error")
+    document.querySelector("#inpPassword").classList.remove("error")
+    document.querySelector("#inpConfirmPass").classList.remove("error")
+    }
+  }, [modalVisible])
 
   const [firstName, setFirstName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setPasswordConfirm] = useState("");
+
+  function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  }
 
 
   function handleSubmit(e) {
@@ -31,6 +52,12 @@ function FormRegister({ toggleModal, changeForm }) {
       if (password.trim() === "") passwordElement.classList.add("error")
       if (confirmPass.trim() === "") confirmPassElement.classList.add("error")
       toast.error('Preencha os campos corretamente')
+      return
+    }
+
+    if(!validateEmail(emailElement.value)){
+      emailElement.classList.add("error")
+      toast.error('Email inválido')
       return
     }
 
@@ -135,6 +162,7 @@ function FormRegister({ toggleModal, changeForm }) {
             <label>Nome:</label>
             <input
               id="inpName"
+              maxLength={30}
               placeholder="Digite seu nome"
               onChange={(e) => {
                 setFirstName(e.target.value)
@@ -145,6 +173,7 @@ function FormRegister({ toggleModal, changeForm }) {
           <div className='vertical-content'>
             <label>Sobrenome:</label>
             <input
+              maxLength={30}
               id="inpSurname"
               placeholder="Digite seu sobrenome"
               onChange={(e) => {
@@ -157,6 +186,7 @@ function FormRegister({ toggleModal, changeForm }) {
         <label>E-mail:</label>
         <input
           id="inpEmail"
+          maxLength={80}
           type="email"
           placeholder="Digite seu e-mail"
           onChange={(e) => {
@@ -167,6 +197,7 @@ function FormRegister({ toggleModal, changeForm }) {
         <label>Senha:</label>
         <input
           id="inpPassword"
+          maxLength={80}
           type="password"
           placeholder="Digite sua senha"
           onChange={(e) => {
@@ -177,6 +208,7 @@ function FormRegister({ toggleModal, changeForm }) {
         <label>Confirmação de Senha:</label>
         <input
           id="inpConfirmPass"
+          maxLength={80}
           type="password"
           placeholder="Digite sua senha"
           onChange={(e) => {

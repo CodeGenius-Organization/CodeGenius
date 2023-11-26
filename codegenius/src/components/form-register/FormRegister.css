@@ -15,13 +15,16 @@
 }
 
 .vertical-content>input{
-    
     border-radius: 20px;
     border: 1px solid #FFF; 
     background-color: transparent;
     padding: 10px;
     color: #fff;
     transition: 0.5s ease;
+}
+
+.vertical-content>input::placeholder{
+    padding: 0;
 }
 
 .form-content>label{

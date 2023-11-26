@@ -20,6 +20,7 @@ import Profile from "../../components/student-profile/Profile";
 import Contact from "../form-contact/Contact";
 import Social from "../student-social/Social";
 import Courses from "../student/courses/Courses";
+import Settings from "../student/student-settings/Settings";
 // import CourseCreation from "../professor/CourseCreation";
 // import ModuleCreation from "../professor/ModuleCreation"
 // import LandingPage from "../student/landing-page/LandingPage";
@@ -44,6 +45,9 @@ function LogOut() {
         break;
       case 'contact':
         setContentHome(<Contact/>)
+        break;
+      case 'settings':
+        setContentHome(<Settings/>)
         break;
       default:
         setContentHome(<LandingPage/>)
@@ -101,13 +105,13 @@ function LogOut() {
                   <MdOutlineDiversity3 className={`logo-item-list ${menuToggle ? 'center-items' : ''}`} />
                   <p className={`${menuToggle ? 'text-toggle' : ''}`}>SOCIAL</p>
                 </li>
-                <li>
-                  <MdOutlineSettings className={`logo-item-list ${menuToggle ? 'center-items' : ''}`} />
+                <li className={`${navigateMenu === 'settings' ? 'active' : ''}`} onClick={() => setNavigateMenu('settings')}>
+                  <MdOutlineSettings className={`logo-item-list ${menuToggle ? 'center-items' : ''}`}/>
                   <p className={`${menuToggle ? 'text-toggle' : ''}`}>CONFIGURAÇÃO</p>
                 </li>
-                <li className={`${menuToggle ? 'center-items' : ''}`}>
-                <input id="toggle" className={`toggle `} type="checkbox"></input>
-                <label for="toggle"></label>
+                <li className={`${menuToggle ? 'center-items' : ''} cursor-none`}>
+                  <input id="toggle" className={`toggle `} type="checkbox"></input>
+                  <label for="toggle"></label>
                 </li>
               </ul>
             </div>
