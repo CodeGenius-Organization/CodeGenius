@@ -3,7 +3,7 @@ package com.codegenius.game.controller;
 import com.codegenius.game.domain.dto.DadosQuestoes;
 import com.codegenius.game.domain.dto.DadosQuestoesCompleto;
 import com.codegenius.game.domain.dto.DadosQuestoesUpdate;
-import com.codegenius.game.domain.service.Fila;
+import com.codegenius.game.domain.utils.Fila;
 import com.codegenius.game.domain.service.QuestionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -13,7 +13,6 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 

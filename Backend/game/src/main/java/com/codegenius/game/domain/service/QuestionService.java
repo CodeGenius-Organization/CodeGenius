@@ -5,6 +5,7 @@ import com.codegenius.game.domain.dto.DadosQuestoesCompleto;
 import com.codegenius.game.domain.dto.DadosQuestoesUpdate;
 import com.codegenius.game.domain.model.QuestionModel;
 import com.codegenius.game.domain.repository.QuestionRepository;
+import com.codegenius.game.domain.utils.Fila;
 import com.codegenius.game.infra.exception.GlobalExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

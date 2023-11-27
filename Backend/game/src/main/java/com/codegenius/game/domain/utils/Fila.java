@@ -1,4 +1,4 @@
-package com.codegenius.game.domain.service;
+package com.codegenius.game.domain.utils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
