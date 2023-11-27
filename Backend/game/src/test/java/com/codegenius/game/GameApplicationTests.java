@@ -7,6 +7,7 @@ import com.codegenius.game.domain.repository.QuestionRepository;
 import com.codegenius.game.domain.service.QuestionService;
 import com.codegenius.game.infra.exception.GlobalExceptionHandler;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -41,6 +42,7 @@ class GameApplicationTests {
 	}
 
 	@Test
+	@DisplayName(value = "Testando a criação de questão com valores validos")
 	public void testCreateQuestion_Success() {
 		UUID questionId = UUID.randomUUID();
 		UUID lessonId = UUID.randomUUID();
