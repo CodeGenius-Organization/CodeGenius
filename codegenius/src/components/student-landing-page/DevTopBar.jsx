@@ -8,29 +8,29 @@ import { FaCode } from "react-icons/fa6";
 
 import style from './DevTopBar.module.css'
 
-function DevTopBar({ changeTab, currentTab} ) {
+function DevTopBar({ onChangeTab, selectedCategory} ) {
     const iconStyle = {color: "#FFF", width: "24px", height: "24px"}
     
     return (
         <>
             <div className={ style.container }>
-                <div className={ `${style.item} ${currentTab === 'Desenvolvedor' ? style.active : ''}` } onClick={() => changeTab("Desenvolvedor")}>
+                <div className={ `${style.item} ${selectedCategory === 'Desenvolvedor' ? style.active : ''}` } onClick={() => onChangeTab("Desenvolvedor")}>
                     <MdCode style={ iconStyle } />
                     <span>Desenvolvedor</span>
                 </div>
-                <div className={ `${style.item} ${currentTab === 'Web' ? style.active : ''}` } onClick={() => changeTab("Web")}>
+                <div className={ `${style.item} ${selectedCategory === 'Web' ? style.active : ''}` } onClick={() => onChangeTab("Web")}>
                     <FaLaptopCode style={ iconStyle } />
                     <span>Web</span>
                 </div>
-                <div className={ `${style.item} ${currentTab === 'Mobile' ? style.active : ''}` } onClick={() => changeTab("Mobile")}>
+                <div className={ `${style.item} ${selectedCategory === 'Mobile' ? style.active : ''}` } onClick={() => onChangeTab("Mobile")}>
                     <MdDeveloperMode style={ iconStyle } />
                     <span>Mobile</span>
                 </div>
-                <div className={ `${style.item} ${currentTab === 'Front-end' ? style.active : ''}` } onClick={() => changeTab("Front-end")}>
+                <div className={ `${style.item} ${selectedCategory === 'Front-end' ? style.active : ''}` } onClick={() => onChangeTab("Front-end")}>
                     <MdWeb style={ iconStyle } />
                     <span>Front-end</span>
                 </div>
-                <div className={ `${style.item} ${currentTab === 'Back-end' ? style.active : ''}` } onClick={() => changeTab("Back-end")}>
+                <div className={ `${style.item} ${selectedCategory === 'Back-end' ? style.active : ''}` } onClick={() => onChangeTab("Back-end")}>
                     <FaCode style={ iconStyle } />
                     <span>Back-end</span>
                 </div>

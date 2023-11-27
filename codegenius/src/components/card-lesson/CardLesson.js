@@ -9,16 +9,15 @@ import img5 from '../../img/favorite (1).svg';
 
 import { FaCircle } from "react-icons/fa6";
 
-function CardLesson() {
+function CardLesson({ course, handleCardClick }) {
     const circleStyle = {width: "5px", height: "5px"}
 
     const [showElement, setShowElement] = useState(false)
     const showOrHide = () => setShowElement(true)
-
     return (
         <>
-            <div className={style.card}>
-                <div className={style.img}>
+            <div class ={style.card} onClick={handleCardClick(course.id)}>
+                <div class ={style.img}>
                     {/* <img src = {img} alt='image'/> */}
                     {/* <div class = {style.fav}>
                         <img id= {style.img3} src={img3}/>
@@ -29,16 +28,17 @@ function CardLesson() {
                     </div>
                 </div>   
 
-                <div className={style.container}>
-                    <div className={style.card_lesson}>
-                        <div className={style.info_card}>
-                            <span className={style.card_title}>Lógica de Programação</span>
+                <div class={style.container}>
+                    <div class={style.card_lesson}>
+                        <div class={style.info_card}>
+                            <span class={style.card_title}>{ course.title }</span>
                             <div className={style.languages}>
-                                <span>JavaScript</span>
-                                <FaCircle style={ circleStyle }/>
-                                <span>HTML</span>
-                                <FaCircle style={ circleStyle }/>
-                                <span>CSS</span>
+                                { course.languages.map((language) => (
+                                    <React.Fragment key={ language.id }>
+                                        <span>{ language.language }</span>
+                                        {/* <FaCircle style={ circleStyle } /> */}
+                                    </React.Fragment>
+                                ))}
                             </div>
                             <span>Feito por: Helen Pêra</span>
                             <span>Em andamento</span>
