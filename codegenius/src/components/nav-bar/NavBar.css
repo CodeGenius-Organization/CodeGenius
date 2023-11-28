@@ -46,6 +46,10 @@
     padding: 7px 0px;
 }
 
+.navbar-menu li a{
+    text-decoration: none;
+    color: #FFF;
+}
 
 .navbar-menu>.nav_button::before{
     content: "";

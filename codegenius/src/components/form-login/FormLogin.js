@@ -123,7 +123,7 @@ function FormLogin({ toggleModal, changeForm, modalVisible }) {
               <button type="submit" className="button-form">
                 ENTRAR
               </button>
-              <p onClick={() => changeForm()} className="link-right-button">
+              <p onClick={() => changeForm()} className="link-right-button toggle-cad-reg">
                 Não tem cadastro? Cadastre-se aqui
               </p>
             </form>

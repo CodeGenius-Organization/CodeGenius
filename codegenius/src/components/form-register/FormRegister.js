@@ -219,7 +219,7 @@ function FormRegister({ toggleModal, changeForm, modalVisible }) {
         <button type="submit" className="button-form">
           CADASTRAR
         </button>
-        <p onClick={() => changeForm()} className="link-right-button">
+        <p onClick={() => changeForm()} className="link-right-button toggle-cad-reg">
           Já tem um cadastro? Entre aqui!
         </p>
       </form>

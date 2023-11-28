@@ -1,5 +1,6 @@
 import "./CarouselInstitucional.css";
 import codegenius_logo from '../../img/codegenius.svg';
+import ModaltoForm from '../modal-to-form/ModalToForm';
 import React, { useState, useEffect } from 'react';
 
 const textos = [
@@ -36,26 +37,42 @@ const textos = [
     }
 ]
 
-function CarouselLine({iterador, step}){
-    return <div className={`line-box ${iterador === step && 'line-box-bold'}`}>
+function CarouselLine({iterador, step, setIterador}){
+    return <div onClick={() => setIterador(step)} className={`line-box ${iterador === step && 'line-box-bold'}`}>
                 <p className={iterador !== step && 'hide'} >{`0${iterador + 1}`}</p>
                 <div className={`line ${iterador === step && 'bold'}`}></div>
             </div>
 }
 
-function CarouselSteps({iterador}) {
+function CarouselSteps({iterador, setIterador}) {
     return  (
     <>
-       <CarouselLine step={0} iterador={iterador}/>
-       <CarouselLine step={1} iterador={iterador}/>
-       <CarouselLine step={2} iterador={iterador}/>
-       <CarouselLine step={3} iterador={iterador}/>
+       <CarouselLine step={0} iterador={iterador} setIterador={setIterador}/>
+       <CarouselLine step={1} iterador={iterador} setIterador={setIterador}/>
+       <CarouselLine step={2} iterador={iterador} setIterador={setIterador}/>
+       <CarouselLine step={3} iterador={iterador} setIterador={setIterador}/>
     </>
     )
 }
 
 function Carousel() {
     const [iterador, setIterador] = useState(0);
+
+    const [modalVisible, setModalVisible] = useState(false);
+
+    useEffect(() => {
+        const body = document.getElementsByTagName("body")[0];
+        modalVisible ? (body.style.overflow = "hidden") : (body.style.overflow = "auto");
+    }, [modalVisible]);
+
+    function handleVisible() {
+        setModalVisible(!modalVisible);
+    }
+
+    function handleVisibleCad() {
+        setModalVisible(!modalVisible);
+        document.querySelector(".toggle-cad-reg").click()
+    }
 
     function atualizarIterador() {
         let valorNovo = iterador + 1
@@ -73,7 +90,7 @@ function Carousel() {
         <>
             <div className='right-side'>
                 <div className='carroussel'>
-                    <CarouselSteps iterador={iterador}/>
+                    <CarouselSteps iterador={iterador} setIterador={setIterador}/>
                 </div>
                 <div className='logomarca-codegenius'>
                     <img src={codegenius_logo} />
@@ -84,9 +101,15 @@ function Carousel() {
                     <h2>{textos[iterador].subtitulo}</h2>
                     <p>{textos[iterador].texto}</p>
                 </div>
-                <button className='cadastre-se' onClick={atualizarIterador}>Cadastre-se</button>
+                <button className='cadastre-se' onClick={handleVisibleCad}>Cadastre-se</button>
             </div>
-
+            <div className="reset-modal-pos">
+            <ModaltoForm
+                toggleModal={handleVisible}
+                visible={modalVisible}
+            />    
+            </div>
+            
         </>
     );
 }
