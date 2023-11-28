@@ -13,6 +13,7 @@ function Courses() {
                 <CoursesTopBar/>
                 <Filters />
                 <div className={ style.course_list }>
+                    {/* <CardLesson />
                     <CardLesson />
                     <CardLesson />
                     <CardLesson />
@@ -31,8 +32,7 @@ function Courses() {
                     <CardLesson />
                     <CardLesson />
                     <CardLesson />
-                    <CardLesson />
-                    <CardLesson />
+                    <CardLesson /> */}
                 </div>
             </div>
         </>

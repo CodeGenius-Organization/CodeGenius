@@ -9,14 +9,21 @@ import img5 from '../../img/favorite (1).svg';
 
 import { FaCircle } from "react-icons/fa6";
 
-function CardLesson({ course, handleCardClick }) {
+function CardLesson({ course, onCardClick }) {
     const circleStyle = {width: "5px", height: "5px"}
 
+    const handleCardClick = (courseData) => {
+        onCardClick(courseData)
+    }
+    
     const [showElement, setShowElement] = useState(false)
-    const showOrHide = () => setShowElement(true)
+    const showOrHide = (event) => {
+        event.stopPropagation();
+        setShowElement(true)
+    }
     return (
         <>
-            <div class ={style.card} onClick={handleCardClick(course.id)}>
+            <div class ={style.card} onClick={() => handleCardClick(course) }>
                 <div class ={style.img}>
                     {/* <img src = {img} alt='image'/> */}
                     {/* <div class = {style.fav}>

@@ -14,22 +14,28 @@ function LandingPage() {
     const [courses, setCourses] = useState([])
     const [selectedCard, setSelectedCard] = useState(null);
     
-    const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWN0b3JAZ21haWwuY29tIiwiaXNzIjoiQVBJIENvZGUgR2VuaXVzIiwiZXhwIjoxNzAwOTQzODYyfQ.f25Ccc6CwS5vnv5uCwhZH9_DbAJ4w9ux57bg-dI1E8Q"
-    sessionStorage.setItem("authToken", token)
+    // const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWN0b3JAZ21haWwuY29tIiwiaXNzIjoiQVBJIENvZGUgR2VuaXVzIiwiZXhwIjoxNzAxMTI1MDYxfQ.BZ5xedltk9dlmT29bAOoeWaJ5j52dzzBZfBBpnJPVQc"
+    // sessionStorage.setItem("authToken", token)
 
     const handleTabClick = (category) => {
         setSelectedCategory(category)
     }
 
-    const handleCardClick = (cardId) => {
-        setSelectedCard(cardId)
+    const handleCardClick = (courseData) => {
+        // tentativa falha de fazer o navegador armazenar a última página acessada antes de redirecionar
+        // pra poder usar o botão de voltar página do navegador...
+        // window.history.pushState(null, null, "/");
+        // window.dispatchEvent(new Event('popstate'));
+
+        setSelectedCard(courseData)
     }
 
     useEffect(() => {
+        setSelectedCard(null)
         if (coursesCache[selectedCategory]) {
             setCourses(coursesCache[selectedCategory])
         } else {
-            api.get(`courses/category/Desenvolvimento`, 
+            api.get(`course/courses/category/Desenvolvimento`, 
             {
                 headers: {
                     "Content-Type": "application/json",
@@ -54,7 +60,8 @@ function LandingPage() {
         
         <>
             <div className={ style.main_section }>
-                {selectedCard != null ? 
+                {
+                selectedCard != null ? 
                 <Course courseData={ selectedCard }/>
                 :
                 <React.Fragment>

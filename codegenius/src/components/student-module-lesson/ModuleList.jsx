@@ -40,19 +40,21 @@ const payload = [
     }
 ]
 
-function ModuleList() {
+function ModuleList({ m}) {
+  // console.log(modules)
+  
     return (
         <>
             <div className={style.modules_container}>
                 <span className={style.title}>Lista de módulos:</span>
                 <div className={style.modules_list}>
-                    {payload.map((modulo) => (
+                    {m.map((modulo) => (
                         <Module module={modulo}/>
                     ))}
                 </div>           
             </div>
         </>
     )
-}
-
-export default ModuleList
+  }
+  
+  export default ModuleList
