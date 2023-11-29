@@ -17,7 +17,7 @@ function Course({ courseId }) {
     
     useEffect(() => {
         console.log(courseId)
-        api.get(`courses/${courseId}`,
+        api.get(`course/courses/${courseId}`,
         {
             headers: {
                 "Content-Type": "application/json",

@@ -35,7 +35,7 @@ function LandingPage() {
         if (coursesCache[selectedCategory]) {
             setCourses(coursesCache[selectedCategory])
         } else {
-            api.get(`courses/category/Desenvolvimento`, 
+            api.get(`course/courses/category/Desenvolvimento`, 
             {
                 headers: {
                     "Content-Type": "application/json",
