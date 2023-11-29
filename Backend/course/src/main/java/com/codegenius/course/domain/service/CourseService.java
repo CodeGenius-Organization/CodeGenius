@@ -7,15 +7,15 @@ import com.codegenius.course.domain.model.CategoryModel;
 import com.codegenius.course.domain.model.CourseModel;
 import com.codegenius.course.domain.model.LanguageModel;
 import com.codegenius.course.domain.repository.CourseRepository;
+import com.codegenius.course.domain.utils.Fila;
+import com.codegenius.course.domain.utils.Pilha;
+import com.codegenius.course.infra.exception.GlobalExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class CourseService {
@@ -132,5 +132,60 @@ public class CourseService {
         }
 
         return courseRepository.getCourseImage(courseId);
+    }
+
+    public Object pilhaOuFila(String option) {
+        if (option.equals("drs")) {
+            return criarPilhaDrs();
+        } else if (option.equals("crs")) {
+            return criarFilaCrs();
+        } else {
+            throw new GlobalExceptionHandler.BadRequestException("invalid option");
+        }
+    }
+
+
+    private Pilha<CourseModel> criarPilhaDrs() {
+        List<CourseModel> courses = courseRepository.findAll();
+
+
+        for (int i = 0; i < courses.size() - 1; i++) {
+            for (int j = 0; j < courses.size() - i - 1; j++) {
+                if (courses.get(j).getTitle().compareToIgnoreCase(courses.get(j + 1).getTitle()) > 0) {
+                    CourseModel temp = courses.get(j);
+                    courses.set(j, courses.get(j + 1));
+                    courses.set(j + 1, temp);
+                }
+            }
+        }
+
+        Pilha<CourseModel> pilhaCrs = new Pilha<>(courses.size());
+        for (CourseModel course : courses) {
+            pilhaCrs.push(course);
+        }
+
+        return pilhaCrs;
+    }
+
+    private Fila<CourseModel> criarFilaCrs() {
+        List<CourseModel> courses = courseRepository.findAll();
+
+
+        for (int i = 0; i < courses.size() - 1; i++) {
+            for (int j = 0; j < courses.size() - i - 1; j++) {
+                if (courses.get(j).getTitle().compareToIgnoreCase(courses.get(j + 1).getTitle()) > 0) {
+                    CourseModel temp = courses.get(j);
+                    courses.set(j, courses.get(j + 1));
+                    courses.set(j + 1, temp);
+                }
+            }
+        }
+
+        Fila<CourseModel> filaCrs = new Fila<>(courses.size());
+        for (CourseModel course : courses) {
+            filaCrs.insert(course);
+        }
+
+        return filaCrs;
     }
 }

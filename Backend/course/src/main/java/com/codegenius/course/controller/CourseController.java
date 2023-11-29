@@ -4,6 +4,9 @@ import com.codegenius.course.domain.dto.CourseCreationDTO;
 import com.codegenius.course.domain.dto.CourseCsvDTO;
 import com.codegenius.course.domain.model.CourseModel;
 import com.codegenius.course.domain.service.CourseService;
+import com.codegenius.course.domain.utils.Fila;
+import com.codegenius.course.domain.utils.Pilha;
+import com.codegenius.course.infra.exception.GlobalExceptionHandler;
 import com.codegenius.course.utils.Arquivo;
 import com.codegenius.course.utils.GerenciadorDeArquivosCourseCsv;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -119,4 +122,27 @@ public class CourseController {
         return ResponseEntity.status(200).build();
     }
     //endregion
+
+    @GetMapping(value = "/ordem/{option}")
+    public ResponseEntity<?> pilha(@PathVariable String option) {
+        if (!option.equals("drs") && !option.equals("crs")) {
+            throw new GlobalExceptionHandler.BadRequestException("invalid option");
+        }
+
+        Object result = courseService.pilhaOuFila(option);
+
+        if (result instanceof Pilha) {
+            Pilha<CourseModel> pilha = (Pilha<CourseModel>) result;
+            return pilha.isEmpty()
+                    ? ResponseEntity.status(204).build()
+                    : ResponseEntity.status(200).body(pilha);
+        } else if (result instanceof Fila) {
+            Fila<CourseModel> fila = (Fila<CourseModel>) result;
+            return fila.isEmpty()
+                    ? ResponseEntity.status(204).build()
+                    : ResponseEntity.status(200).body(fila);
+        }
+
+        return ResponseEntity.status(400).build();
+    }
 }

@@ -5,6 +5,7 @@ import com.codegenius.game.domain.dto.DadosQuestoesCompleto;
 import com.codegenius.game.domain.model.QuestionModel;
 import com.codegenius.game.domain.repository.QuestionRepository;
 import com.codegenius.game.domain.service.QuestionService;
+import com.codegenius.game.domain.utils.Fila;
 import com.codegenius.game.infra.exception.GlobalExceptionHandler;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -24,6 +25,8 @@ import org.springframework.web.server.ResponseStatusException;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RunWith(SpringRunner.class)
