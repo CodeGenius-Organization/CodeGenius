@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CourseContent from "./CourseContent";
+import api from '../../../Api'
 
 import style from "./Course.module.css"
 import img from "../../../img/video.png"
@@ -11,7 +12,30 @@ import TopBar from "./TopBar";
 import SingleAnswerQuestion from "../../../components/questions/SingleAnswerQuestion"
 import FriendCard from "../../student-social/FriendCard"
 
-function Course({ courseData }) {
+function Course({ courseId }) {
+    const [course, setCourse] = useState({});
+    
+    useEffect(() => {
+        console.log(courseId)
+        api.get(`courses/${courseId}`,
+        {
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${sessionStorage.getItem("authToken")}`
+            }
+        })
+        .then((response) => {
+            if (response.status === 200) {
+                setCourse(response.data)
+            } else {
+                throw new Error("Ocorreu um erro interno")
+            }
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }, [courseId])
+    
     const arrowStyle = { color: "#FFF", width: "24px", height: "24px" }
     const lessonTitle = "Lógica de programação: Javascript"
     const lessonContent = "Uma linguagem de programação é como um idioma especial que nós, humanos, usamos para conversar com computadores. Imagine que é como dar comandos mágicos para fazer o computador fazer coisas incríveis. É como ser um feiticeiro digital! Essas linguagens são como conjuntos de regras e símbolos que você usa para criar feitiços, ou seja, programas de computador. Esses programas são como histórias que você conta ao computador e ele entende e executa o que você disse. Aprender uma linguagem de programação é como aprender a arte da magia digital. Você vai descobrir como pensar de forma lógica, resolver quebra-cabeças e criar truques impressionantes com o computador. Você também vai aprender a criar seus próprios feitiços (programas) para fazer jogos, aplicativos, sites e muito mais. É como ter um superpoder para criar coisas incríveis no mundo digital!"
@@ -19,13 +43,8 @@ function Course({ courseData }) {
     const [currentTab, setCurrentTab] = useState('Introdução');
 
     const changeTab = (tabName) => {
-        // console.log(tabName)
         setCurrentTab(tabName);
     }
-
-    // console.log(courseData)
-    // console.log(courseData.title)   
-    //console.log(courseData.title)
 
     let selectedTab;
     if (currentTab === "Introdução") {

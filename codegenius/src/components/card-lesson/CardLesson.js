@@ -12,8 +12,8 @@ import { FaCircle } from "react-icons/fa6";
 function CardLesson({ course, onCardClick }) {
     const circleStyle = {width: "5px", height: "5px"}
 
-    const handleCardClick = (courseData) => {
-        onCardClick(courseData)
+    const handleCardClick = (courseId) => {
+        onCardClick(courseId)
     }
     
     const [showElement, setShowElement] = useState(false)
@@ -23,7 +23,7 @@ function CardLesson({ course, onCardClick }) {
     }
     return (
         <>
-            <div class ={style.card} onClick={() => handleCardClick(course) }>
+            <div class ={style.card} onClick={() => handleCardClick(course.id) }>
                 <div class ={style.img}>
                     {/* <img src = {img} alt='image'/> */}
                     {/* <div class = {style.fav}>
