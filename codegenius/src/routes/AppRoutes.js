@@ -10,7 +10,7 @@ function AppRoutes() {
             <Routes>
                 <Route path='/' element={<Home/>} />
                 <Route path='/institutional' element={<Institutional/>}/>
-                <Route path='/formcontact' element={<FormContact/>}/>
+                <Route path='/form-contact' element={<FormContact/>}/>
             </Routes>
         </BrowserRouter>
     )

@@ -20,18 +20,18 @@ function FormContact() {
                 </div>
 
                 <div className={style.enderecoEmail}>
-                    <label class={style.container}><p>Marque esta caixinha se não enviará o e-mail pelo endereço mariana.ribeiro@gmail.com</p>
+                    <label className={style.container}><p>Marque esta caixinha se não enviará o e-mail pelo endereço mariana.ribeiro@gmail.com</p>
                         <input type="checkbox" checked={style.checked} />
-                        <span class={style.checkmark}></span>
+                        <span className={style.checkmark}></span>
                     </label>
 
-                    <div class={style.enderecoDeEmail}>
+                    <div className={style.enderecoDeEmail}>
                         <label>Endereço de e-mail:</label>
                         <input id={style.inpEnderecoDeEmail} type="email" className={style.inputs_form} placeholder="marianariberio@gmail.com" />
 
                         <button>
-                            <div class={style.svg_wrapper_1}>
-                                <div class={style.svg_wrapper}>
+                            <div className={style.svg_wrapper_1}>
+                                <div className={style.svg_wrapper}>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                                         <path fill="none" d="M0 0h24v24H0z"></path>
                                         <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>

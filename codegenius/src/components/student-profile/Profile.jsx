@@ -19,7 +19,7 @@ function Profile() {
             <div className={style.profile_container}>
                 <div className={style.profile_info}>
                     <div className={style.pfp_name_section}>
-                        <img src={pfp} alt="" srcset="" />
+                        <img src={pfp} alt="" srcSet="" />
                         <div className={style.name_email}>
                             <span className={style.name}>Mariana Ribeiro</span>
                             <span className={style.email}>mariana.ribeiro@gmail.com</span>

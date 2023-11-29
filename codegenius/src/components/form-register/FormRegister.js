@@ -3,12 +3,12 @@ import api from "../../Api"
 import "./FormRegister.css"
 
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 function FormRegister({ toggleModal, changeForm, modalVisible }) {
 
   useEffect(() => {
-    console.log(modalVisible)
+
     if(modalVisible === false){
     document.querySelector("#inpName").value = ''
     document.querySelector("#inpSurname").value = ''
@@ -75,7 +75,7 @@ function FormRegister({ toggleModal, changeForm, modalVisible }) {
     api.post(
       "user/users/",
       {
-        name: fullName,
+        nome: fullName,
         email: email,
         password: password,
       },

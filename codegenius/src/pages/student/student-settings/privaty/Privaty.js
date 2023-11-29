@@ -20,7 +20,7 @@ function Privaty() {
                 <div className='status-privaty'>
                     <div className='status-content'>
                         <label>Aba Perfil</label>
-                        <div class="custom-select">
+                        <div className="custom-select">
                             <select>
                                 <option value=""> Visível </option>
                             </select>
@@ -28,7 +28,7 @@ function Privaty() {
                     </div>
                     <div className='status-content'>
                         <label>E-mail</label>
-                        <div class="custom-select">
+                        <div className="custom-select">
                             <select>
                                 <option value=""> Visível </option>
                             </select>
@@ -36,7 +36,7 @@ function Privaty() {
                     </div>
                     <div className='status-content'>
                         <label>Conquistas</label>
-                        <div class="custom-select">
+                        <div className="custom-select">
                             <select>
                                 <option value=""> Visível </option>
                             </select>
@@ -44,7 +44,7 @@ function Privaty() {
                     </div>
                     <div className='status-content'>
                         <label>Missões</label>
-                        <div class="custom-select">
+                        <div className="custom-select">
                             <select>
                                 <option value=""> Visível </option>
                             </select>
@@ -52,7 +52,7 @@ function Privaty() {
                     </div>
                     <div className='status-content'>
                         <label>Lista de Cursos</label>
-                        <div class="custom-select">
+                        <div className="custom-select">
                             <select>
                                 <option value=""> Visível </option>
                             </select>

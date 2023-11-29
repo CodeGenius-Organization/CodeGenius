@@ -17,8 +17,8 @@ function CardLesson() {
 
     return (
         <>
-            <div class ={style.card}>
-                <div class ={style.img}>
+            <div className={style.card}>
+                <div className={style.img}>
                     {/* <img src = {img} alt='image'/> */}
                     {/* <div class = {style.fav}>
                         <img id= {style.img3} src={img3}/>
@@ -29,10 +29,10 @@ function CardLesson() {
                     </div>
                 </div>   
 
-                <div class={style.container}>
-                    <div class={style.card_lesson}>
-                        <div class={style.info_card}>
-                            <span class={style.card_title}>Lógica de Programação</span>
+                <div className={style.container}>
+                    <div className={style.card_lesson}>
+                        <div className={style.info_card}>
+                            <span className={style.card_title}>Lógica de Programação</span>
                             <div className={style.languages}>
                                 <span>JavaScript</span>
                                 <FaCircle style={ circleStyle }/>
@@ -42,7 +42,7 @@ function CardLesson() {
                             </div>
                             <span>Feito por: Helen Pêra</span>
                             <span>Em andamento</span>
-                            <div class={style.rate}>
+                            <div className={style.rate}>
                                 <img src={img2}></img>
                                 <span>4.0 (1987)</span>
                             </div>

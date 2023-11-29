@@ -6,11 +6,16 @@ import Achievements from './achievements/Achievements'
 
 function Settings() {
 
+  const dataUser = JSON.parse(window.atob(sessionStorage.getItem('dataUser')))
+  const token = sessionStorage.getItem('authToken')
+  // console.log(dataUser)
+ 
+
   return (
     <div className='container-settings'>
         <Privaty />
         <div className='container-column'>
-            <UserData/>
+            <UserData data={dataUser} token={token}/>
             <Achievements/>
         </div>
     </div>

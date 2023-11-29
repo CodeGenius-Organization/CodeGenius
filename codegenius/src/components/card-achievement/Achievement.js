@@ -1,8 +1,12 @@
-import React from 'react'
+import React, {useContext, useState} from 'react'
 import "./Achievement.css"
+import { ContextTeste } from "../../context/context";
 
 
  function Achievement({buttonVisible, data}) {
+  
+  const [contextState, dispatch] = useContext(ContextTeste);
+
     return (
       <>
       <div className='achievement-content'>
@@ -11,7 +15,18 @@ import "./Achievement.css"
         </div>
         <span className='achievement-title'>{data.title}</span>
         <span className='description'>{data.description}</span>
-        {buttonVisible && <button>Mostrar</button>}
+        {buttonVisible && <button
+            onClick={() => {
+              dispatch({ type: "FAVORITE", payload: data });
+            }}
+            className={`${
+              contextState.id.includes(data.id) ? "btn-none" : ""
+            }`}
+          >
+            {contextState.id.includes(data.id) ? "Remover" : "Adicionar"}
+          </button>
+
+        }
       </div>
       </>
     )

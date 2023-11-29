@@ -28,7 +28,8 @@
   }
   
 .achievements-scroll::-webkit-scrollbar-track {
-    background: #121526;       /* color of the tracking area */
+    background: #E4E4E4;       /* color of the tracking area */
+    border-radius: 20px;
 }
   
 .achievements-scroll::-webkit-scrollbar-thumb {

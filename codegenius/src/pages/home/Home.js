@@ -13,6 +13,7 @@ import {
   MdLogout
 } from "react-icons/md";
 import codegenius from "../../img/codegenius.svg";
+import api from '../../Api'
 
 import Course from "../student/course/Course";
 import LandingPage from "../student/landing-page/LandingPage";
@@ -30,32 +31,95 @@ function LogOut() {
   const navigate = useNavigate();
   const [menuToggle, setMenuToggle] = useState(false)
   const [navigateMenu, setNavigateMenu] = useState('cursos')
-  const [contentHome, setContentHome] = useState(<Course/>);
+  const [contentHome, setContentHome] = useState(<LandingPage />);
+  const [emailUser, setEmailUser] = useState();
+  const [token, setToken] = useState();
 
-  useEffect(()=>{
-    switch (navigateMenu){
+  function navigateLeft(teste) {
+    switch (teste) {
       case 'seus-cursos':
-        setContentHome(<Courses/>)
+        setNavigateMenu('seus-cursos')
+        setContentHome(<Courses />)
         break;
       case 'profile':
-        setContentHome(<Profile/>)
+        setNavigateMenu('profile')
+        setContentHome(<Profile />)
         break;
       case 'social':
-        setContentHome(<Social/>)
+        setNavigateMenu('social')
+        setContentHome(<Social />)
         break;
       case 'contact':
-        setContentHome(<Contact/>)
+        setNavigateMenu('contact')
+        setContentHome(<Contact />)
         break;
       case 'settings':
-        setContentHome(<Settings/>)
+        setNavigateMenu('settings')
+        setContentHome(<Settings />)
         break;
       default:
-        setContentHome(<LandingPage/>)
+        setNavigateMenu('cursos')
+        setContentHome(<LandingPage />)
     }
-  }, [navigateMenu])
+  }
+
+  const parseJwt = (token) => {
+    try {
+      return JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+      return null;
+    }
+  };
+
+  function getDataHome(email, tokenJWT) {
+    api.get(`user/users/info/${email}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `${tokenJWT}`
+        },
+      }
+    )
+      .then((response) => {
+        if (response.status === 200) {
+          sessionStorage.setItem("dataUser", window.btoa(JSON.stringify(response.data)));
+          // console.log(response.data)
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  }
+  
+
+
+  useEffect(() => {
+
+    if(sessionStorage.getItem('authToken') !== null){
+      try {
+        const tokenT = sessionStorage.getItem('authToken')
+        setToken(tokenT)
+        const emailToken = parseJwt(tokenT).sub;
+        setEmailUser(emailToken)
+
+        getDataHome(emailToken, tokenT)
+        
+      } catch (error) {
+        console.log(error)  
+      }
+    }  else {
+      navigate("/institutional")
+      toast.error("Você não está autenticado!")
+    }
+  
+  }, [])
+
+  // console.log(token)
+  // console.log(emailUser)
 
   function handleLogout() {
     sessionStorage.removeItem("authToken");
+    sessionStorage.removeItem("dataUser");
     toast.success("Logout realizado com sucesso!")
     navigate("/institutional");
   }
@@ -83,11 +147,17 @@ function LogOut() {
             <div className={`list-menu-container`}>
               <h4>APRENDIZADO</h4>
               <ul>
-                <li className={`${navigateMenu === 'cursos' ? 'active' : ''}`} onClick={() => setNavigateMenu('cursos')}>
+                <li className={`${navigateMenu === 'cursos' ? 'active' : ''}`} onClick={() => {
+
+                  navigateLeft('cursos')
+                }}>
                   <MdOutlineLocalLibrary className={`logo-item-list ${menuToggle ? 'center-items' : ''}`} />
                   <p className={`${menuToggle ? 'text-toggle' : ''}`}>CURSOS</p>
                 </li>
-                <li className={`${navigateMenu === 'seus-cursos' ? 'active' : ''}`} onClick={() => setNavigateMenu('seus-cursos')}>
+                <li className={`${navigateMenu === 'seus-cursos' ? 'active' : ''}`} onClick={() => {
+
+                  navigateLeft('seus-cursos')
+                }}>
                   <MdOutlineHiking className={`logo-item-list ${menuToggle ? 'center-items' : ''}`} />
                   <p className={`${menuToggle ? 'text-toggle' : ''}`}>SEUS CURSOS</p>
                 </li>
@@ -97,28 +167,40 @@ function LogOut() {
             <div className={`list-menu-container`}>
               <h4>SOBRE VOCÊ</h4>
               <ul>
-                <li className={`${navigateMenu === 'profile' ? 'active' : ''}`} onClick={() => setNavigateMenu('profile')}>
+                <li className={`${navigateMenu === 'profile' ? 'active' : ''}`} onClick={() => {
+
+                  navigateLeft('profile')
+                }}>
                   <MdOutlinePerson className={`logo-item-list ${menuToggle ? 'center-items' : ''}`} />
                   <p className={`${menuToggle ? 'text-toggle' : ''}`}>PERFIL</p>
                 </li>
-                <li className={`${navigateMenu === 'social' ? 'active' : ''}`} onClick={() => setNavigateMenu('social')}>
+                <li className={`${navigateMenu === 'social' ? 'active' : ''}`} onClick={() => {
+
+                  navigateLeft('social')
+                }}>
                   <MdOutlineDiversity3 className={`logo-item-list ${menuToggle ? 'center-items' : ''}`} />
                   <p className={`${menuToggle ? 'text-toggle' : ''}`}>SOCIAL</p>
                 </li>
-                <li className={`${navigateMenu === 'settings' ? 'active' : ''}`} onClick={() => setNavigateMenu('settings')}>
-                  <MdOutlineSettings className={`logo-item-list ${menuToggle ? 'center-items' : ''}`}/>
+                <li className={`${navigateMenu === 'settings' ? 'active' : ''}`} onClick={() => {
+
+                  navigateLeft('settings')
+                }}>
+                  <MdOutlineSettings className={`logo-item-list ${menuToggle ? 'center-items' : ''}`} />
                   <p className={`${menuToggle ? 'text-toggle' : ''}`}>CONFIGURAÇÃO</p>
                 </li>
                 <li className={`${menuToggle ? 'center-items' : ''} cursor-none`}>
                   <input id="toggle" className={`toggle `} type="checkbox"></input>
-                  <label for="toggle"></label>
+                  <label htmlFor="toggle"></label>
                 </li>
               </ul>
             </div>
 
             <div className={`list-menu-container flex-end-style`}>
               <ul>
-                <li className={`${navigateMenu === 'contact' ? 'active' : ''}`} onClick={() => setNavigateMenu('contact')}>
+                <li className={`${navigateMenu === 'contact' ? 'active' : ''}`} onClick={() => {
+
+                  navigateLeft('contact')
+                }}>
                   <MdHelpOutline className={`logo-item-list ${menuToggle ? 'center-items' : ''}`} />
                   <p className={`${menuToggle ? 'text-toggle' : ''}`}>FALE CONOSCO</p>
                 </li>
@@ -128,15 +210,11 @@ function LogOut() {
                 </li>
               </ul>
             </div>
-
           </div>
-
         </div>
 
-
-
         <div className="logout-container">
-            {contentHome}
+          {contentHome}
         </div>
       </div>
     </>

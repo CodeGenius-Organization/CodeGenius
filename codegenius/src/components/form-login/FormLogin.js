@@ -12,7 +12,7 @@ function FormLogin({ toggleModal, changeForm, modalVisible }) {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    console.log(modalVisible)
+
     if(modalVisible === false){
       document.querySelector("#inpSenha").value = ''
       document.querySelector("#inpEmail").value = ''
