@@ -1,0 +1,204 @@
+*{
+    font-family: 'Titillium Web', sans-serif;
+}
+.container{
+    width: 481px;
+    height: 980px;
+    /* border: 1px solid red; */
+    background-color: #242C50;
+    border-radius: 20px;  
+    display: flex;
+    flex-direction: column;
+}
+
+.infoUser{
+    width: 315px;
+    height: 313px;
+    /* border: 1px solid red; */
+    display: flex;
+    align-self: center;
+    margin-top: 40px;
+    flex-direction: column;
+}
+
+.picture{
+    width: 228px;
+    height: 228px;
+    /* border: 1px solid red; */
+    border-radius: 200px;
+    display: flex;
+    margin-left: 14%;
+}
+
+.picture img{
+    width: 228px;
+    height: 228px;
+    border-radius: 200px;
+}
+
+.name{
+    color: #fff;
+    display: flex;
+    width: 315px;
+    height: 67px;
+    /* border: 1px solid red; */
+    margin-top: 15px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.name h2{
+    font-weight: 300;
+}
+
+.followers{
+    color: #fff;
+    width: 268px;
+    height: 150px; 
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    margin-top: 74px;
+    margin-left: 22%;
+    align-items: center;
+}
+
+.Btn {
+    display: flex;
+    align-items: center;
+    width: 52px;
+    height: 50px;
+    padding: .5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: transparent;
+    border-color: #fff;
+    /* margin-top: 15px; */
+  }
+
+  .Btn img2{
+    display: flex;
+    margin-right: 40px;
+    
+  }
+
+  
+  
+  /* plus sign */
+  .sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sign svg {
+    width: 17px;
+  }
+  
+  .sign svg path {
+    fill: white;
+  }
+
+  .sign svg path img2{
+    fill: white;
+    width: 10px;
+    height: 10px;
+  }
+
+  /* text */
+  .text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition-duration: .3s;
+  }
+  /* hover effect on button width */
+  .Btn:hover {
+    width: 200px;
+    border-radius: 40px;
+    transition-duration: .3s;
+  }
+  
+  .Btn:hover .sign {
+    width: 30%;
+    transition-duration: .3s;
+    padding-left: 20px;
+  }
+  /* hover effect button's text */
+  .Btn:hover .text {
+    opacity: 1;
+    width: 70%;
+    transition-duration: .3s;
+    padding-right: 10px;
+  }
+  /* button click effect*/
+  .Btn:active {
+    transform: translate(2px ,2px);
+  }
+
+  .info{
+    width: 268px;
+    height: 294px;
+    /* border: 1px solid red; */
+    margin-top: 74px;
+    margin-left: 22%;
+    font-weight: 600;
+    font-size: 24px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+
+ .label{
+  width: 268px;
+  height: 86px;
+  /* border: 1px solid red; */
+ }
+
+ .label span{
+  display: flex;
+  float: right;
+  /* border: 1px solid red; */
+  font-weight: 200;
+  margin-right: 15px;
+ }
+
+ .label2{
+  width: 268px;
+  height: 86px;
+  /* border: 1px solid red; */
+ }
+
+ 
+ .label2 span{
+  display: flex;
+  float: right;
+  margin-right: 85px;
+  /* border: 1px solid red; */
+  font-weight: 200;
+ }
+
+
+ .label3{
+  width: 268px;
+  height: 86px;
+  /* border: 1px solid red; */
+ }
+
+ 
+ .label3 span{
+  display: flex;
+  float: right;
+  /* border: 1px solid red; */
+  font-weight: 200;
+ }
