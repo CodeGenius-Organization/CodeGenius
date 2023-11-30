@@ -30,30 +30,34 @@ function LandingPage() {
         setSelectedCardId(courseId)
     }
 
-    useEffect(() => {
-        setSelectedCardId(null)
-        if (coursesCache[selectedCategory]) {
-            setCourses(coursesCache[selectedCategory])
-        } else {
-            api.get(`course/courses/category/Desenvolvimento`, 
-            {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${sessionStorage.getItem("authToken")}`
-                }
-            })
-            .then((response) => {
+    const getCourses = async () => {
+        try {
+            if (coursesCache[selectedCategory]) {
+                setCourses(coursesCache[selectedCategory])
+            } else {
+                const response = await
+                api.get(`courses/category/Desenvolvimento`, 
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${sessionStorage.getItem("authToken")}`
+                    }
+                });
                 if (response.status === 200) {
-                    setCourses(response.data)
+                    console.log(response.data)
+                    setCourses(response.data);
                     setCoursesCache({...coursesCache, [selectedCategory]: response.data})
-                } else {
-                    throw new Error("Ocorreu um erro interno")
                 }
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+            }
+        } catch (error) {
+            console.log(error)
+            throw new Error("Ocorreu um erro interno")
         }
+    }
+    
+    useEffect(() => {
+        setSelectedCardId(null);
+        getCourses();
     }, [selectedCategory, coursesCache]);
 
     return (

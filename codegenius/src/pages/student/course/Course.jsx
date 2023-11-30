@@ -14,26 +14,30 @@ import FriendCard from "../../student-social/FriendCard"
 
 function Course({ courseId }) {
     const [course, setCourse] = useState({});
+
+    const getCourseDetails = async () => {
+        try {
+            const response = await
+            api.get(`courses/${courseId}`,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${sessionStorage.getItem("authToken")}`
+                }
+            });
+            if (response.status === 200) {
+                console.log(response.data)
+                setCourse(response.data);
+            }
+
+        } catch (error) {
+            console.log(error);
+            throw new Error("Ocorreu um erro interno");
+        }
+    }
     
     useEffect(() => {
-        console.log(courseId)
-        api.get(`course/courses/${courseId}`,
-        {
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${sessionStorage.getItem("authToken")}`
-            }
-        })
-        .then((response) => {
-            if (response.status === 200) {
-                setCourse(response.data)
-            } else {
-                throw new Error("Ocorreu um erro interno")
-            }
-        })
-        .catch((error) => {
-            console.log(error)
-        })
+        getCourseDetails();
     }, [courseId])
     
     const arrowStyle = { color: "#FFF", width: "24px", height: "24px" }
