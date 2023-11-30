@@ -23,10 +23,10 @@ function CardLesson({ course, onCardClick }) {
     }
     return (
         <>
-            <div class ={style.card} onClick={() => handleCardClick(course.id) }>
-                <div class ={style.img}>
+            <div className ={style.card} onClick={() => handleCardClick(course.id) }>
+                <div className ={style.img}>
                     {/* <img src = {img} alt='image'/> */}
-                    {/* <div class = {style.fav}>
+                    {/* <div className = {style.fav}>
                         <img id= {style.img3} src={img3}/>
                     </div> */}
                     <div className={style.fav}>
@@ -35,10 +35,10 @@ function CardLesson({ course, onCardClick }) {
                     </div>
                 </div>   
 
-                <div class={style.container}>
-                    <div class={style.card_lesson}>
-                        <div class={style.info_card}>
-                            <span class={style.card_title}>{ course.title }</span>
+                <div className={style.container}>
+                    <div className={style.card_lesson}>
+                        <div className={style.info_card}>
+                            <span className={style.card_title}>{ course.title }</span>
                             <div className={style.languages}>
                                 { course.languages.map((language) => (
                                     <React.Fragment key={ language.id }>

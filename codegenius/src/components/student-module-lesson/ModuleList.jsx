@@ -1,8 +1,29 @@
 import React from "react";
-import api from "../../Api";
 import style from './ModuleList.module.css'
 import Module from "./Module";
 
+
+function ModuleList({ modules }) {
+  console.log(modules)
+  
+    return (
+        <>
+            <div className={ style.modules_container }>
+                <span className={ style.title }>Lista de módulos:</span>
+                <div className={ style.modules_list }>
+                    { modules && modules.map((module) => (
+                        <Module module={ module } key={ module.id }/>
+                    ))}
+                </div>           
+            </div>
+        </>
+    )
+  }
+  
+  export default ModuleList
+
+
+/*
 const payload = [
     {
       "id": "5043f7fe-3f66-4da8-bde8-158959459d42",
@@ -39,22 +60,4 @@ const payload = [
       ]
     }
 ]
-
-function ModuleList({ m}) {
-  // console.log(modules)
-  
-    return (
-        <>
-            <div className={style.modules_container}>
-                <span className={style.title}>Lista de módulos:</span>
-                <div className={style.modules_list}>
-                    {m.map((modulo) => (
-                        <Module module={modulo}/>
-                    ))}
-                </div>           
-            </div>
-        </>
-    )
-  }
-  
-  export default ModuleList
+*/

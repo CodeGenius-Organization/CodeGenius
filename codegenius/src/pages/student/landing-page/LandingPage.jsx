@@ -14,7 +14,7 @@ function LandingPage() {
     const [courses, setCourses] = useState([])
     const [selectedCardId, setSelectedCardId] = useState(null);
     
-    // const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWN0b3JAZ21haWwuY29tIiwiaXNzIjoiQVBJIENvZGUgR2VuaXVzIiwiZXhwIjoxNzAxMTI1MDYxfQ.BZ5xedltk9dlmT29bAOoeWaJ5j52dzzBZfBBpnJPVQc"
+    // const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWN0b3JAZ21haWwuY29tIiwiaXNzIjoiQVBJIENvZGUgR2VuaXVzIiwiZXhwIjoxNzAxMzY4MjA2fQ.XN7Zw7RcuQo4BE9LmGl0XDYQVUUCE9HQj4RZ9gU51_g"
     // sessionStorage.setItem("authToken", token)
 
     const handleTabClick = (category) => {

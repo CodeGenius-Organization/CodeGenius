@@ -73,11 +73,11 @@ function Course({ courseId }) {
                         </span>
                         <MdKeyboardArrowRight style={arrowStyle} />
                         <span className={`${style.breadcrumb_element} ${style.now}`}>
-                            {/* {courseData.title} */}
+                            {course.title}
                         </span>
                     </div>
                     <div className={style.content}>
-                        {/* <ModuleList m={ courseData.modules } /> */}
+                        <ModuleList modules={ course.modules } />
                         <div className={ style.learn_section }>
                             <TopBar changeTab={changeTab} currentTab={currentTab}/>
                             {selectedTab}
