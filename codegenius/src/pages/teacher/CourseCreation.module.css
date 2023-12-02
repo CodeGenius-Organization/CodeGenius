@@ -1,14 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 
-.container {
-    /* border: solid 2px red; */
-    
-    height: 1080px;
-    /* width: 1920px; */
-
-    display: flex;
-}
-
 .left_section {
     width: 375px;
     height: 100%;
@@ -17,9 +8,9 @@
 .main_section {
     display: flex;
     flex-direction: column;
-    width: 1545px;
+    width: 1400px;
     height: 100%;
-
+    /* border: solid 2px fuchsia; */
     background-color: #121526;
 }
 
@@ -47,22 +38,22 @@
 
 .content {
     /* border: solid 2px blueviolet; */
-
+    width: 100%;
     display: flex;
     flex-direction: column;
-
-    padding-top: 155px;
-
+    align-items: center;
+    justify-content: center;
     height: 100%;
 }
 
 .buttons {
     display: flex;
     justify-content: center;
-
+    width: 92%;
     gap: 62px;
-
+    /* border: solid 2px gold; */
     margin-top: 121px;
+    
 }
 
 .cancelar {
@@ -73,7 +64,7 @@
     height: 47px;
     width: 212px;
     color: #FFF;
-
+    cursor: pointer;
     font-family: 'Titillium Web';
     font-size: 24px;
     font-weight: 600;
@@ -87,7 +78,7 @@
     height: 47px;
     width: 256px;
     color: #FFF;
-    
+    cursor: pointer;
     font-family: 'Titillium Web';
     font-size: 24px;
     font-weight: 600;
