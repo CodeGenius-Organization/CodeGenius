@@ -1,4 +1,7 @@
 .learn_section {
+    /* border: solid 2px red; */
+    overflow-y: scroll;
+    height: 850px;
     background-color: #121526;
     
     /* margin-left: 25px; */
@@ -11,6 +14,19 @@
     gap: 32px;
 }
 
+.learn_section::-webkit-scrollbar {
+    width: 10px;               /* width of the entire scrollbar */
+  }
+  
+.learn_section::-webkit-scrollbar-track {
+    background: #121526;       /* color of the tracking area */
+  }
+  
+.learn_section::-webkit-scrollbar-thumb {
+    background-color: rgba(127, 86, 188, 1);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb /  / creates padding around scroll thumb */
+  }
+
 .learn_section > span {
     font-family: 'Raleway';
     font-size: 32px;
@@ -18,9 +34,9 @@
     color: #FFF;
 }
 
-.learn_section > img {
+/* .learn_section > img {
     width: 902px;
-}
+} */
 
 .lesson_header {
     display: flex;

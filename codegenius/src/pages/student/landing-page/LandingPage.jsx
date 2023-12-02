@@ -14,7 +14,7 @@ function LandingPage() {
     const [courses, setCourses] = useState([])
     const [selectedCardId, setSelectedCardId] = useState(null);
     
-    // const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWN0b3JAZ21haWwuY29tIiwiaXNzIjoiQVBJIENvZGUgR2VuaXVzIiwiZXhwIjoxNzAxMzY4MjA2fQ.XN7Zw7RcuQo4BE9LmGl0XDYQVUUCE9HQj4RZ9gU51_g"
+    // const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWN0b3JAZ21haWwuY29tIiwiaXNzIjoiQVBJIENvZGUgR2VuaXVzIiwiZXhwIjoxNzAxNDg5NjQyfQ.Nt2pwv_rIHZYicozRnt7o6qGEZa_gYk0juSw4qJ3wPk"
     // sessionStorage.setItem("authToken", token)
 
     const handleTabClick = (category) => {
@@ -36,7 +36,7 @@ function LandingPage() {
                 setCourses(coursesCache[selectedCategory])
             } else {
                 const response = await
-                api.get(`courses/category/Desenvolvimento`, 
+                api.get(`course/courses/category/Desenvolvimento`, 
                 {
                     headers: {
                         "Content-Type": "application/json",
@@ -56,16 +56,16 @@ function LandingPage() {
     }
     
     useEffect(() => {
-        setSelectedCardId(null);
+        // setSelectedCardId(null);
         getCourses();
-    }, [selectedCategory, coursesCache]);
+    }, [selectedCategory, coursesCache, selectedCardId]);
 
     return (
         
         <>
             <div className={ style.main_section }>
                 {selectedCardId !== null ? (
-                    <Course courseId={ selectedCardId }/>
+                    <Course courseId={ selectedCardId } handleUnselectCourse={ setSelectedCardId }/>
                 ) : (
                     <React.Fragment>
                         <DevTopBar onChangeTab={handleTabClick} currentCategory={selectedCategory} />

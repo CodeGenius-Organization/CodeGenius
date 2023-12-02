@@ -10,9 +10,23 @@
     gap: 12px;
     
     width: 511px;
-    height: auto;
+    overflow-y: scroll;
+    height: 880px;
     /* padding-right: 32px; */
 }
+
+.modules_container::-webkit-scrollbar {
+    width: 10px;               /* width of the entire scrollbar */
+  }
+  
+.modules_container::-webkit-scrollbar-track {
+    background: #121526;       /* color of the tracking area */
+  }
+  
+.modules_container::-webkit-scrollbar-thumb {
+    background-color: rgba(127, 86, 188, 1);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb /  / creates padding around scroll thumb */
+  }
 
 .modules_list {
     /* border: solid 2px pink; */

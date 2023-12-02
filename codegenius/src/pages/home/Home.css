@@ -4,13 +4,14 @@
     
     background-color: #121526;
     width: 100%;
-    min-height: 100vh;
+    height: 1080px;
+    /* min-height: 100vh; */
     display: flex;
     font-family: sans-serif;
 }
 
 .logout-container{
-    /* border: solid 1px red; */
+    overflow: hidden;
     
     /* padding: 50px 0 0 50px; */
     padding: 50px 0 50px 50px;

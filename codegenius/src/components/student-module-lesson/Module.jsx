@@ -2,7 +2,7 @@ import React from "react";
 import style from './Module.module.css'
 import Lesson from "./Lesson";
 
-function Module({ module }) {
+function Module({ module, onLessonClick }) {
     const { moduleName, lessons, moduleOrder } = module;
     
     return (
@@ -13,7 +13,8 @@ function Module({ module }) {
                     <Lesson 
                     lesson={ lesson }
                     key={ lesson.id }
-                    moduleOrder={ moduleOrder }/> 
+                    moduleOrder={ moduleOrder }
+                    onLessonClick={ onLessonClick }/> 
                 ))}
             </div>
         </div>
