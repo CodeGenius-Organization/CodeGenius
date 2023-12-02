@@ -15,12 +15,14 @@ import { IoBarChartSharp } from "react-icons/io5";
 import codegenius from "../../img/codegenius.svg";
 
 import LandingPage from "../student/landing-page/LandingPage";
-import CourseCreation from '../../pages/teacher/CourseCreation';
+import CourseCreation from '../teacher/CourseCreation';
 import Profile from "../../components/student-profile/Profile";
 import Contact from "../form-contact/Contact";
 import Social from "../student-social/Social";
 import Courses from "../student/courses/Courses";
 import Settings from "../student/student-settings/Settings";
+
+import ModuleCreation from '../teacher/ModuleCreation'
 
 function LogOut() {
     const navigate = useNavigate();
@@ -154,7 +156,7 @@ function LogOut() {
                     </div>
                 </div>
                 <div className="logout-container">
-                    <CourseCreation />
+                    <ModuleCreation />
                 </div>
             </div>
         </>
