@@ -1,8 +1,11 @@
 .container-config-teacher{
     display: flex;
+    justify-content: space-around;
+    width: 100%;
 }
 
 .content-settings{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }

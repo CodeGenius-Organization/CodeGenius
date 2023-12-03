@@ -20,7 +20,7 @@ import Profile from "../../components/student-profile/Profile";
 import Contact from "../form-contact/Contact";
 import Social from "../student-social/Social";
 import Courses from "../student/courses/Courses";
-import Settings from "../student/student-settings/Settings";
+import Configurtion from "../teacher/teacher-settings/Configuration";
 import ModuleCreation from "../teacher/ModuleCreation";
 
 function LogOut() {
@@ -51,7 +51,7 @@ function LogOut() {
                 break;
             case 'settings':
                 setNavigateMenu('settings')
-                setContentHome(<Settings />)
+                setContentHome(<Configurtion />)
                 break;
             case 'contact':
                 setNavigateMenu('contact')

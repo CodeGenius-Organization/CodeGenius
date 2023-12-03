@@ -31,9 +31,9 @@ function PasswordSettings() {
                             </button>
                         </>) :
                         (<>
-                            <div className={`content-al-hr-ps ${isChangePass ? "div-none" : "div-block"}`}>
+                            <div className={`content-al-hr-ps ${isChangePass ? "div-none" : "div-flex"}`}>
                                 <div className='content-vtl-cf-ps'>
-                                    <div className='edit-teacher'>
+                                    <div className='edit-teacher-ps'>
                                         <span className='title-shadow-teacher'>Senha:</span>
                                         <input type='password' placeholder='*********' readOnly={isEditable}></input>
                                     </div>
