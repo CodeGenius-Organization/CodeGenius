@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap');
+
+.container-data-teacher {
+    display: flex;
+    align-items: center;
+    background-color: #121526;
+    width: 1050px;
+    height: 337px;
+    gap: 180px;
+    padding: 40px;
+    color: #fff;
+    font-family: "Raleway", sans-serif;
+    border-radius: 10px;
+    border: 1px solid #FFF;
+}
+
+.content-data-teacher{
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.content-data-teacher>h3 {
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.content-al-hr{
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.content-vtl{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.edit-teacher{
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-teacher>input {
+    border: none;
+    width: 200px;
+    font-size: 24px;
+    font-weight: 400;
+    text-align: start;
+    color: #FFF;
+    font-family: "Raleway", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    background: transparent;
+    padding: 10px 0px;
+}
+
+.edit-teacher>input::placeholder{
+    padding: 0px;
+    color: #FFF;
+    font-size: 24px;
+    font-weight: 400;
+    text-align: start;
+}
+
+.title-shadow-teacher {
+    color: #868686;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+
+
+.icon-edit-btn{
+    font-size: 24px;
+    color: #FFF;
+}
+.container-data-teacher>button {
+    align-self: flex-start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border-radius: 30px;
+    border: solid 1px white;
+    font-family: 'Raleway' sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    padding: 10px;
+    color: white;
+    
+    width: 118px;
+    height: 43px;
+}

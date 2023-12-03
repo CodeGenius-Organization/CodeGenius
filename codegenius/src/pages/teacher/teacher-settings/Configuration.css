@@ -1,0 +1,8 @@
+.container-config-teacher{
+    display: flex;
+}
+
+.content-settings{
+    display: flex;
+    flex-direction: column;
+}

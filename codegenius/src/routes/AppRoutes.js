@@ -4,6 +4,7 @@ import Home from '../pages/home/Home'
 import Institutional from '../pages/institutional/Institutional'
 import FormContact from '../pages/form-contact/FormContact'
 
+
 function AppRoutes() {
     return (
         <BrowserRouter>

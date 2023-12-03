@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;700&display=swap');
+
+
+.avatar-container {
+    background-color: #121526;
+    font-family: "Raleway", sans-serif;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 395px;
+    color: #ffff;
+    border-right: 1px solid #B3B3B3;
+}
+
+
+
+.avatar-container>h3 {
+    font-size: 28px;
+    align-self: flex-start;
+    margin-bottom: 48px;
+}
+
+.avatar-profile-img {
+    width: 228px;
+    height: 228px;
+    border-radius: 100%;
+}
+
+.avatar-img-container {
+    position: relative;
+    margin-bottom: 56px;
+}
+
+.avatar-img-container>.avatar-edit {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #242C50;
+    cursor: pointer;
+}
+
+.avatar-icon-edit {
+    font-size: 54px;
+    color: #FFF;
+}
+
+
+.term-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.term-container>button {
+    border-radius: 100px;
+    border: 1px solid #FFF;
+    color: #FFF;
+    text-align: center;
+    font-family: "Raleway", sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    background: transparent;
+    padding: 10px 30px;
+}
+
+.mg-bt{
+    margin-bottom: 32px;
+}
