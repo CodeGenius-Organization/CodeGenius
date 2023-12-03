@@ -32,6 +32,10 @@ function LogOut() {
     const [emailUser, setEmailUser] = useState();
     const [token, setToken] = useState();
 
+    const [courseTitle, setCourseTitle] = useState();
+    const [courseDescription, setCourseDescription] = useState();
+
+    
     function navigateLeft(option) {
         switch (option) {
             case 'cursos':
@@ -40,7 +44,11 @@ function LogOut() {
                 break;
             case 'criar-editar-cursos':
                 setNavigateMenu('criar-editar-cursos')
-                setContentHome(<CourseCreation onNext={handleNext} />)
+                setContentHome(<CourseCreation 
+                                onNext={ handleNext } 
+                                onTitleChange={ handleTitleChange }
+                                onDescriptionChange={ handleDescriptionChange }
+                                />)
                 break;
             case 'analise':
                 setNavigateMenu('analise')
@@ -73,6 +81,14 @@ function LogOut() {
                 setContentHome(<ImportExport />)
                 break;
         }
+    }
+
+    const handleTitleChange = (title) => {
+        setCourseTitle(title);
+    }
+
+    const handleDescriptionChange = (description) => {
+        setCourseDescription(description);
     }
 
     function handleLogout() {

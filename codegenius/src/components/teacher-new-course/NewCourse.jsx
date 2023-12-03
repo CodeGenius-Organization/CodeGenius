@@ -9,13 +9,23 @@ import {RiText} from 'react-icons/ri'
 import {IoText} from 'react-icons/io5'
 
 
-function NewCourse() {
+function NewCourse({ onTitleChange, onDescriptionChange }) {
     const uploadStyle = {color: "white", width: "100px", height: "100px"}
     const titleIconStyle = {color: "#FFF", height: "18px", width: "18px"}
     const titleDivStyle = {width: "595px", height: "56px"}
     const titlePlaceholderText = "Adicione o título"
     const descriptionDivStyle = {color: "#FFF", width: "595px", height: "143px"}
     const descriptionPlaceholderText = "Adicione uma breve descrição"
+    
+
+    const handleTitleChange = (value) => {
+        onTitleChange(value);
+    }
+
+    const handleDescriptionChange = (value) => {
+        onDescriptionChange(value);
+    }
+    
     
     return (
         <>
@@ -35,11 +45,13 @@ function NewCourse() {
                         icon={<RiText style={titleIconStyle}/>} 
                         inputDivStyle={titleDivStyle}
                         placeholder={titlePlaceholderText}
+                        onInputChange={ handleTitleChange }
                         />
                         <TextAreaWithIcon
                         icon={<IoText style={titleIconStyle} />}
                         textAreaDivStyle={ descriptionDivStyle }
                         placeholder={ descriptionPlaceholderText }
+                        onInputChange={ handleDescriptionChange }
                         />
                         <div className={style.language_selection}>
                             <span>Selecione as linguagens:</span>

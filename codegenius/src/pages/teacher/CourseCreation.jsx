@@ -5,12 +5,20 @@ import api from '../../Api'
 import NewCourse from '../../components/teacher-new-course/NewCourse'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 
-function CourseCreation({ onNext }) {
+function CourseCreation({ onNext, onTitleChange, onDescriptionChange }) {
     const arrowStyle = {color: "#FFF", width: "24px", height: "24px"}
     
 
     const handleNext = (nextPage) => {
         onNext(nextPage);
+    }
+    
+    const handleTitleChange = (value) => {
+        onTitleChange(value);
+    }
+
+    const handleDescriptionChange = (value) => {
+        onDescriptionChange(value);
     }
     
     
@@ -31,7 +39,10 @@ function CourseCreation({ onNext }) {
                         </span>
                     </div>
                     <div className={style.content}>
-                        <NewCourse />
+                        <NewCourse 
+                        onTitleChange={ handleTitleChange }
+                        onDescriptionChange={ handleDescriptionChange }
+                        />
                         <div className={style.buttons}>
                             <button className={style.cancelar}>Cancelar</button>
                             <button className={style.criar} onClick={() => handleNext('create-module') }>Criar módulo</button>

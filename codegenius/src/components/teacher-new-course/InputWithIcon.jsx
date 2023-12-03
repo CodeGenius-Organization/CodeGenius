@@ -1,7 +1,14 @@
 import React from "react";
 import style from './InputWithIcon.module.css'
 
-function InputWithIcon({ icon, inputDivStyle, placeholder }) {
+function InputWithIcon({ icon, inputDivStyle, placeholder, onInputChange }) {
+    const handleInputChange = (e) => {
+        let inputValue = e.target.value;
+
+        onInputChange(inputValue);
+    }
+    
+    
     return (
         <>
             <div className={style.div_input_icon} style={inputDivStyle}>
@@ -9,7 +16,7 @@ function InputWithIcon({ icon, inputDivStyle, placeholder }) {
                     {icon}
                 </div>
                 <div className={style.input} style={inputDivStyle}>
-                    <input type="text" placeholder={placeholder}/>
+                    <input type="text" placeholder={placeholder} onChange={ handleInputChange }/>
                 </div>
             </div>
         </>
