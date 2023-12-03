@@ -1,0 +1,36 @@
+.btn_corrigir{
+    color: #fff;
+    background: #4476E0;
+    padding: 10px 30px;
+    font-size: 24px;
+    border-radius: 100px;
+    margin-top: 32px;
+    border: none;
+    cursor: pointer;
+}
+
+.result {
+    font-family: 'Titillium Web';
+    font-size: 24px;
+    width: 902px;
+    height: 131px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 26px;
+
+    /* border: solid 1px #2FDE56;
+    color: #2FDE56; */
+}
+
+.correct_wrong {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.explanation {
+    max-width: 520px;
+    text-wrap: wrap;
+}

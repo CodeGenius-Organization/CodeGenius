@@ -19,9 +19,6 @@ import { ContextTeste } from "../../context/context";
             onClick={() => {
               dispatch({ type: "FAVORITE", payload: data });
             }}
-            className={`${
-              contextState.id.includes(data.id) ? "btn-none" : ""
-            }`}
           >
             {contextState.id.includes(data.id) ? "Remover" : "Adicionar"}
           </button>

@@ -17,11 +17,11 @@ import api from '../../Api'
 
 import Course from "../student/course/Course";
 import LandingPage from "../student/landing-page/LandingPage";
-import Profile from "../../components/student-profile/Profile";
 import Contact from "../form-contact/Contact";
 import Social from "../student-social/Social";
 import Courses from "../student/courses/Courses";
 import Settings from "../student/student-settings/Settings";
+import MainProfile from "../student/profile/MainProfile";
 // import CourseCreation from "../professor/CourseCreation";
 // import ModuleCreation from "../professor/ModuleCreation"
 // import LandingPage from "../student/landing-page/LandingPage";
@@ -39,11 +39,11 @@ function LogOut() {
     switch (teste) {
       case 'seus-cursos':
         setNavigateMenu('seus-cursos')
-        setContentHome(<Courses />)
+        setContentHome(<Course />)
         break;
       case 'profile':
         setNavigateMenu('profile')
-        setContentHome(<Profile />)
+        setContentHome(<MainProfile />)
         break;
       case 'social':
         setNavigateMenu('social')
