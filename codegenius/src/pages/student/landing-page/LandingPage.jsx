@@ -68,7 +68,7 @@ function LandingPage() {
                     <Course courseId={ selectedCardId } handleUnselectCourse={ setSelectedCardId }/>
                 ) : (
                     <React.Fragment>
-                        <DevTopBar onChangeTab={handleTabClick} currentCategory={selectedCategory} />
+                        <DevTopBar onChangeTab={handleTabClick} currentCategory={ selectedCategory } />
                         <Filters />
                         <div className={ style.course_list }>
                             {courses.map((course) => (

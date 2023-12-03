@@ -21,40 +21,53 @@ import Contact from "../form-contact/Contact";
 import Social from "../student-social/Social";
 import Courses from "../student/courses/Courses";
 import Settings from "../student/student-settings/Settings";
+import ModuleCreation from "../teacher/ModuleCreation";
 
 function LogOut() {
     const navigate = useNavigate();
     const [menuToggle, setMenuToggle] = useState(false)
-    const [navigateMenu, setNavigateMenu] = useState('criar-editar-cursos')
+    const [navigateMenu, setNavigateMenu] = useState('cursos')
     const [contentHome, setContentHome] = useState(<LandingPage />);
     const [emailUser, setEmailUser] = useState();
     const [token, setToken] = useState();
 
-    function navigateLeft(teste) {
-        switch (teste) {
+    function navigateLeft(option) {
+        switch (option) {
+            case 'cursos':
+                setNavigateMenu('cursos')
+                setContentHome(<LandingPage />)
+                break;
             case 'criar-editar-cursos':
                 setNavigateMenu('criar-editar-cursos')
-                setContentHome(<Courses />)
-                break;
-            case 'profile':
-                setNavigateMenu('profile')
-                setContentHome(<Profile />)
+                setContentHome(<CourseCreation onNext={ handleNext } />)
                 break;
             case 'analise':
                 setNavigateMenu('analise')
                 setContentHome(<Social />)
                 break;
-            case 'contact':
-                setNavigateMenu('contact')
-                setContentHome(<Contact />)
+            case 'profile':
+                setNavigateMenu('profile')
+                setContentHome(<Profile />)
                 break;
             case 'settings':
                 setNavigateMenu('settings')
                 setContentHome(<Settings />)
                 break;
+            case 'contact':
+                setNavigateMenu('contact')
+                setContentHome(<Contact />)
+                break;
             default:
                 setNavigateMenu('cursos')
                 setContentHome(<LandingPage />)
+        }
+    }
+
+    const handleNext = (nextPage) => {
+        switch(nextPage) {
+            case 'create-module':
+                setContentHome(<ModuleCreation />)
+                break;
         }
     }
 
@@ -154,7 +167,8 @@ function LogOut() {
                     </div>
                 </div>
                 <div className="logout-container">
-                    <CourseCreation />
+                    { contentHome }
+                    {/* <CourseCreation /> */}
                 </div>
             </div>
         </>
