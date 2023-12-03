@@ -1,12 +1,18 @@
 import React from 'react'
-import style from './CourseCreation.module.css'
+import style from '../teacher/CourseCreation.module.css'
 import api from '../../Api'
 
 import NewCourse from '../../components/teacher-new-course/NewCourse'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 
-function CourseCreation() {
+function CourseCreation({ onNext }) {
     const arrowStyle = {color: "#FFF", width: "24px", height: "24px"}
+    
+
+    const handleNext = (nextPage) => {
+        onNext(nextPage);
+    }
+    
     
     return (
         <>
@@ -28,7 +34,7 @@ function CourseCreation() {
                         <NewCourse />
                         <div className={style.buttons}>
                             <button className={style.cancelar}>Cancelar</button>
-                            <button className={style.criar}>Criar módulo</button>
+                            <button className={style.criar} onClick={() => handleNext('create-module') }>Criar módulo</button>
                         </div>
                     </div>
                 </div>

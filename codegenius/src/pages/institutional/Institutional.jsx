@@ -120,8 +120,9 @@ function Home() {
                                 />
                             </div>
                         </div>
-                    </div>
-                    <div className='footer'>
+                    </div>    
+                </div>
+                <div className='footer'>
                         <div className="container">
                             <div className="logo-mindtech">
                                 <h1>MindTech</h1>
@@ -145,7 +146,6 @@ function Home() {
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
 
 

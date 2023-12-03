@@ -14,7 +14,7 @@ function LandingPage() {
     const [courses, setCourses] = useState([])
     const [selectedCardId, setSelectedCardId] = useState(null);
     
-    // const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWN0b3JAZ21haWwuY29tIiwiaXNzIjoiQVBJIENvZGUgR2VuaXVzIiwiZXhwIjoxNzAxMzY4MjA2fQ.XN7Zw7RcuQo4BE9LmGl0XDYQVUUCE9HQj4RZ9gU51_g"
+    // const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWN0b3JAZ21haWwuY29tIiwiaXNzIjoiQVBJIENvZGUgR2VuaXVzIiwiZXhwIjoxNzAxNDg5NjQyfQ.Nt2pwv_rIHZYicozRnt7o6qGEZa_gYk0juSw4qJ3wPk"
     // sessionStorage.setItem("authToken", token)
 
     const handleTabClick = (category) => {
@@ -30,45 +30,45 @@ function LandingPage() {
         setSelectedCardId(courseId)
     }
 
-    const getCourses = async () => {
-        try {
-            if (coursesCache[selectedCategory]) {
-                setCourses(coursesCache[selectedCategory])
-            } else {
-                const response = await
-                api.get(`courses/category/Desenvolvimento`, 
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${sessionStorage.getItem("authToken")}`
-                    }
-                });
-                if (response.status === 200) {
-                    console.log(response.data)
-                    setCourses(response.data);
-                    setCoursesCache({...coursesCache, [selectedCategory]: response.data})
-                }
-            }
-        } catch (error) {
-            console.log(error)
-            throw new Error("Ocorreu um erro interno")
-        }
-    }
+    // const getCourses = async () => {
+    //     try {
+    //         if (coursesCache[selectedCategory]) {
+    //             setCourses(coursesCache[selectedCategory])
+    //         } else {
+    //             const response = await
+    //             api.get(`course/courses/category/Desenvolvimento`, 
+    //             {
+    //                 headers: {
+    //                     "Content-Type": "application/json",
+    //                     "Authorization": `Bearer ${sessionStorage.getItem("authToken")}`
+    //                 }
+    //             });
+    //             if (response.status === 200) {
+    //                 console.log(response.data)
+    //                 setCourses(response.data);
+    //                 setCoursesCache({...coursesCache, [selectedCategory]: response.data})
+    //             }
+    //         }
+    //     } catch (error) {
+    //         console.log(error)
+    //         throw new Error("Ocorreu um erro interno")
+    //     }
+    // }
     
     useEffect(() => {
-        setSelectedCardId(null);
-        getCourses();
-    }, [selectedCategory, coursesCache]);
+        // setSelectedCardId(null);
+        // getCourses();
+    }, [selectedCategory, coursesCache, selectedCardId]);
 
     return (
         
         <>
             <div className={ style.main_section }>
                 {selectedCardId !== null ? (
-                    <Course courseId={ selectedCardId }/>
+                    <Course courseId={ selectedCardId } handleUnselectCourse={ setSelectedCardId }/>
                 ) : (
                     <React.Fragment>
-                        <DevTopBar onChangeTab={handleTabClick} currentCategory={selectedCategory} />
+                        <DevTopBar onChangeTab={handleTabClick} currentCategory={ selectedCategory } />
                         <Filters />
                         <div className={ style.course_list }>
                             {courses.map((course) => (

@@ -48,7 +48,16 @@
 }
 
 .learn_section {
+    /* border: solid 10px red; */
+    
     display: flex;
     flex-direction: column;
     gap: 32px;
+
+    /* height: 1000px; */
+    /* overflow: hidden; */
+}
+
+.breadcrumb_element:hover {
+    cursor: pointer;
 }
