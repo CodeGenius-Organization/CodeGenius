@@ -1,7 +1,6 @@
 import React from 'react'
 import style from '../teacher/CourseCreation.module.css'
 import api from '../../Api'
-import TeacherModule from '../teacher-create-module/TeacherModule'
 
 import NewCourse from '../../components/teacher-new-course/NewCourse'
 import { MdKeyboardArrowRight } from 'react-icons/md'
