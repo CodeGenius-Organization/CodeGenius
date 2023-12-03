@@ -22,6 +22,7 @@ import Social from "../student-social/Social";
 import Courses from "../student/courses/Courses";
 import Configurtion from "../teacher/teacher-settings/Configuration";
 import ModuleCreation from "../teacher/ModuleCreation";
+import ImportExport from "../teacher/teacher-import-txt/ImportExport";
 
 function LogOut() {
     const navigate = useNavigate();
@@ -39,7 +40,7 @@ function LogOut() {
                 break;
             case 'criar-editar-cursos':
                 setNavigateMenu('criar-editar-cursos')
-                setContentHome(<CourseCreation onNext={ handleNext } />)
+                setContentHome(<CourseCreation onNext={handleNext} />)
                 break;
             case 'analise':
                 setNavigateMenu('analise')
@@ -64,9 +65,12 @@ function LogOut() {
     }
 
     const handleNext = (nextPage) => {
-        switch(nextPage) {
+        switch (nextPage) {
             case 'create-module':
-                setContentHome(<ModuleCreation />)
+                setContentHome(<ModuleCreation onNext={handleNext}/>)
+                break;
+            case 'importar-exportar':
+                setContentHome(<ImportExport />)
                 break;
         }
     }
@@ -167,7 +171,7 @@ function LogOut() {
                     </div>
                 </div>
                 <div className="logout-container">
-                    { contentHome }
+                    {contentHome}
                     {/* <CourseCreation /> */}
                 </div>
             </div>

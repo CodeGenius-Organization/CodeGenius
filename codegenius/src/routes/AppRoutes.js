@@ -4,7 +4,7 @@ import Home from '../pages/home/Home'
 import Institutional from '../pages/institutional/Institutional'
 import FormContact from '../pages/form-contact/FormContact'
 import HomeTeacher from '../pages/home/HomeTeacher'
-import LandingPage from '../pages/student/landing-page/LandingPage'
+import Course from '../pages/teacher/teacher-import-txt/ImportExport'
 
 
 function AppRoutes() {
@@ -15,7 +15,7 @@ function AppRoutes() {
                 <Route path='/institutional' element={<Institutional/>}/>
                 <Route path='/form-contact' element={<FormContact/>}/>
                 <Route path='/prof' element={<HomeTeacher/>}/>
-                <Route path='/aluno' element={<LandingPage/>}/>
+                <Route path='/course' element={<Course/>}/>
             </Routes>
         </BrowserRouter>
     )

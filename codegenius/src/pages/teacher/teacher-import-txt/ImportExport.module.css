@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+.main_section {
+    display: flex;
+    flex-direction: column;
+    width: 1400px;
+    height: 800px;
+    /* border: solid 2px fuchsia; */
+    background-color: #121526;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    /* border: solid 2px blueviolet; */
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    height: 90%;
+}
+
+.content h1 {
+    font-family: 'Titillium Web';
+    font-size: 35px;
+    font-weight: bolder;
+    color: #FFF;
+    text-align: center;
+}
+
+.import_export {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+    height: 100%;
+}
+
+.import {
+    width: 27vw;
+    height: 30vh;
+    border-radius: 20px;
+    border: solid 2px #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.import .upload_img {
+    color: white;
+    width: 100px;
+    height: 100px;
+}
+
+.import h1{
+    font-family: 'Titillium Web';
+    font-size: 24px;
+    font-weight: normal;
+    color: #FFF;
+    text-align: center;
+}
+
+.export {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.export button {
+    border-radius: 20px;
+    border: 1px solid #F070FF;
+    width: 250px;
+    height: 40px;
+    padding: 0px 20px;
+    font-family: 'Titillium Web';
+    font-size: 20px;
+    color: #121526;
+    background-color: #F070FF;
+    cursor: pointer;
+}
+
+.export button:hover {
+    border: none;
+    box-shadow: 0px 0px 8px 2px rgba(234, 144, 225, 0.5);
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 56px 0 56px 50px;
+    width: 100%;
+}
+
+.breadcrumb_element {
+    font-family: 'Raleway';
+    font-size: 20px;
+    font-weight: 400;
+    color: #FFF;
+}
+
+.now {
+    font-weight: bold;
+}
