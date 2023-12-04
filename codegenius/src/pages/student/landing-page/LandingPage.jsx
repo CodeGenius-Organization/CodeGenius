@@ -30,34 +30,34 @@ function LandingPage() {
         setSelectedCardId(courseId)
     }
 
-    // const getCourses = async () => {
-    //     try {
-    //         if (coursesCache[selectedCategory]) {
-    //             setCourses(coursesCache[selectedCategory])
-    //         } else {
-    //             const response = await
-    //             api.get(`course/courses/category/Desenvolvimento`, 
-    //             {
-    //                 headers: {
-    //                     "Content-Type": "application/json",
-    //                     "Authorization": `Bearer ${sessionStorage.getItem("authToken")}`
-    //                 }
-    //             });
-    //             if (response.status === 200) {
-    //                 console.log(response.data)
-    //                 setCourses(response.data);
-    //                 setCoursesCache({...coursesCache, [selectedCategory]: response.data})
-    //             }
-    //         }
-    //     } catch (error) {
-    //         console.log(error)
-    //         throw new Error("Ocorreu um erro interno")
-    //     }
-    // }
+    const getCourses = async () => {
+        try {
+            if (coursesCache[selectedCategory]) {
+                setCourses(coursesCache[selectedCategory])
+            } else {
+                const response = await
+                api.get(`course/courses/category/Desenvolvimento`, 
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${sessionStorage.getItem("authToken")}`
+                    }
+                });
+                if (response.status === 200) {
+                    console.log(response.data)
+                    setCourses(response.data);
+                    setCoursesCache({...coursesCache, [selectedCategory]: response.data})
+                }
+            }
+        } catch (error) {
+            console.log(error)
+            throw new Error("Ocorreu um erro interno")
+        }
+    }
     
     useEffect(() => {
-        // setSelectedCardId(null);
-        // getCourses();
+        setSelectedCardId(null);
+        getCourses();
     }, [selectedCategory, coursesCache, selectedCardId]);
 
     return (

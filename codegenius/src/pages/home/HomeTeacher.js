@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import { toast } from "react-toastify";
+
+import api from "../../Api";
+
 import {
     MdArrowBackIosNew,
     MdOutlineLocalLibrary,
@@ -35,7 +38,10 @@ function LogOut() {
     const [courseTitle, setCourseTitle] = useState();
     const [courseDescription, setCourseDescription] = useState();
     const [courseLanguages, setCourseLanguages] = useState('Java');
-    const [courseCategories, setCourseCategories] = useState('Desenvolvedor');
+    const [courseCategories, setCourseCategories] = useState('Desenvolvimento');
+    const [modules, setModules] = useState([]);
+    
+    // sessionStorage.setItem("authToken", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2aWN0b3JAZ21haWwuY29tIiwiaXNzIjoiQVBJIENvZGUgR2VuaXVzIiwiZXhwIjoxNzAxNzMxMDU2fQ.5B6KDMJtFfHA3rHrFhFzm0nEETW0ENL1wrsT37hdH3s")
     
     function navigateLeft(option) {
         switch (option) {
@@ -76,7 +82,10 @@ function LogOut() {
     const handleNext = (nextPage) => {
         switch (nextPage) {
             case 'create-module':
-                setContentHome(<ModuleCreation onNext={handleNext}/>)
+                setContentHome(<ModuleCreation 
+                                onNext={handleNext}
+                                onFinish={handleFinish}
+                                />)
                 break;
             case 'importar-exportar':
                 setContentHome(<ImportExport />)
@@ -84,11 +93,145 @@ function LogOut() {
         }
     }
 
+    const getCategoryId = async () => {
+        try {
+            const response = await
+            api.get(`course/categories/${courseCategories}`,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${sessionStorage.getItem("authToken")}`
+                }
+            });
+
+            if (response.status === 200) {
+                return response.data.id;
+            }
+        } catch (error) {
+            throw new Error("Ocorreu um erro interno")
+        }
+    }
+    
+    const getLanguageId = async () => {
+        try {
+            const response = await
+            api.get(`course/languages/${courseLanguages}`,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${sessionStorage.getItem("authToken")}`
+                }
+            });
+
+            if (response.status === 200) {
+                return response.data.id;
+            }
+        } catch (error) {
+            throw new Error("Ocorreu um erro interno")
+        }
+    }
+
+    const postCourse = async (courseInfo) => {
+        console.log(courseInfo)
+        try {
+            const response = await
+            api.post(`course/courses/`,
+            courseInfo,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${sessionStorage.getItem("authToken")}`
+                }
+            });
+
+            if (response.status === 201) {
+                return response.data.id;
+            }
+        } catch (error) {
+            console.log(error)
+            throw new Error("Ocorreu um erro interno")
+        }
+    }
+
+    const postModule = async (moduleInfo) => {
+        console.log("Entrei no post do módulo")
+        try {
+            const response = await
+            api.post(`course/modules/`,
+            moduleInfo,
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${sessionStorage.getItem("authToken")}`
+                }
+            });
+
+            if (response.status === 201) {
+                return 1;
+            }
+        } catch (error) {
+            console.log(error)
+            throw new Error("Ocorreu um erro interno")
+        } 
+    }
+    
+    const handleFinish = async (modules) => {
+        try {
+            const categoryId = await getCategoryId();
+            const languageId = await getLanguageId();
+    
+            const courseInfo = {
+                title: sessionStorage.getItem("courseTitle"),
+                courseDescription: sessionStorage.getItem("courseDescription"),
+                contentDescription: "Descrição do conteúdo muito bacana, você vai aprender muito neste curso!",
+                available: true,
+                languageIds: [languageId],
+                categoryIds: [categoryId]
+            };
+    
+            const newCourseId = await postCourse(courseInfo);
+            
+            await setModules(modules);
+            let success = true;
+
+            for (let index = 0; index < modules.length; index++) {
+                const module = modules[index];
+                const moduleInfo = {
+                    "courseId": newCourseId,
+                    "moduleName": module,
+                    "moduleOrder": index + 1
+                };
+    
+                const result = await postModule(moduleInfo);
+                
+                if (!result) {
+                    success = false;
+                    break;
+                }
+            }
+    
+            if (success) {
+                toast.success("Curso criado com sucesso!");
+                setTimeout(() => {
+                    setContentHome(<LandingPage />);
+                }, 2500);
+            } else {
+                toast.error("Houve uma falha na criação do curso");
+            }
+        } catch (error) {
+            console.error(error);
+            // Trate o erro aqui
+        }
+    };
+    
+
     const handleTitleChange = (title) => {
+        sessionStorage.setItem("courseTitle", title)
         setCourseTitle(title);
     }
 
     const handleDescriptionChange = (description) => {
+        sessionStorage.setItem("courseDescription", description)
         setCourseDescription(description);
     }
 

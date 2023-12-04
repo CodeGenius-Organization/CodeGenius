@@ -1,7 +1,7 @@
 import React from "react";
 import style from './TextAreaWithIcon.module.css'
 
-function TextAreaWithIcon({ icon, textAreaDivStyle, placeholder, onInputChange }) {
+function TextAreaWithIcon({ icon, textAreaDivStyle, placeholder, onInputChange, value }) {
 
     const handleInputChange = (e) => {
         let inputValue = e.target.value;
@@ -16,7 +16,7 @@ function TextAreaWithIcon({ icon, textAreaDivStyle, placeholder, onInputChange }
                     {icon}
                 </div>
                 <div className={style.input} style={ textAreaDivStyle }>
-                    <textarea name="" id="" cols="30" rows="10" placeholder={ placeholder } onChange={ handleInputChange }></textarea>
+                    <textarea value={ value } name="" id="" cols="30" rows="10" placeholder={ placeholder } onChange={ handleInputChange }></textarea>
                 </div>
             </div>
         </>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ccStyle from './CourseCreation.module.css'
 import mcStyle from './ModuleCreation.module.css'
 
@@ -8,9 +8,15 @@ import { MdKeyboardArrowRight } from 'react-icons/md'
 import { AiOutlineUnorderedList } from 'react-icons/ai'
 import { IoIosRemoveCircleOutline } from "react-icons/io";
 
-function ModuleCreation({ onNext }) {
+function ModuleCreation({ onNext, onFinish }) {
     const [modules, setModules] = useState([]);
-
+    const [selectedModule, setSelectedModule] = useState(-1);
+    const [inputValue, setInputValue] = useState('');
+    
+    const handleFinish = () => {
+        onFinish(modules);
+    }
+    
     const handleNext = (nextPage) => {
         onNext(nextPage)
     }
@@ -20,8 +26,24 @@ function ModuleCreation({ onNext }) {
         setModules([...modules, newModule])
     }
 
-    const handleRemoveModule = () => {
-        const updatedModules = modules.filter((module, index))
+    const handleRemoveModule = (i) => {
+        const updatedModules = modules.filter((module, index) => index !== i);
+        setModules(updatedModules);
+    }
+
+    const handleModuleTitleChange = (value) => {
+        if (value.length === 0) {
+            value = `Módulo ${selectedModule + 1}`
+        }
+        
+        const updatedModules = modules.map((module, index) => index === selectedModule ? value : module)
+        setInputValue(value)
+        setModules(updatedModules)
+    }
+
+    const handleModuleSelection = (index) => {
+        setInputValue('');
+        setSelectedModule(index);
     }
 
     const arrowStyle = { color: "#FFF", width: "24px", height: "24px" }
@@ -57,13 +79,13 @@ function ModuleCreation({ onNext }) {
                             </select>
                         </div>
                         <div className={mcStyle.module_list}>
-                            {modules.map((module) => (
-                                <div className={ mcStyle.item }>
+                            {modules.map((module, index) => (
+                                <div className={ mcStyle.item } key={index} onClick={() => handleModuleSelection(index) }>
                                     <span>
                                         {module}
                                     </span>
                                     <IoIosRemoveCircleOutline 
-                                    onClick={() => handleRemoveModule }
+                                    onClick={() => handleRemoveModule(index) }
                                     style={{height: "30px", width: "30px"}} 
                                     className={ mcStyle.remove_module }/>
                                 </div>
@@ -78,7 +100,9 @@ function ModuleCreation({ onNext }) {
                             <TextAreaWithIcon
                                 icon={<AiOutlineUnorderedList style={listIconStyle} />}
                                 textAreaDivStyle={titleDivStyle}
-                                placeholder={"Título..."}
+                                placeholder={modules[selectedModule] ? `${modules.at(selectedModule)}` : "Selecione um módulo para alterar o título"}
+                                onInputChange={ handleModuleTitleChange }
+                                value={ inputValue !== '' ? inputValue : ''}
                             />
                         </div>
                         <div className={mcStyle.buttons_section}>
@@ -90,7 +114,7 @@ function ModuleCreation({ onNext }) {
                 </div>
                 <div className={mcStyle.finish_buttons}>
                     <button className={mcStyle.finish_btn} onClick={() => handleNext("importar-exportar")}>Importar/Exportar</button>
-                    <button className={mcStyle.finish_btn}>Salvar</button>
+                    <button className={mcStyle.finish_btn} onClick={() => handleFinish()}>Salvar</button>
                     <button className={mcStyle.finish_btn}>Próximo</button>
                 </div>
             </div>
