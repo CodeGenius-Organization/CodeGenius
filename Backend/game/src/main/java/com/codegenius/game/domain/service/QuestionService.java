@@ -1,11 +1,10 @@
 package com.codegenius.game.domain.service;
 
-import com.codegenius.game.domain.dto.DadosQuestoes;
-import com.codegenius.game.domain.dto.DadosQuestoesCompleto;
-import com.codegenius.game.domain.dto.DadosQuestoesUpdate;
+import com.codegenius.game.domain.dto.*;
 import com.codegenius.game.domain.model.QuestionModel;
 import com.codegenius.game.domain.repository.QuestionRepository;
 import com.codegenius.game.domain.utils.Fila;
+import com.codegenius.game.domain.utils.GerenciadorArquivoTxt;
 import com.codegenius.game.infra.exception.GlobalExceptionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -80,6 +79,19 @@ public class QuestionService {
         questionRepository.deleteById(questao.getId());
     }
 
+    public List<DadosQuestaoTxtDTO> gravarTxt(String nomeArq) {
+        GerenciadorArquivoTxt gerar = new GerenciadorArquivoTxt();
+
+        return gerar.leArquivoTxt(nomeArq, questionRepository);
+    }
+
+    public List<DadosQuestaoTxtDTO> baixarTxt(String nomeArq) {
+        GerenciadorArquivoTxt gerar = new GerenciadorArquivoTxt();
+        List<DadosQuestaoTxtDTO> dto = convertToQuestaoModelListTxt(questionRepository.findAll());
+
+        return gerar.gravaArquivoTxt(dto, nomeArq);
+    }
+
     public Fila<DadosQuestoesCompleto> fila() {
         Random random = new Random();
         List<QuestionModel> questoes = questionRepository.findAll();
@@ -111,7 +123,18 @@ public class QuestionService {
 
         return data;
     }
+    private List<DadosQuestaoTxtDTO> convertToQuestaoModelListTxt(List<QuestionModel> questoes) {
+        List<DadosQuestaoTxtDTO> questao = new ArrayList<>();
 
+        for (QuestionModel questaoModel: questoes) {
+            Random random = new Random();
+            int num = random.nextInt(2);
+            DadosQuestaoTxtDTO questaoDTO = new DadosQuestaoTxtDTO(questaoModel.getQuestionType(), questaoModel.getStatement(), questaoModel.getTestQuestion(), questaoModel.getLeassonContent(), num == 0 ? "Fácil" : "Difícil");
+            questao.add(questaoDTO);
+        }
+
+        return questao;
+    }
     private List<DadosQuestoesCompleto> convertToQuestaoModelList(List<QuestionModel> questoes) {
         List<DadosQuestoesCompleto> questao = new ArrayList<>();
 

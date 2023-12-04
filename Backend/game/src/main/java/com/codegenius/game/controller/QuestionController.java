@@ -1,5 +1,6 @@
 package com.codegenius.game.controller;
 
+import com.codegenius.game.domain.dto.DadosQuestaoTxtDTO;
 import com.codegenius.game.domain.dto.DadosQuestoes;
 import com.codegenius.game.domain.dto.DadosQuestoesCompleto;
 import com.codegenius.game.domain.dto.DadosQuestoesUpdate;
@@ -81,5 +82,21 @@ public class QuestionController {
         return questoes.isEmpty()
                 ? ResponseEntity.status(204).build()
                 : ResponseEntity.status(200).body(questoes);
+    }
+
+    @PostMapping("/gravar/txt/{nomeArq}")
+    public ResponseEntity<List<DadosQuestaoTxtDTO>> gravarTxt(@PathVariable String nomeArq){
+        List<DadosQuestaoTxtDTO> lista = questionService.gravarTxt(nomeArq);
+        return lista.isEmpty()
+                ? ResponseEntity.status(204).build()
+                : ResponseEntity.status(200).body(lista);
+    }
+
+    @GetMapping("/baixar/txt/{nomeArq}")
+    public ResponseEntity<List<DadosQuestaoTxtDTO>> baixarTxt(@PathVariable String nomeArq) {
+        List<DadosQuestaoTxtDTO> lista = questionService.baixarTxt(nomeArq);
+        return lista.isEmpty()
+                ? ResponseEntity.status(204).build()
+                : ResponseEntity.status(200).body(lista);
     }
 }
