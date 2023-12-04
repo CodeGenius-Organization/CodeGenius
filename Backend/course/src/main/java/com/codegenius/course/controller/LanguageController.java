@@ -32,4 +32,11 @@ public class LanguageController {
         }
         return ResponseEntity.status(200).body(languages);
     }
+
+
+    @GetMapping("/{name}")
+    public ResponseEntity<LanguageModel> getLanguages(@PathVariable String name) {
+        LanguageModel languages = languageService.findLanguageByName(name);
+        return ResponseEntity.status(200).body(languages);
+    }
 }

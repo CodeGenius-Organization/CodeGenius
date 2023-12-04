@@ -28,4 +28,9 @@ public class CategoryController {
     public ResponseEntity<List<CategoryModel>> getAllCategories() {
         return ResponseEntity.status(200).body(this.categoryService.getAllCategories());
     }
+
+    @GetMapping("/{name}")
+    public ResponseEntity<CategoryModel> getAllCategories(@PathVariable String name) {
+        return ResponseEntity.status(200).body(this.categoryService.findCategoryByName(name));
+    }
 }

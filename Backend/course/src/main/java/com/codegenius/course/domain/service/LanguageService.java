@@ -44,4 +44,12 @@ public class LanguageService {
         }
         return language.get();
     }
+
+    public LanguageModel findLanguageByName(String name) {
+        Optional<LanguageModel> language = languageRepository.findLanguageByLanguage(name);
+        if (language.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Linguagem de nome " + name + " não encontrado.");
+        }
+        return language.get();
+    }
 }
