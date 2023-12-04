@@ -56,7 +56,7 @@ function LandingPage() {
     }
     
     useEffect(() => {
-        setSelectedCardId(null);
+        // setSelectedCardId(null);
         getCourses();
     }, [selectedCategory, coursesCache, selectedCardId]);
 
