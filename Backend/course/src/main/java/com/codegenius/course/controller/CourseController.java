@@ -91,7 +91,7 @@ public class CourseController {
     public ResponseEntity<List<CourseModel>> postCourseCadastrarCsv(@RequestBody Arquivo arquivo) {
         List<CourseModel> guardarArquivo = GerenciadorDeArquivosCourseCsv.importarArquivoCsv(arquivo.getNomeArq());
 
-        return ResponseEntity.status(200).body(this.courseService.createCourses(guardarArquivo));
+        return ResponseEntity.status(201).body(this.courseService.createCourses(guardarArquivo));
     }
     //endregion
 

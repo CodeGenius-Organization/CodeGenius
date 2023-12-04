@@ -23,7 +23,7 @@ public class CourseModuleController {
 
     @PostMapping("/")
     public ResponseEntity<CourseModuleModel> createCourseModule(@RequestBody @Valid CourseModuleCreationDTO courseModuleCreationDTO) {
-        return ResponseEntity.status(200).body(courseModuleService.createCourseModule(courseModuleCreationDTO));
+        return ResponseEntity.status(201).body(courseModuleService.createCourseModule(courseModuleCreationDTO));
     }
 
     @GetMapping("/{courseId}")
