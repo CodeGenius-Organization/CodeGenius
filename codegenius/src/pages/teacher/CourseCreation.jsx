@@ -1,4 +1,5 @@
 import React from 'react'
+import { toast } from 'react-toastify'
 import style from '../teacher/CourseCreation.module.css'
 import api from '../../Api'
 
@@ -7,17 +8,23 @@ import { MdKeyboardArrowRight } from 'react-icons/md'
 
 function CourseCreation({ onNext, onTitleChange, onDescriptionChange }) {
     const arrowStyle = {color: "#FFF", width: "24px", height: "24px"}
-    
+    let title = '', description = '';
 
     const handleNext = (nextPage) => {
-        onNext(nextPage);
+        if (!(title.length) || !(description.length)) {
+            toast.error("Preencha os campos!")
+        } else {
+            onNext(nextPage);
+        }
     }
     
     const handleTitleChange = (value) => {
+        title = value;
         onTitleChange(value);
     }
 
     const handleDescriptionChange = (value) => {
+        description = value;
         onDescriptionChange(value);
     }
     

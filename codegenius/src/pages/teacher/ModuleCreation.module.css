@@ -82,6 +82,14 @@
 .item {
     flex-shrink: 0;
 
+    position: relative;
+    
+    /* display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    gap: 30%; */
+    
     border: solid 1px #FFF;
     border-radius: 10px;
 
@@ -92,8 +100,29 @@
     font-size: 24px;
     font-weight: 600;
 
-    text-align: center;
-    padding-top: 33px;
+    /* text-align: center; */
+    /* padding-top: 33px; */
+}
+
+.item > span {
+    height: fit-content;
+    width: fit-content;
+    
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.remove_module {
+    top: 0;
+    bottom: 0;
+    right: 30px;
+    margin: auto 0;
+
+    position: absolute;
 }
 
 .btn {

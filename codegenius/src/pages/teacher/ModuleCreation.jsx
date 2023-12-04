@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ccStyle from './CourseCreation.module.css'
 import mcStyle from './ModuleCreation.module.css'
 
@@ -6,11 +6,22 @@ import TextAreaWithIcon from "../../components/teacher-new-course/TextAreaWithIc
 
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import { AiOutlineUnorderedList } from 'react-icons/ai'
+import { IoIosRemoveCircleOutline } from "react-icons/io";
 
 function ModuleCreation({ onNext }) {
+    const [modules, setModules] = useState([]);
 
     const handleNext = (nextPage) => {
         onNext(nextPage)
+    }
+
+    const handleAddModule = () => {
+        const newModule = `Módulo ${modules.length + 1}`
+        setModules([...modules, newModule])
+    }
+
+    const handleRemoveModule = () => {
+        const updatedModules = modules.filter((module, index))
     }
 
     const arrowStyle = { color: "#FFF", width: "24px", height: "24px" }
@@ -46,20 +57,19 @@ function ModuleCreation({ onNext }) {
                             </select>
                         </div>
                         <div className={mcStyle.module_list}>
-                            <span className={mcStyle.item}>
-                                Módulo 1
-                            </span>
-                            <span className={mcStyle.item}>
-                                Módulo 1
-                            </span>
-                            <span className={mcStyle.item}>
-                                Módulo 1
-                            </span>
-                            <span className={mcStyle.item}>
-                                Módulo 1
-                            </span>
+                            {modules.map((module) => (
+                                <div className={ mcStyle.item }>
+                                    <span>
+                                        {module}
+                                    </span>
+                                    <IoIosRemoveCircleOutline 
+                                    onClick={() => handleRemoveModule }
+                                    style={{height: "30px", width: "30px"}} 
+                                    className={ mcStyle.remove_module }/>
+                                </div>
+                            ))}
                         </div>
-                        <button className={mcStyle.btn}>
+                        <button className={mcStyle.btn} onClick={() => handleAddModule()}>
                             adicionar + módulos
                         </button>
                     </div>

@@ -59,6 +59,12 @@ function NewCourse({ onTitleChange, onDescriptionChange }) {
                                 <option value="1">JavaScript</option>
                             </select>
                         </div>
+                        <div className={style.language_selection}>
+                            <span>Selecione as categorias:</span>
+                            <select name="" id="">
+                                <option value="1">Desenvolvedor</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -34,7 +34,8 @@ function LogOut() {
 
     const [courseTitle, setCourseTitle] = useState();
     const [courseDescription, setCourseDescription] = useState();
-
+    const [courseLanguages, setCourseLanguages] = useState('Java');
+    const [courseCategories, setCourseCategories] = useState('Desenvolvedor');
     
     function navigateLeft(option) {
         switch (option) {
