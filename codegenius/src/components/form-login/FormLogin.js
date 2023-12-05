@@ -64,7 +64,11 @@ function FormLogin({ toggleModal, changeForm, modalVisible }) {
         if (response.status === 200 && response.data?.token) {
           sessionStorage.setItem("authToken", response.data.token);
           toast.success("Login realizado com sucesso!")
-          navigate("/");
+          if(username.split("@")[1] === "mindtech.code"){
+            navigate("/prof");
+          } else {
+            navigate("/")
+          }
           toggleModal();
         } else {
           throw new Error("Ocorreu um erro interno!");
