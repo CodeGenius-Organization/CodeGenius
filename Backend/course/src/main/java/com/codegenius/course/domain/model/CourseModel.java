@@ -73,6 +73,7 @@ public class CourseModel {
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
+    @JsonIgnore
     private Set<CourseModuleModel> modules = new HashSet<>();
 
     public CourseModel(String title, String courseDescription, String contentDescription, Boolean available) {
