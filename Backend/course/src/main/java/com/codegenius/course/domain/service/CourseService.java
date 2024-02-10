@@ -46,9 +46,9 @@ public class CourseService {
         return this.courseRepository.findByLanguages_Id(language.getId());
     }
 
-    public List<CourseModel> getCoursesByCategory(String categoryName) {
+    public List<CourseModel> getCoursesByCategory(String categoryName, String ordering, Integer position) {
 //        CategoryModel category = categoryService.findCategoryByName(categoryName);
-        return this.courseRepository.findByCategories_Category(categoryName);
+        return this.courseRepository.findByCategories_Category_OrderBy(categoryName, ordering, position);
     }
 
     public List<CourseModel> getAvailableCourses() {
