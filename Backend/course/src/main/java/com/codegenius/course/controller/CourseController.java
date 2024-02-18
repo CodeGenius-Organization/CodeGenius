@@ -2,6 +2,7 @@ package com.codegenius.course.controller;
 
 import com.codegenius.course.domain.dto.CourseCreationDTO;
 import com.codegenius.course.domain.dto.CourseCsvDTO;
+import com.codegenius.course.domain.dto.CourseDetailDTO;
 import com.codegenius.course.domain.model.CourseModel;
 import com.codegenius.course.domain.service.CourseService;
 import com.codegenius.course.domain.utils.Fila;
@@ -34,7 +35,8 @@ public class CourseController {
     }
 
     @GetMapping("/{courseId}")
-    public ResponseEntity<CourseModel> getCourseById(@PathVariable UUID courseId) {
+    public ResponseEntity<CourseDetailDTO> getCourseById(@PathVariable UUID courseId) {
+
         return ResponseEntity.status(200).body(this.courseService.getCourseById(courseId));
     }
 
@@ -110,7 +112,6 @@ public class CourseController {
     @DeleteMapping("/{courseId}")
     public ResponseEntity<Void> deleteCourseById(@PathVariable UUID courseId) {
         this.courseService.deleteCourseById(courseId);
-
         return ResponseEntity.status(200).build();
     }
     //endregion

@@ -36,10 +36,12 @@ public class CourseModel {
 
     @Column(name = "course_description", length = 100, nullable = false)
     @NotBlank
+    @JsonIgnore
     private String courseDescription;
 
     @Column(name = "content_description", length = 100, nullable = false)
     @NotBlank
+    @JsonIgnore
     private String contentDescription;
 
     @JsonIgnore

@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -26,6 +27,7 @@ public interface CourseRepository extends JpaRepository<CourseModel, UUID> {
     List<CourseModel> findByAvailableIsTrue();
 
     List<CourseModel> findByAvailableIsTrueAndTitleContaining(String keyword);
+
 
     @Query("""
             select new com.codegenius.course.domain.dto.CourseCsvDTO(c.title,c.courseDescription, c.contentDescription, c.available) from CourseModel c
@@ -54,6 +56,7 @@ public interface CourseRepository extends JpaRepository<CourseModel, UUID> {
                 ON cc.course_fk = c.course_id
             JOIN category cat
                 ON cat.category = :categoryName
+                AND cc.category_fk = cat.category_id
             ORDER BY
                 CASE
                     WHEN :ordering = 'ASC' THEN c.title
@@ -63,7 +66,7 @@ public interface CourseRepository extends JpaRepository<CourseModel, UUID> {
                     WHEN :ordering = 'DESC' THEN c.title
                     ELSE NULL
                 END DESC
-            LIMIT 10 OFFSET :position
+            LIMIT 12 OFFSET :position
             """)
     //WHEN ?2 = 'STAR' THEN ordenar por avaliacao de curso
     List<CourseModel> findByCategories_Category_OrderBy(@Param("categoryName") String categoryName, @Param("ordering") String ordering, @Param("position") Integer position);
