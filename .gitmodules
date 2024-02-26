@@ -4,3 +4,6 @@
 [submodule "codegenius-front"]
 	path = codegenius-front
 	url = https://github.com/CodeGenius-Organization/codegenius-front
+[submodule "codegenius-mobile"]
+	path = codegenius-mobile
+	url = https://github.com/CodeGenius-Organization/codegenius-mobile
