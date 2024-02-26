@@ -1,0 +1,6 @@
+[submodule "codegenius-back"]
+	path = codegenius-back
+	url = https://github.com/CodeGenius-Organization/codegenius-back
+[submodule "codegenius-front"]
+	path = codegenius-front
+	url = https://github.com/CodeGenius-Organization/codegenius-front
