@@ -1,5 +1,6 @@
 package com.codegenius.course.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Entity class representing a user.
@@ -38,6 +37,9 @@ public class UserModel implements UserDetails {
     private String password;
     @Column(name = "active", nullable = false)
     private Boolean active;
+//    @JsonIgnore
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Set<LessonTestAttempts> lessonTestAttempts = new HashSet<>();
 
     /**
      * Returns the authorities granted to the user.

@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -42,4 +45,8 @@ public class ModuleLessonModel {
 
     @OneToOne(mappedBy = "moduleLesson")
     private LessonContentModel lessonContent;
+
+    @OneToMany(mappedBy = "moduleLesson", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private Set<LessonTestAttempts> lessonTestAttempts = new HashSet<>();
 }
